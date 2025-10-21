@@ -57,3 +57,20 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## MTA Departure Board Project
+
+This project is an Angular application designed to display real-time subway departure information from the MTA.
+
+### Current Status
+
+The application is bootstrapped with the following features:
+- An `mta-data` service for fetching real-time data.
+- A `departure-board` component to display the data.
+- A proxy configuration to communicate with the MTA API during local development.
+- The application is configured to fetch data from the MTA's real-time feed and log it to the console.
+
+### Next Steps
+
+1.  **Implement the UI:** The `departure-board` component needs to be updated to display the fetched data in a user-friendly format.
+2.  **Backend Service (if needed):** The MTA's terms of service may require a backend service to fetch data from their API. If direct client-side fetching does not work, a backend will need to be created to serve the data to this Angular application.

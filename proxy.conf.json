@@ -1,0 +1,8 @@
+
+{
+  "/api": {
+    "target": "https://api-endpoint.mta.info",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
