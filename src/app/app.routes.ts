@@ -1,8 +1,3 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [
-    {
-        path: '',
-        loadComponent: () => import('./departure-board/departure-board').then(m => m.DepartureBoard)
-    }
-];
+export const routes: Routes = [];
