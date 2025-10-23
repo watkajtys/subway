@@ -11,6 +11,7 @@ interface StopTimeUpdate {
   stopId: string;
   arrival?: number;
   departure?: number;
+  routeId?: string;
 }
 
 @Component({
@@ -24,12 +25,13 @@ export class App implements OnInit {
   protected arrivalTimes = signal<StopTimeUpdate[]>([]);
   public splitFlapInstance = inject(SplitFlapService).getSplitFlapInstance();
 
-  protected nextArrival = computed(() => {
+  protected upcomingArrivals = computed(() => {
     const nowInSeconds = Date.now() / 1000;
-    const upcomingArrivals = this.arrivalTimes()
+    const upcoming = this.arrivalTimes()
       .filter(a => a.arrival && a.arrival > nowInSeconds)
-      .sort((a, b) => a.arrival! - b.arrival!);
-    return upcomingArrivals.length > 0 ? upcomingArrivals[0] : null;
+      .sort((a, b) => a.arrival! - b.arrival!)
+      .slice(0, 10);
+    return upcoming;
   });
 
   private readonly feedUrls = [
@@ -51,6 +53,7 @@ export class App implements OnInit {
         const updates: StopTimeUpdate[] = [];
         feed.entity.forEach((entity: transit_realtime.IFeedEntity) => {
           if (entity.tripUpdate) {
+            const routeId = entity.tripUpdate.trip.routeId;
             entity.tripUpdate.stopTimeUpdate?.forEach((update: transit_realtime.TripUpdate.IStopTimeUpdate) => {
               const arrivalTime = update.arrival?.time;
               const departureTime = update.departure?.time;
@@ -62,7 +65,8 @@ export class App implements OnInit {
                 updates.push({
                   stopId: update.stopId,
                   arrival: this.convertToNumber(arrivalTime),
-                  departure: this.convertToNumber(departureTime)
+                  departure: this.convertToNumber(departureTime),
+                  routeId: routeId
                 });
               }
             });

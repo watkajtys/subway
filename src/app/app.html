@@ -1,11 +1,25 @@
 <div class="container">
-  <h1>Next Arrival at Times Square</h1>
+  <h1>Upcoming Arrivals at Times Square</h1>
 
-  <div *ngIf="nextArrival() as arrival; else loading">
-    <p><strong>Stop ID:</strong> {{ arrival.stopId }}</p>
-    <p><strong>Arrival Time:</strong> {{ arrival.arrival ? (arrival.arrival * 1000 | date:'shortTime') : 'N/A' }}</p>
+  <div *ngIf="upcomingArrivals().length > 0; else loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Route</th>
+          <th>Stop</th>
+          <th>Arrival Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let arrival of upcomingArrivals()">
+          <td>{{ arrival.routeId }}</td>
+          <td>{{ arrival.stopId }}</td>
+          <td>{{ arrival.arrival ? (arrival.arrival * 1000 | date:'shortTime') : 'N/A' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <ng-template #loading>
-    <p>Loading next arrival...</p>
+    <p>Loading upcoming arrivals...</p>
   </ng-template>
 </div>
