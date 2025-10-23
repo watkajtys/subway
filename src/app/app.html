@@ -1,24 +1,22 @@
-<main class="main">
-  <div class="content">
-    <h1>{{ title() }}</h1>
+<div class="container">
+  <h1>mta-departure-board</h1>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Stop ID</th>
-          <th>Arrival Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (time of arrivalTimes(); track time) {
-          <tr>
-            <td>{{ time.stopId }}</td>
-            <td>{{ time.arrival | date:'shortTime' }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-</main>
+  <table>
+    <thead>
+      <tr>
+        <th>Stop ID</th>
+        <th>Arrival</th>
+        <th>Departure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let arrival of arrivalTimes()" (click)="splitFlapInstance.input$$.next(arrival.stopId)">
+        <td>{{ arrival.stopId }}</td>
+        <td>{{ arrival.arrival ? (arrival.arrival * 1000 | date:'shortTime') : '' }}</td>
+        <td>{{ arrival.departure ? (arrival.departure * 1000 | date:'shortTime') : '' }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<router-outlet />
+  <app-split-flap [letters]="splitFlapInstance.splitFlap$ | async"></app-split-flap>
+</div>

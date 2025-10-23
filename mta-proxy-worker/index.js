@@ -1,5 +1,19 @@
 export default {
   async fetch(request, env, ctx) {
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS',
+      'Access-Control-Allow-Headers': '*',
+    };
+
+    // Handle preflight requests
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: corsHeaders,
+      });
+    }
+
     const url = new URL(request.url);
     const mtaUrl = url.searchParams.get('url');
 
@@ -7,13 +21,20 @@ export default {
       return new Response('Missing url parameter', { status: 400 });
     }
 
-    const headers = new Headers(request.headers);
-    headers.set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36');
+    // Create new headers, don't forward client headers.
+    const headers = new Headers({
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+    });
 
     const response = await fetch(mtaUrl, { headers });
+
+    // Create a mutable copy of the headers and add CORS headers.
+    const responseHeaders = new Headers(response.headers);
+    responseHeaders.set('Access-Control-Allow-Origin', '*');
+
     return new Response(response.body, {
       status: response.status,
-      headers: response.headers
+      headers: responseHeaders,
     });
   },
 };

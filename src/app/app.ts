@@ -1,9 +1,11 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MtaData } from './mta-data';
 import { transit_realtime } from 'gtfs-realtime-bindings';
 import Long from 'long';
+import { SplitFlapComponent } from './split-flap/split-flap';
+import { SplitFlapService } from './split-flap/split-flap.service';
 
 interface StopTimeUpdate {
   stopId: string;
@@ -13,18 +15,19 @@ interface StopTimeUpdate {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, SplitFlapComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit {
   protected readonly title = signal('mta-departure-board');
   protected arrivalTimes = signal<StopTimeUpdate[]>([]);
+  public splitFlapInstance = inject(SplitFlapService).getSplitFlapInstance();
 
   private readonly feedUrls = [
-    '/api/Dataservice/mtagtfsfeeds/nyct%2Fgtfs',       // 1, 2, 3, 4, 5, 6, 7, S
-    '/api/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace',    // A, C, E
-    '/api/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-nqrw',  // N, Q, R, W
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api.mta.info/gtfs/nyct%2Fgtfs',       // 1, 2, 3, 4, 5, 6, 7, S
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api.mta.info/gtfs/nyct%2Fgtfs-ace',    // A, C, E
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api.mta.info/gtfs/nyct%2Fgtfs-nqrw',  // N, Q, R, W
   ];
 
   constructor(private mtaData: MtaData) {}
