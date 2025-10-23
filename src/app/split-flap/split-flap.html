@@ -1,0 +1,12 @@
+<div class="split-flap">
+  <div *ngFor="let flap of flaps" class="flap" [class.flipped]="flap.isFlipping">
+    <div class="upper">
+      <div class="front">{{ flap.currentLetter }}</div>
+      <div class="back">{{ flap.nextLetter }}</div>
+    </div>
+    <div class="lower">
+      <div class="front">{{ flap.currentLetter }}</div>
+      <div class="back">{{ flap.nextLetter }}</div>
+    </div>
+  </div>
+</div>

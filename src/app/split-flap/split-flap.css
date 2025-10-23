@@ -1,0 +1,86 @@
+.split-flap {
+  display: flex;
+  perspective: 1000px;
+}
+
+.flap {
+  width: 50px;
+  height: 70px;
+  position: relative;
+  margin: 5px;
+  transform-style: preserve-3d;
+}
+
+.upper, .lower {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background: #333;
+  color: #fff;
+  font-size: 40px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.upper {
+  top: 0;
+  border-radius: 5px 5px 0 0;
+  transform-origin: bottom;
+  animation: flip-top 0.5s ease-in-out;
+}
+
+.lower {
+  bottom: 0;
+  border-radius: 0 0 5px 5px;
+  transform-origin: top;
+  animation: flip-bottom 0.5s ease-in-out;
+  line-height: 0;
+}
+
+.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateX(180deg);
+}
+
+.flap.flipped .upper {
+  animation-name: flip-top-flipped;
+}
+
+.flap.flipped .lower {
+  animation-name: flip-bottom-flipped;
+}
+
+@keyframes flip-top {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(-180deg); }
+}
+
+@keyframes flip-bottom {
+  0% { transform: rotateX(180deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+@keyframes flip-top-flipped {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(-180deg); }
+}
+
+@keyframes flip-bottom-flipped {
+  0% { transform: rotateX(180deg); }
+  100% { transform: rotateX(0deg); }
+}
