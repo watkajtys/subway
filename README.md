@@ -70,7 +70,24 @@ The application is bootstrapped with the following features:
 - A proxy configuration to communicate with the MTA API during local development.
 - The application is configured to fetch data from the MTA's real-time feed and log it to the console.
 
-### Next Steps
+### Architecture and Deployment
 
-1.  **Implement the UI:** The `departure-board` component needs to be updated to display the fetched data in a user-friendly format.
-2.  **Backend Service (if needed):** The MTA's terms of service may require a backend service to fetch data from their API. If direct client-side fetching does not work, a backend will need to be created to serve the data to this Angular application.
+The application uses a Cloudflare Worker as a proxy to fetch data from the MTA's GTFS-RT feed. This is necessary because the MTA API requires a `User-Agent` header, which cannot be set by client-side JavaScript in the browser.
+
+#### MTA API Endpoint
+
+The correct endpoint for the MTA's real-time data is `https://api-endpoint.mta.info`. The application is configured to use this endpoint through the Cloudflare worker.
+
+#### Deployment
+
+The application is deployed to Cloudflare Pages. To deploy the application, follow these steps:
+
+1.  **Build the application:**
+    ```bash
+    npm run build
+    ```
+2.  **Deploy to Cloudflare Pages:**
+    The build output is located in the `dist/mta-departure-board/browser` directory. Deploy this directory to Cloudflare Pages using the `wrangler` CLI:
+    ```bash
+    npx wrangler pages deploy dist/mta-departure-board/browser
+    ```

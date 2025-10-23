@@ -1,22 +1,11 @@
 <div class="container">
-  <h1>mta-departure-board</h1>
+  <h1>Next Arrival at Times Square</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Stop ID</th>
-        <th>Arrival</th>
-        <th>Departure</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let arrival of arrivalTimes()" (click)="splitFlapInstance.input$$.next(arrival.stopId)">
-        <td>{{ arrival.stopId }}</td>
-        <td>{{ arrival.arrival ? (arrival.arrival * 1000 | date:'shortTime') : '' }}</td>
-        <td>{{ arrival.departure ? (arrival.departure * 1000 | date:'shortTime') : '' }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <app-split-flap [letters]="splitFlapInstance.splitFlap$ | async"></app-split-flap>
+  <div *ngIf="nextArrival() as arrival; else loading">
+    <p><strong>Stop ID:</strong> {{ arrival.stopId }}</p>
+    <p><strong>Arrival Time:</strong> {{ arrival.arrival ? (arrival.arrival * 1000 | date:'shortTime') : 'N/A' }}</p>
+  </div>
+  <ng-template #loading>
+    <p>Loading next arrival...</p>
+  </ng-template>
 </div>

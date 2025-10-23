@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MtaData } from './mta-data';
@@ -15,7 +15,7 @@ interface StopTimeUpdate {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, SplitFlapComponent],
+  imports: [CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -24,10 +24,18 @@ export class App implements OnInit {
   protected arrivalTimes = signal<StopTimeUpdate[]>([]);
   public splitFlapInstance = inject(SplitFlapService).getSplitFlapInstance();
 
+  protected nextArrival = computed(() => {
+    const nowInSeconds = Date.now() / 1000;
+    const upcomingArrivals = this.arrivalTimes()
+      .filter(a => a.arrival && a.arrival > nowInSeconds)
+      .sort((a, b) => a.arrival! - b.arrival!);
+    return upcomingArrivals.length > 0 ? upcomingArrivals[0] : null;
+  });
+
   private readonly feedUrls = [
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api.mta.info/gtfs/nyct%2Fgtfs',       // 1, 2, 3, 4, 5, 6, 7, S
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api.mta.info/gtfs/nyct%2Fgtfs-ace',    // A, C, E
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api.mta.info/gtfs/nyct%2Fgtfs-nqrw',  // N, Q, R, W
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs',       // 1, 2, 3, 4, 5, 6, 7, S
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace',    // A, C, E
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-nqrw',  // N, Q, R, W
   ];
 
   constructor(private mtaData: MtaData) {}
