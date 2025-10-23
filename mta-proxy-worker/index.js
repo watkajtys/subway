@@ -15,7 +15,9 @@ export default {
     }
 
     const url = new URL(request.url);
-    const mtaUrl = url.searchParams.get('url');
+    //
+    // Use the raw search string to avoid decoding the MTA URL.
+    const mtaUrl = url.search.replace('?url=', '');
 
     if (!mtaUrl) {
       return new Response('Missing url parameter', { status: 400 });
