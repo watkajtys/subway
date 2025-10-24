@@ -1,25 +1,34 @@
 <div class="container">
-  <h1>Upcoming Arrivals at Times Square</h1>
-
-  <div *ngIf="upcomingArrivals().length > 0; else loading">
-    <table>
-      <thead>
-        <tr>
-          <th>Route</th>
-          <th>Stop</th>
-          <th>Arrival Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let arrival of upcomingArrivals()">
-          <td>{{ arrival.routeId }}</td>
-          <td>{{ arrival.stopId }}</td>
-          <td>{{ arrival.arrival ? (arrival.arrival * 1000 | date:'shortTime') : 'N/A' }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="header">
+    <h1>Departures</h1>
+    <div class="clock">{{ time() | date:'shortTime' }}</div>
   </div>
-  <ng-template #loading>
-    <p>Loading upcoming arrivals...</p>
-  </ng-template>
+  <div class="boards-container">
+    <div class="board">
+      <h2>Northbound</h2>
+      <div *ngIf="arrivalsByDirection().northbound.length > 0; else loadingNorth">
+        <div *ngFor="let arrival of arrivalsByDirection().northbound; trackBy: trackByTripId" class="arrival-row">
+          <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
+          <span class="destination">{{ arrival.destination }}</span>
+          <span class="time">{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
+        </div>
+      </div>
+      <ng-template #loadingNorth>
+        <p>Loading...</p>
+      </ng-template>
+    </div>
+    <div class="board">
+      <h2>Southbound</h2>
+      <div *ngIf="arrivalsByDirection().southbound.length > 0; else loadingSouth">
+        <div *ngFor="let arrival of arrivalsByDirection().southbound; trackBy: trackByTripId" class="arrival-row">
+          <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
+          <span class="destination">{{ arrival.destination }}</span>
+          <span class="time">{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
+        </div>
+      </div>
+      <ng-template #loadingSouth>
+        <p>Loading...</p>
+      </ng-template>
+    </div>
+  </div>
 </div>
