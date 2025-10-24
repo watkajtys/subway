@@ -57,6 +57,7 @@ export class App implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fetchAllFeeds();
+
     this.refreshInterval = window.setInterval(() => this.fetchAllFeeds(), 15000);
     this.clockInterval = window.setInterval(() => this.time.set(new Date()), 1000);
   }
@@ -156,7 +157,6 @@ export class App implements OnInit, OnDestroy {
   protected trackByTripId(index: number, arrival: StopTimeUpdate): string {
     return arrival.tripId;
   }
-
   private getDestination(routeId: string | null | undefined, direction: 'N' | 'S'): string | undefined {
     if (!routeId) {
       return undefined;
