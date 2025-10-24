@@ -60,6 +60,9 @@ h1 {
   text-align: left;
   font-size: 1.5rem;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .arrival-row:last-child {
@@ -69,6 +72,8 @@ h1 {
 .time {
   font-size: 1.5rem;
   font-weight: bold;
+  min-width: 100px;
+  text-align: right;
 }
 
 .near {
@@ -76,6 +81,7 @@ h1 {
 }
 
 .blink {
+  color: #00c853; /* Bright green */
   animation: blink-animation 1s infinite;
 }
 
