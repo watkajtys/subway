@@ -7,7 +7,8 @@
     <div class="board">
       <h2>Northbound</h2>
       <div *ngIf="arrivalsByDirection().northbound.length > 0; else loadingNorth">
-        <div *ngFor="let arrival of arrivalsByDirection().northbound" class="arrival-row">
+
+        <div *ngFor="let arrival of arrivalsByDirection().northbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
           <span class="destination">{{ arrival.destination }}</span>
           <span class="time">{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
@@ -20,7 +21,7 @@
     <div class="board">
       <h2>Southbound</h2>
       <div *ngIf="arrivalsByDirection().southbound.length > 0; else loadingSouth">
-        <div *ngFor="let arrival of arrivalsByDirection().southbound" class="arrival-row">
+        <div *ngFor="let arrival of arrivalsByDirection().southbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
           <span class="destination">{{ arrival.destination }}</span>
           <span class="time">{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>

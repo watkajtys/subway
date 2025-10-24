@@ -5,8 +5,10 @@ import { MtaData } from './mta-data';
 import { transit_realtime } from 'gtfs-realtime-bindings';
 import Long from 'long';
 import { RouteBadgeComponent } from './route-badge/route-badge';
+import { firstValueFrom } from 'rxjs';
 
 interface StopTimeUpdate {
+  tripId: string;
   stopId: string;
   arrival?: number;
   departure?: number;
@@ -55,7 +57,8 @@ export class App implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fetchAllFeeds();
-    this.refreshInterval = window.setInterval(() => this.fetchAllFeeds(), 30000);
+
+    this.refreshInterval = window.setInterval(() => this.fetchAllFeeds(), 15000);
     this.clockInterval = window.setInterval(() => this.time.set(new Date()), 1000);
   }
 
@@ -68,46 +71,65 @@ export class App implements OnInit, OnDestroy {
     }
   }
 
-  private fetchAllFeeds() {
-    this.arrivalTimes.set([]); // Clear old arrivals before fetching new ones
-    this.feedUrls.forEach(url => this.fetchData(url));
-  }
+  private async fetchAllFeeds() {
+    try {
+      const promises = this.feedUrls.map(url => firstValueFrom(this.mtaData.getRealtimeData(url)));
+      const buffers = await Promise.all(promises);
 
-  private fetchData(url: string) {
-    this.mtaData.getRealtimeData(url).subscribe(buffer => {
-      try {
-        const feed = transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
-        const updates: StopTimeUpdate[] = [];
-        feed.entity.forEach((entity: transit_realtime.IFeedEntity) => {
-          if (entity.tripUpdate) {
-            const routeId = entity.tripUpdate.trip.routeId;
-            entity.tripUpdate.stopTimeUpdate?.forEach((update: transit_realtime.TripUpdate.IStopTimeUpdate) => {
-              const arrivalTime = update.arrival?.time;
-              const departureTime = update.departure?.time;
+      const allUpdates: StopTimeUpdate[] = [];
 
-              // Times Square Stop IDs
-              const timesSquareStops = ['R16', '127', '725', '902'];
+      buffers.forEach((buffer, index) => {
+        try {
+          const feed = transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
+          feed.entity.forEach((entity: transit_realtime.IFeedEntity) => {
+            if (entity.tripUpdate) {
+              const routeId = entity.tripUpdate.trip?.routeId;
+              entity.tripUpdate.stopTimeUpdate?.forEach((update: transit_realtime.TripUpdate.IStopTimeUpdate) => {
+                const arrivalTime = update.arrival?.time;
+                const departureTime = update.departure?.time;
+                const timesSquareStops = ['R16', '127', '725', '902'];
 
-              if (update.stopId && timesSquareStops.some(stop => update.stopId?.startsWith(stop))) {
-                const direction = update.stopId.slice(-1) as 'N' | 'S';
-                updates.push({
-                  stopId: update.stopId,
-                  arrival: this.convertToNumber(arrivalTime),
-                  departure: this.convertToNumber(departureTime),
-                  routeId: routeId ?? undefined,
-                  direction: direction,
-                  destination: this.getDestination(routeId, direction)
-                });
-              }
-            });
-          }
-        });
+                if (update.stopId && timesSquareStops.some(stop => update.stopId?.startsWith(stop))) {
+                  const direction = update.stopId.slice(-1) as 'N' | 'S';
+                  allUpdates.push({
+                    tripId: entity.tripUpdate?.trip?.tripId ?? entity.id,
+                    stopId: update.stopId,
+                    arrival: this.convertToNumber(arrivalTime),
+                    departure: this.convertToNumber(departureTime),
+                    routeId: routeId ?? undefined,
+                    direction: direction,
+                    destination: this.getDestination(routeId, direction)
+                  });
+                }
+              });
+            }
+          });
+        } catch (error) {
+          console.error(`Error processing feed from ${this.feedUrls[index]}:`, error);
+        }
+      });
 
-        this.arrivalTimes.update(current => [...current, ...updates]);
-      } catch (error) {
-        console.error(`Error processing feed from ${url}:`, error);
-      }
-    });
+      this.arrivalTimes.update(currentArrivals => {
+        // Create a map of the current arrivals for efficient lookup.
+        const arrivalsMap = new Map(currentArrivals.map(a => [a.tripId, a]));
+
+        // Update existing entries or add new ones from the latest fetch.
+        for (const update of allUpdates) {
+          arrivalsMap.set(update.tripId, update);
+        }
+
+        // Create a set of trip IDs from the latest fetch for efficient filtering.
+        const newTripIds = new Set(allUpdates.map(a => a.tripId));
+
+        // Filter out any old trips that are no longer in the new feed.
+        const finalArrivals = Array.from(arrivalsMap.values())
+          .filter(a => newTripIds.has(a.tripId));
+
+        return finalArrivals;
+      });
+    } catch (error) {
+      console.error('Error fetching one or more feeds:', error);
+    }
   }
 
   private convertToNumber(value: number | Long | null | undefined): number | undefined {
@@ -132,6 +154,9 @@ export class App implements OnInit, OnDestroy {
     return `${diffInMinutes} min`;
   }
 
+  protected trackByTripId(index: number, arrival: StopTimeUpdate): string {
+    return arrival.tripId;
+  }
   private getDestination(routeId: string | null | undefined, direction: 'N' | 'S'): string | undefined {
     if (!routeId) {
       return undefined;
@@ -155,6 +180,6 @@ export class App implements OnInit, OnDestroy {
     };
 
     const routeDestinations = destinations[routeId as keyof typeof destinations];
-    return routeDestinations ? routeDestinations[direction] : undefined;
+    return routeDestinations ? routeDestinations[direction].toUpperCase() : undefined;
   }
 }
