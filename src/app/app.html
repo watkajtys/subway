@@ -10,15 +10,11 @@
         <div class="arrival-row header-row">
           <span class="route">Route</span>
           <span class="destination">Destination</span>
-          <span class="track">Track</span>
-          <span class="status">Status</span>
           <span class="time">Arrives</span>
         </div>
         <div *ngFor="let arrival of arrivalsByDirection().northbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
           <span class="destination">{{ arrival.routeId | destination:'N' }}</span>
-          <span class="track">{{ arrival.track ?? 'N/A' }}</span>
-          <span class="status">{{ arrival.status }}</span>
           <span
             class="time"
             [ngClass]="getTimeClass(arrival.arrivalTime)"
@@ -35,15 +31,11 @@
         <div class="arrival-row header-row">
           <span class="route">Route</span>
           <span class="destination">Destination</span>
-          <span class="track">Track</span>
-          <span class="status">Status</span>
           <span class="time">Arrives</span>
         </div>
         <div *ngFor="let arrival of arrivalsByDirection().southbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
           <span class="destination">{{ arrival.routeId | destination:'S' }}</span>
-          <span class="track">{{ arrival.track ?? 'N/A' }}</span>
-          <span class="status">{{ arrival.status }}</span>
           <span
             class="time"
             [ngClass]="getTimeClass(arrival.arrivalTime)"
