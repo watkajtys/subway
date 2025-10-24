@@ -1,12 +1,16 @@
-import { Component, OnInit, OnDestroy, signal, inject, computed } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  signal,
+  inject,
+  computed,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { MtaData } from './mta-data';
-import { transit_realtime } from 'gtfs-realtime-bindings';
-import Long from 'long';
+import { MtaDataService } from './mta-data.service';
 import { RouteBadgeComponent } from './route-badge/route-badge';
-import { firstValueFrom } from 'rxjs';
 import { StateService, ArrivalTime } from './state.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +24,8 @@ export class App implements OnInit, OnDestroy {
   private clockInterval?: number;
   private blinkerInterval?: number;
   public state: StateService = inject(StateService);
+  private mtaDataService: MtaDataService = inject(MtaDataService);
+  private arrivalsSub?: Subscription;
 
   protected arrivalsByDirection = computed(() => {
     const nowInSeconds = this.state.time().getTime() / 1000;
@@ -35,23 +41,37 @@ export class App implements OnInit, OnDestroy {
     return { northbound, southbound };
   });
 
-  private readonly feedUrls = [
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs', // 1, 2, 3, 4, 5, 6, 7, S
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace', // A, C, E
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-nqrw', // N, Q, R, W
-  ];
-
-  constructor(private mtaData: MtaData) {}
-
   ngOnInit() {
-    this.fetchAllFeeds();
+    this.fetchArrivals();
 
-    this.refreshInterval = window.setInterval(
-      () => this.fetchAllFeeds(),
-      15000
+    this.refreshInterval = window.setInterval(() => this.fetchArrivals(), 15000);
+    this.clockInterval = window.setInterval(
+      () => this.state.time.set(new Date()),
+      1000
     );
-    this.clockInterval = window.setInterval(() => this.state.time.set(new Date()), 1000);
-    this.blinkerInterval = window.setInterval(() => this.state.blinker.update(v => !v), 1000);
+    this.blinkerInterval = window.setInterval(
+      () => this.state.blinker.update((v) => !v),
+      1000
+    );
+  }
+
+  private fetchArrivals() {
+    this.arrivalsSub = this.mtaDataService
+      .fetchAllFeeds()
+      .subscribe((allUpdates) => {
+        this.state.arrivalTimes.update((currentArrivals) => {
+          const arrivalsMap = new Map(
+            currentArrivals.map((a) => [a.tripId, a])
+          );
+          for (const update of allUpdates) {
+            arrivalsMap.set(update.tripId, update);
+          }
+          const newTripIds = new Set(allUpdates.map((a) => a.tripId));
+          return Array.from(arrivalsMap.values()).filter((a) =>
+            newTripIds.has(a.tripId)
+          );
+        });
+      });
   }
 
   ngOnDestroy() {
@@ -64,93 +84,9 @@ export class App implements OnInit, OnDestroy {
     if (this.blinkerInterval) {
       clearInterval(this.blinkerInterval);
     }
-  }
-
-  private async fetchAllFeeds() {
-    try {
-      const promises = this.feedUrls.map((url) =>
-        firstValueFrom(this.mtaData.getRealtimeData(url))
-      );
-      const buffers = await Promise.all(promises);
-
-      const allUpdates: ArrivalTime[] = [];
-
-      buffers.forEach((buffer, index) => {
-        try {
-          const feed = transit_realtime.FeedMessage.decode(
-            new Uint8Array(buffer)
-          );
-          feed.entity.forEach((entity: transit_realtime.IFeedEntity) => {
-            if (entity.tripUpdate) {
-              const routeId = entity.tripUpdate.trip?.routeId;
-              entity.tripUpdate.stopTimeUpdate?.forEach(
-                (update: transit_realtime.TripUpdate.IStopTimeUpdate) => {
-                  const arrivalTime = this.convertToNumber(
-                    update.arrival?.time
-                  );
-                  const timesSquareStops = ['R16', '127', '725', '902'];
-
-                  if (
-                    update.stopId &&
-                    timesSquareStops.some((stop) =>
-                      update.stopId?.startsWith(stop)
-                    ) &&
-                    arrivalTime
-                  ) {
-                    const direction = update.stopId.slice(-1) as 'N' | 'S';
-                    allUpdates.push({
-                      tripId: entity.tripUpdate?.trip?.tripId ?? entity.id,
-                      stopId: update.stopId,
-                      arrivalTime: arrivalTime,
-                      routeId: routeId ?? '',
-                      direction: direction,
-                    });
-                  }
-                }
-              );
-            }
-          });
-        } catch (error) {
-          console.error(
-            `Error processing feed from ${this.feedUrls[index]}:`,
-            error
-          );
-        }
-      });
-
-      this.state.arrivalTimes.update(currentArrivals => {
-        // Create a map of the current arrivals for efficient lookup.
-        const arrivalsMap = new Map(currentArrivals.map(a => [a.tripId, a]));
-
-        // Update existing entries or add new ones from the latest fetch.
-        for (const update of allUpdates) {
-          arrivalsMap.set(update.tripId, update);
-        }
-
-        // Create a set of trip IDs from the latest fetch for efficient filtering.
-        const newTripIds = new Set(allUpdates.map(a => a.tripId));
-
-        // Filter out any old trips that are no longer in the new feed.
-        const finalArrivals = Array.from(arrivalsMap.values())
-          .filter(a => newTripIds.has(a.tripId));
-
-        return finalArrivals;
-      });
-    } catch (error) {
-      console.error('Error fetching one or more feeds:', error);
+    if (this.arrivalsSub) {
+      this.arrivalsSub.unsubscribe();
     }
-  }
-
-  private convertToNumber(
-    value: number | Long | null | undefined
-  ): number | undefined {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
-    if (typeof value === 'number') {
-      return value;
-    }
-    return value.toNumber();
   }
 
   protected getMinutesUntilArrival(arrival: number): string {

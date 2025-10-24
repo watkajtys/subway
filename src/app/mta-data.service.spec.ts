@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MtaData } from './mta-data';
+import { MtaDataService } from './mta-data.service';
 
-describe('MtaData', () => {
-  let service: MtaData;
+describe('MtaDataService', () => {
+  let service: MtaDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MtaData);
+    service = TestBed.inject(MtaDataService);
   });
 
   it('should be created', () => {
