@@ -76,11 +76,11 @@ h1 {
 }
 
 .blink {
-  animation: blink-animation 1s infinite;
+  opacity: 0.2;
+  transition: opacity 0.2s ease-in-out;
+  color: #00ff00; /* Bright Green */
 }
 
-@keyframes blink-animation {
-  0% { opacity: 1; }
-  50% { opacity: 0.2; }
-  100% { opacity: 1; }
+.blink.blink-on {
+  opacity: 1;
 }
