@@ -154,6 +154,26 @@ export class App implements OnInit, OnDestroy {
     return `${diffInMinutes} min`;
   }
 
+  protected getTimeClass(arrival: number | undefined): { [key: string]: boolean } {
+    if (arrival === undefined) {
+      return {};
+    }
+
+    const nowInSeconds = Date.now() / 1000;
+    const diffInSeconds = arrival - nowInSeconds;
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+
+    if (diffInMinutes <= 0) {
+      return { 'blink': true };
+    }
+
+    if (diffInMinutes === 1) {
+      return { 'near': true };
+    }
+
+    return {};
+  }
+
   protected trackByTripId(index: number, arrival: StopTimeUpdate): string {
     return arrival.tripId;
   }
