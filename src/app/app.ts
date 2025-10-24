@@ -11,10 +11,12 @@ import { MtaDataService } from './mta-data.service';
 import { RouteBadgeComponent } from './route-badge/route-badge';
 import { StateService, ArrivalTime } from './state.service';
 import { Subscription } from 'rxjs';
+import { ArrivalTimePipe } from './arrival-time.pipe';
+import { DestinationPipe } from './destination.pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouteBadgeComponent],
+  imports: [CommonModule, RouteBadgeComponent, ArrivalTimePipe, DestinationPipe],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -89,18 +91,6 @@ export class App implements OnInit, OnDestroy {
     }
   }
 
-  protected getMinutesUntilArrival(arrival: number): string {
-    const nowInSeconds = this.state.time().getTime() / 1000;
-    const diffInSeconds = arrival - nowInSeconds;
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-
-    if (diffInMinutes < 1) {
-      return 'NOW';
-    }
-
-    return `${diffInMinutes} min`;
-  }
-
   protected getTimeClass(arrival: number | undefined): {
     [key: string]: boolean;
   } {
@@ -125,36 +115,5 @@ export class App implements OnInit, OnDestroy {
 
   protected trackByTripId(index: number, arrival: ArrivalTime): string {
     return arrival.tripId;
-  }
-  protected getDestination(
-    routeId: string | null | undefined,
-    direction: 'N' | 'S'
-  ): string | undefined {
-    if (!routeId) {
-      return undefined;
-    }
-
-    const destinations = {
-      '1': { N: 'Van Cortlandt Park-242 St', S: 'South Ferry' },
-      '2': { N: 'Wakefield-241 St', S: 'Flatbush Av-Brooklyn College' },
-      '3': { N: 'Harlem-148 St', S: 'New Lots Av' },
-      '4': { N: 'Woodlawn', S: 'Utica Av' },
-      '5': { N: 'Eastchester-Dyre Av', S: 'Flatbush Av-Brooklyn College' },
-      '6': { N: 'Pelham Bay Park', S: 'Brooklyn Bridge-City Hall' },
-      '7': { N: 'Flushing-Main St', S: '34 St-Hudson Yards' },
-      A: { N: 'Inwood-207 St', S: 'Far Rockaway-Mott Av' },
-      C: { N: '168 St', S: 'Euclid Av' },
-      E: { N: 'Jamaica Center-Parsons/Archer', S: 'World Trade Center' },
-      N: { N: 'Astoria-Ditmars Blvd', S: 'Coney Island-Stillwell Av' },
-      Q: { N: '96 St', S: 'Coney Island-Stillwell Av' },
-      R: { N: 'Forest Hills-71 Av', S: 'Bay Ridge-95 St' },
-      W: { N: 'Astoria-Ditmars Blvd', S: 'Whitehall St' },
-    };
-
-    const routeDestinations =
-      destinations[routeId as keyof typeof destinations];
-    return routeDestinations
-      ? routeDestinations[direction].toUpperCase()
-      : undefined;
   }
 }

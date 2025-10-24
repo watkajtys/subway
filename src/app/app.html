@@ -10,11 +10,11 @@
 
         <div *ngFor="let arrival of arrivalsByDirection().northbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
-          <span class="destination">{{ getDestination(arrival.routeId, 'N') }}</span>
+          <span class="destination">{{ arrival.routeId | destination:'N' }}</span>
           <span
             class="time"
             [ngClass]="getTimeClass(arrival.arrivalTime)"
-          >{{ arrival.arrivalTime ? getMinutesUntilArrival(arrival.arrivalTime) : 'N/A' }}</span>
+          >{{ arrival.arrivalTime ? (arrival.arrivalTime | arrivalTime) : 'N/A' }}</span>
         </div>
       </div>
       <ng-template #loadingNorth>
@@ -26,11 +26,11 @@
       <div *ngIf="arrivalsByDirection().southbound.length > 0; else loadingSouth">
         <div *ngFor="let arrival of arrivalsByDirection().southbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
-          <span class="destination">{{ getDestination(arrival.routeId, 'S') }}</span>
+          <span class="destination">{{ arrival.routeId | destination:'S' }}</span>
           <span
             class="time"
             [ngClass]="getTimeClass(arrival.arrivalTime)"
-          >{{ arrival.arrivalTime ? getMinutesUntilArrival(arrival.arrivalTime) : 'N/A' }}</span>
+          >{{ arrival.arrivalTime ? (arrival.arrivalTime | arrivalTime) : 'N/A' }}</span>
         </div>
       </div>
       <ng-template #loadingSouth>
