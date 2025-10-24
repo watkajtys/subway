@@ -27,8 +27,10 @@ export class App implements OnInit, OnDestroy {
   protected readonly title = signal('mta-departure-board');
   protected arrivalTimes = signal<StopTimeUpdate[]>([]);
   protected time = signal(new Date());
+  protected blinker = signal(true);
   private refreshInterval?: number;
   private clockInterval?: number;
+  private blinkerInterval?: number;
 
   protected arrivalsByDirection = computed(() => {
     const nowInSeconds = Date.now() / 1000;
@@ -60,6 +62,7 @@ export class App implements OnInit, OnDestroy {
 
     this.refreshInterval = window.setInterval(() => this.fetchAllFeeds(), 15000);
     this.clockInterval = window.setInterval(() => this.time.set(new Date()), 1000);
+    this.blinkerInterval = window.setInterval(() => this.blinker.update(v => !v), 1000);
   }
 
   ngOnDestroy() {
@@ -68,6 +71,9 @@ export class App implements OnInit, OnDestroy {
     }
     if (this.clockInterval) {
       clearInterval(this.clockInterval);
+    }
+    if (this.blinkerInterval) {
+      clearInterval(this.blinkerInterval);
     }
   }
 

@@ -11,7 +11,11 @@
         <div *ngFor="let arrival of arrivalsByDirection().northbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
           <span class="destination">{{ arrival.destination }}</span>
-          <span class="time" [ngClass]="getTimeClass(arrival.arrival)">{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
+          <span
+            class="time"
+            [ngClass]="getTimeClass(arrival.arrival)"
+            [class.blink-on]="blinker() && getTimeClass(arrival.arrival)['blink']"
+          >{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
         </div>
       </div>
       <ng-template #loadingNorth>
@@ -24,7 +28,11 @@
         <div *ngFor="let arrival of arrivalsByDirection().southbound; trackBy: trackByTripId" class="arrival-row">
           <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
           <span class="destination">{{ arrival.destination }}</span>
-          <span class="time" [ngClass]="getTimeClass(arrival.arrival)">{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
+          <span
+            class="time"
+            [ngClass]="getTimeClass(arrival.arrival)"
+            [class.blink-on]="blinker() && getTimeClass(arrival.arrival)['blink']"
+          >{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
         </div>
       </div>
       <ng-template #loadingSouth>
