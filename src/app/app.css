@@ -47,15 +47,20 @@ h1 {
 }
 
 .arrival-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 5rem 1fr 5rem 10rem 8rem;
   align-items: center;
   padding: 1rem 0;
   border-bottom: 1px solid #333;
   gap: 1rem;
 }
 
+.header-row {
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
+}
+
 .destination {
-  flex-grow: 1;
   text-align: left;
   font-size: 1.5rem;
   text-transform: uppercase;

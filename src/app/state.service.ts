@@ -6,6 +6,9 @@ export interface ArrivalTime {
   stopId: string;
   arrivalTime: number;
   direction: 'N' | 'S';
+  track?: string;
+  status?: string;
+  destination?: string;
 }
 
 @Injectable({
