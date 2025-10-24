@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <h1>Departures</h1>
-    <div class="clock">{{ time() | date:'shortTime' }}</div>
+    <div class="clock">{{ state.time() | date:'shortTime' }}</div>
   </div>
   <div class="boards-container">
     <div class="board">
@@ -9,13 +9,12 @@
       <div *ngIf="arrivalsByDirection().northbound.length > 0; else loadingNorth">
 
         <div *ngFor="let arrival of arrivalsByDirection().northbound; trackBy: trackByTripId" class="arrival-row">
-          <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
-          <span class="destination">{{ arrival.destination }}</span>
+          <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
+          <span class="destination">{{ getDestination(arrival.routeId, 'N') }}</span>
           <span
             class="time"
-            [ngClass]="getTimeClass(arrival.arrival)"
-            [class.blink-on]="blinker() && getTimeClass(arrival.arrival)['blink']"
-          >{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
+            [ngClass]="getTimeClass(arrival.arrivalTime)"
+          >{{ arrival.arrivalTime ? getMinutesUntilArrival(arrival.arrivalTime) : 'N/A' }}</span>
         </div>
       </div>
       <ng-template #loadingNorth>
@@ -26,13 +25,12 @@
       <h2>Southbound</h2>
       <div *ngIf="arrivalsByDirection().southbound.length > 0; else loadingSouth">
         <div *ngFor="let arrival of arrivalsByDirection().southbound; trackBy: trackByTripId" class="arrival-row">
-          <app-route-badge [routeId]="arrival.routeId ?? ''"></app-route-badge>
-          <span class="destination">{{ arrival.destination }}</span>
+          <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
+          <span class="destination">{{ getDestination(arrival.routeId, 'S') }}</span>
           <span
             class="time"
-            [ngClass]="getTimeClass(arrival.arrival)"
-            [class.blink-on]="blinker() && getTimeClass(arrival.arrival)['blink']"
-          >{{ arrival.arrival ? getMinutesUntilArrival(arrival.arrival) : 'N/A' }}</span>
+            [ngClass]="getTimeClass(arrival.arrivalTime)"
+          >{{ arrival.arrivalTime ? getMinutesUntilArrival(arrival.arrivalTime) : 'N/A' }}</span>
         </div>
       </div>
       <ng-template #loadingSouth>
