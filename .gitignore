@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+jules-scratch/
 
 # Node
 /node_modules

@@ -60,9 +60,8 @@ export class MtaDataService {
                       arrivalTime: arrivalTime,
                       routeId: routeId ?? '',
                       direction: direction,
-                      track: nyctStopTimeUpdate?.actualTrack,
+                      track: nyctStopTimeUpdate?.actualTrack ?? nyctStopTimeUpdate?.scheduledTrack,
                       status: nyctTrip?.trainId ? 'Confirmed' : 'Scheduled',
-                      destination: nyctTrip?.direction?.toString(),
                     });
                   }
                 });
