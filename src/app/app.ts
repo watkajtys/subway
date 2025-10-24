@@ -103,7 +103,7 @@ export class App implements OnInit, OnDestroy {
     const diffInMinutes = Math.floor(diffInSeconds / 60);
 
     if (diffInMinutes < 1) {
-      return { blink: this.state.blinker() };
+      return { blink: true, 'blink-on': this.state.blinker() };
     }
 
     if (diffInMinutes < 2) {

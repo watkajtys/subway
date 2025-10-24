@@ -3,7 +3,6 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: #1a1a1a;
   color: #fff;
-  padding: 2rem;
 }
 
 .header {
@@ -76,11 +75,33 @@ h1 {
 }
 
 .blink {
+  color: #00ff00; /* Bright Green */
   opacity: 0.2;
   transition: opacity 0.2s ease-in-out;
-  color: #00ff00; /* Bright Green */
 }
 
-.blink.blink-on {
+.blink-on {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .boards-container {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .clock {
+    font-size: 1.5rem;
+  }
+
+  .board h2 {
+    font-size: 1.5rem;
+  }
+
+  .destination, .time {
+    font-size: 1.2rem;
+  }
 }
