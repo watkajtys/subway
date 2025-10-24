@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy, signal, inject, computed } from '@angular
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MtaData } from './mta-data';
-import { transit_realtime } from 'gtfs-realtime-bindings';
+import { FeedMessage, FeedEntity, TripUpdate, TripUpdate_StopTimeUpdate } from './protos/gtfs-realtime';
+import { NyctTripDescriptor, NyctStopTimeUpdate } from './protos/nyct-subway';
 import Long from 'long';
 import { RouteBadgeComponent } from './route-badge/route-badge';
 import { firstValueFrom } from 'rxjs';
@@ -15,6 +16,10 @@ interface StopTimeUpdate {
   routeId?: string;
   direction?: 'N' | 'S';
   destination?: string;
+  scheduledTrack?: string;
+  actualTrack?: string;
+  isAssigned?: boolean;
+  trainId?: string;
 }
 
 @Component({
@@ -80,16 +85,19 @@ export class App implements OnInit, OnDestroy {
 
       buffers.forEach((buffer, index) => {
         try {
-          const feed = transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
-          feed.entity.forEach((entity: transit_realtime.IFeedEntity) => {
+          const feed = FeedMessage.decode(new Uint8Array(buffer));
+          feed.entity.forEach((entity: FeedEntity) => {
             if (entity.tripUpdate) {
               const routeId = entity.tripUpdate.trip?.routeId;
-              entity.tripUpdate.stopTimeUpdate?.forEach((update: transit_realtime.TripUpdate.IStopTimeUpdate) => {
+              entity.tripUpdate.stopTimeUpdate?.forEach((update: TripUpdate_StopTimeUpdate) => {
                 const arrivalTime = update.arrival?.time;
                 const departureTime = update.departure?.time;
                 const timesSquareStops = ['R16', '127', '725', '902'];
 
                 if (update.stopId && timesSquareStops.some(stop => update.stopId?.startsWith(stop))) {
+                  const nyctTripDescriptor = entity.tripUpdate && (entity.tripUpdate.trip as any)?.["[transit_realtime.nyct_trip_descriptor]"];
+                  const nyctStopTimeUpdate = (update as any)?.["[transit_realtime.nyct_stop_time_update]"];
+
                   const direction = update.stopId.slice(-1) as 'N' | 'S';
                   allUpdates.push({
                     tripId: entity.tripUpdate?.trip?.tripId ?? entity.id,
@@ -98,7 +106,11 @@ export class App implements OnInit, OnDestroy {
                     departure: this.convertToNumber(departureTime),
                     routeId: routeId ?? undefined,
                     direction: direction,
-                    destination: this.getDestination(routeId, direction)
+                    destination: this.getDestination(routeId, direction),
+                    trainId: nyctTripDescriptor?.trainId,
+                    isAssigned: nyctTripDescriptor?.isAssigned,
+                    scheduledTrack: nyctStopTimeUpdate?.scheduledTrack,
+                    actualTrack: nyctStopTimeUpdate?.actualTrack,
                   });
                 }
               });
