@@ -1,37 +1,39 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { FeedMessage } from './generated/gtfs-realtime';
-import { NyctTripDescriptor, NyctStopTimeUpdate } from './generated/nyct-subway';
-import Long from 'long';
-import { ArrivalTime, StateService } from './state.service';
+import { FeedMessage, TripUpdate } from './generated/gtfs-realtime';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MtaDataService {
   private readonly feedUrls = [
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs', // 1, 2, 3, 4, 5, 6, 7, S
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace', // A, C, E
-    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-nqrw', // N, Q, R, W
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs',
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace',
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-nqrw',
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-bdfm',
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-jz',
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-g',
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-l',
+    'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-si',
   ];
 
   constructor(private http: HttpClient) {}
 
-  public fetchAllFeeds(): Observable<ArrivalTime[]> {
+  public fetchAllFeeds(): Observable<TripUpdate[]> {
     const requests = this.feedUrls.map((url) =>
       this.http.get(url, { responseType: 'arraybuffer' }).pipe(
         catchError((error) => {
           console.error(`Error fetching feed from ${url}:`, error);
-          return of(new ArrayBuffer(0)); // Return an empty buffer on error
+          return of(new ArrayBuffer(0));
         })
       )
     );
 
     return forkJoin(requests).pipe(
       map((buffers) => {
-        const allUpdates: ArrivalTime[] = [];
+        const allUpdates: TripUpdate[] = [];
         buffers.forEach((buffer, index) => {
           if (buffer.byteLength === 0) return;
 
@@ -39,32 +41,7 @@ export class MtaDataService {
             const feed = FeedMessage.decode(new Uint8Array(buffer));
             feed.entity.forEach((entity) => {
               if (entity.tripUpdate) {
-                const trip = entity.tripUpdate.trip;
-                const routeId = trip?.routeId;
-                const nyctTrip = (trip as any)?.['[transit_realtime.nyctTripDescriptor]'] as NyctTripDescriptor | undefined;
-
-                entity.tripUpdate.stopTimeUpdate?.forEach((update) => {
-                  const arrivalTime = this.convertToNumber(update.arrival?.time);
-                  const timesSquareStops = ['R16', '127', '725', '902'];
-                  const nyctStopTimeUpdate = (update as any)?.['[transit_realtime.nyctStopTimeUpdate]'] as NyctStopTimeUpdate | undefined;
-
-                  if (
-                    update.stopId &&
-                    timesSquareStops.some((stop) => update.stopId?.startsWith(stop)) &&
-                    arrivalTime
-                  ) {
-                    const direction = update.stopId.slice(-1) as 'N' | 'S';
-                    allUpdates.push({
-                      tripId: trip?.tripId ?? entity.id,
-                      stopId: update.stopId,
-                      arrivalTime: arrivalTime,
-                      routeId: routeId ?? '',
-                      direction: direction,
-                      track: nyctStopTimeUpdate?.actualTrack ?? nyctStopTimeUpdate?.scheduledTrack,
-                      status: nyctTrip?.trainId ? 'Confirmed' : 'Scheduled',
-                    });
-                  }
-                });
+                allUpdates.push(entity.tripUpdate);
               }
             });
           } catch (error) {
@@ -77,17 +54,5 @@ export class MtaDataService {
         return allUpdates;
       })
     );
-  }
-
-  private convertToNumber(
-    value: number | Long | null | undefined
-  ): number | undefined {
-    if (value === null || value === undefined) {
-      return undefined;
-    }
-    if (typeof value === 'number') {
-      return value;
-    }
-    return value.toNumber();
   }
 }

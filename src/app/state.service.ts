@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { TripUpdate } from './generated/gtfs-realtime';
 
 export interface ArrivalTime {
   routeId: string;
@@ -7,8 +8,6 @@ export interface ArrivalTime {
   arrivalTime: number;
   direction: 'N' | 'S';
   track?: string;
-  status?: string;
-  destination?: string;
 }
 
 @Injectable({
@@ -16,8 +15,9 @@ export interface ArrivalTime {
 })
 export class StateService {
   public arrivalTimes = signal<ArrivalTime[]>([]);
+  public tripUpdatesMap = signal<Map<string, TripUpdate>>(new Map());
   public time = signal(new Date());
   public blinker = signal(false);
 
-  constructor() { }
+  constructor() {}
 }
