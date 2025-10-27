@@ -1,3 +1,8 @@
-name = "mta-proxy-worker"
 main = "index.js"
 compatibility_date = "2024-01-01"
+
+[env.staging]
+name = "mta-proxy-worker-staging"
+
+[env.production]
+name = "mta-proxy-worker-production"
