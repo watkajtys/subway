@@ -8,7 +8,10 @@ import { StateService } from './state.service';
 export class ArrivalTimePipe implements PipeTransform {
   private state: StateService = inject(StateService);
 
-  transform(arrival: number): string {
+  transform(arrival: number | undefined): string {
+    if (arrival === undefined) {
+      return 'N/A';
+    }
     const nowInSeconds = this.state.time().getTime() / 1000;
     const diffInSeconds = arrival - nowInSeconds;
     const diffInMinutes = Math.floor(diffInSeconds / 60);
