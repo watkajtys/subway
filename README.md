@@ -80,14 +80,41 @@ The correct endpoint for the MTA's real-time data is `https://api-endpoint.mta.i
 
 #### Deployment
 
-The application is deployed to Cloudflare Pages. To deploy the application, follow these steps:
+The application is deployed to Cloudflare, with separate environments for `staging` and `production`. The deployment process involves two main steps: deploying the proxy worker and deploying the frontend application.
 
-1.  **Build the application:**
+**1. Deploy the Cloudflare Worker**
+
+The proxy worker must be deployed to the desired environment.
+
+-   **Staging:**
     ```bash
-    npm run build
+    npx wrangler deploy --env staging -C mta-proxy-worker/wrangler.toml
     ```
-2.  **Deploy to Cloudflare Pages:**
-    The build output is located in the `dist/mta-departure-board/browser` directory. Deploy this directory to Cloudflare Pages using the `wrangler` CLI:
+-   **Production:**
     ```bash
-    npx wrangler pages deploy dist/mta-departure-board/browser
+    npx wrangler deploy --env production -C mta-proxy-worker/wrangler.toml
+    ```
+
+**2. Deploy the Angular Application**
+
+First, build the application for the target environment:
+
+-   **Staging:**
+    ```bash
+    npm run build:staging
+    ```
+-   **Production:**
+    ```bash
+    npm run build:production
+    ```
+
+Next, deploy the build output to Cloudflare Pages. The output is located in the `dist/mta-departure-board/browser` directory.
+
+-   **Staging:**
+    ```bash
+    npx wrangler pages deploy dist/mta-departure-board/browser --project-name mta-departure-board-staging
+    ```
+-   **Production:**
+    ```bash
+    npx wrangler pages deploy dist/mta-departure-board/browser --project-name mta-departure-board-production
     ```
