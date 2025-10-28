@@ -18,6 +18,7 @@ export class StateService {
   public tripUpdatesMap = signal<Map<string, TripUpdate>>(new Map());
   public time = signal(new Date());
   public blinker = signal(false);
+  public selectedStation = signal<string>('Times Sq - 42 St');
 
   constructor() {}
 }

@@ -4,6 +4,7 @@ import {
   OnDestroy,
   inject,
   computed,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MtaDataService } from '../mta-data.service';
@@ -15,6 +16,7 @@ import { DestinationPipe } from '../destination.pipe';
 import { RouterModule } from '@angular/router';
 import Long from 'long';
 import { NyctStopTimeUpdate } from '../generated/nyct-subway';
+import { StopNameService, Station } from '../stop-name.service';
 
 @Component({
   selector: 'app-departure-board',
@@ -34,7 +36,10 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   private blinkerInterval?: number;
   public state: StateService = inject(StateService);
   private mtaDataService: MtaDataService = inject(MtaDataService);
+  private stopNameService: StopNameService = inject(StopNameService);
   private arrivalsSub?: Subscription;
+
+  protected stations: Station[] = [];
 
   protected arrivalsByDirection = computed(() => {
     const nowInSeconds = this.state.time().getTime() / 1000;
@@ -50,8 +55,16 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     return { northbound, southbound };
   });
 
+  constructor() {
+    effect(() => {
+      // Re-fetch arrivals when selected station changes
+      this.state.selectedStation();
+      this.fetchArrivals();
+    });
+  }
+
   ngOnInit() {
-    this.fetchArrivals();
+    this.stations = this.stopNameService.getStations();
 
     this.refreshInterval = window.setInterval(() => this.fetchArrivals(), 15000);
     this.clockInterval = window.setInterval(
@@ -60,11 +73,18 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     );
     this.blinkerInterval = window.setInterval(
       () => this.state.blinker.update((v) => !v),
-      1000
+      500
     );
   }
 
   private fetchArrivals() {
+    const stopIds = this.stopNameService.getStopIdsForStation(
+      this.state.selectedStation()
+    );
+    if (!stopIds) {
+      return;
+    }
+
     this.arrivalsSub = this.mtaDataService
       .fetchAllFeeds()
       .subscribe((allUpdates) => {
@@ -80,38 +100,35 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
             const { trip } = tripUpdate;
             const routeId = trip?.routeId;
 
-            const timesSquareStop = tripUpdate.stopTimeUpdate?.find((update) => {
-              const timesSquareStops = ['R16', '127', '725', '902'];
-              return (
+            const stop = tripUpdate.stopTimeUpdate?.find(
+              (update) =>
                 update.stopId &&
-                timesSquareStops.some((stop) => update.stopId?.startsWith(stop))
-              );
-            });
+                stopIds.some((stop) => update.stopId?.startsWith(stop))
+            );
 
-            if (!timesSquareStop || !trip?.tripId || !routeId) {
+            if (!stop || !trip?.tripId || !routeId) {
               return null;
             }
 
-            const arrivalTime = this.convertToNumber(
-              timesSquareStop.arrival?.time
-            );
-            const nyctStopTimeUpdate = (timesSquareStop as any)?.[
+            const arrivalTime = this.convertToNumber(stop.arrival?.time);
+            const nyctStopTimeUpdate = (stop as any)?.[
               '[transit_realtime.nyctStopTimeUpdate]'
             ] as NyctStopTimeUpdate | undefined;
-            const direction = timesSquareStop.stopId!.slice(-1) as 'N' | 'S';
+            const direction = stop.stopId!.slice(-1) as 'N' | 'S';
 
             return {
               tripId: trip.tripId!,
-              stopId: timesSquareStop.stopId!,
+              stopId: stop.stopId!,
               arrivalTime: arrivalTime!,
               routeId: routeId!,
               direction: direction,
               track:
                 nyctStopTimeUpdate?.actualTrack ??
-                nyctStopTimeUpdate?.scheduledTrack ?? undefined,
+                nyctStopTimeUpdate?.scheduledTrack ??
+                undefined,
             };
           })
-          .filter(a => a !== null && a.arrivalTime !== undefined);
+          .filter((a) => a !== null && a.arrivalTime !== undefined);
         this.state.arrivalTimes.set(newArrivalTimes as ArrivalTime[]);
       });
   }
@@ -141,6 +158,11 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     if (this.arrivalsSub) {
       this.arrivalsSub.unsubscribe();
     }
+  }
+
+  protected onStationChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.state.selectedStation.set(target.value);
   }
 
   protected getTimeClass(arrival: number | undefined): {

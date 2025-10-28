@@ -1,6 +1,13 @@
 <div class="container">
   <div class="header">
-    <h1>Departures</h1>
+    <div class="station-selector">
+      <label for="station">Station</label>
+      <select id="station" [value]="state.selectedStation()" (change)="onStationChange($event)">
+        <option *ngFor="let station of stations" [value]="station.name">
+          {{ station.name }}
+        </option>
+      </select>
+    </div>
     <div class="clock">{{ state.time() | date:'shortTime' }}</div>
   </div>
   <div class="boards-container">
