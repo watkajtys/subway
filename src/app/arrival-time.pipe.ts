@@ -16,11 +16,15 @@ export class ArrivalTimePipe implements PipeTransform {
     const nowInSeconds = this.state.time().getTime() / 1000;
     const diffInSeconds = arrival - nowInSeconds;
 
-    if (diffInSeconds < 15) {
+    if (diffInSeconds < 30) {
       return 'NOW';
     }
 
     if (diffInSeconds < 60) {
+      return 'soon';
+    }
+
+    if (diffInSeconds < 120) {
       return '1 min';
     }
 
