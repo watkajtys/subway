@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prebuild": "node generate-stations.js",
     "build": "ng build",
     "build:staging": "ng build --configuration staging",
     "build:production": "ng build --configuration production",
