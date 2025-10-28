@@ -11,6 +11,7 @@ import { MtaColorsService } from '../mta-colors.service';
 })
 export class RouteBadgeComponent {
   @Input({ required: true }) routeId!: string;
+  @Input() size: 'small' | 'large' = 'small';
 
   private readonly mtaColorsSvc = inject(MtaColorsService);
 
