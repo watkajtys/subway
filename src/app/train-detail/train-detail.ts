@@ -113,7 +113,7 @@ export class TrainDetailComponent {
     const nowInSeconds = this.state.time().getTime() / 1000;
 
     return this.allStops().filter(
-      (stu) => (stu.arrival?.time ?? 0) > nowInSeconds
+      (stu) => (stu.departure?.time ?? stu.arrival?.time ?? 0) > nowInSeconds
     );
   });
 
@@ -121,7 +121,7 @@ export class TrainDetailComponent {
     const nowInSeconds = this.state.time().getTime() / 1000;
 
     return this.allStops().filter(
-      (stu) => (stu.arrival?.time ?? 0) <= nowInSeconds
+      (stu) => (stu.departure?.time ?? stu.arrival?.time ?? 0) <= nowInSeconds
     );
   });
 
@@ -141,8 +141,8 @@ export class TrainDetailComponent {
     return arrivalTime - nowInSeconds < 60;
   });
 
-  protected getTimeClass(arrival: number | undefined): {
-    [key: string]: boolean;
+  protected getTimeStyles(arrival: number | undefined): {
+    [key: string]: string;
   } {
     if (arrival === undefined) {
       return {};
@@ -151,12 +151,20 @@ export class TrainDetailComponent {
     const nowInSeconds = this.state.time().getTime() / 1000;
     const diffInSeconds = arrival - nowInSeconds;
 
-    if (diffInSeconds < 15) {
-      return { blink: true, 'blink-on': this.state.blinker() };
+    if (diffInSeconds < 30) {
+      return {
+        color: '#00ff00', // Bright Green
+        opacity: this.state.blinker() ? '1' : '0.2',
+        transition: 'opacity 0.2s ease-in-out',
+      };
     }
 
     if (diffInSeconds < 60) {
-      return { near: true };
+      return { color: '#fb923c' }; // Bright Orange
+    }
+
+    if (diffInSeconds < 120) {
+      return { color: '#fdd835' }; // Bright Yellow
     }
 
     return {};
