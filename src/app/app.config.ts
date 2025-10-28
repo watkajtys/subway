@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { routes } from './app.routes';
+import { StopNamePipe } from './stop-name.pipe';
 import { StopNameService } from './stop-name.service';
 import { TransfersService } from './transfers.service';
 
@@ -13,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi()),
     StopNameService,
-    TransfersService
-  ]
+    TransfersService,
+    StopNamePipe,
+  ],
 };
