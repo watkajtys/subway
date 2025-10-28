@@ -21,30 +21,21 @@ export class StopNameService {
     if (this.loaded) {
       return of(undefined);
     }
-    return this.http.get('assets/stops.txt', { responseType: 'text' }).pipe(
-      map((data) => {
-        const lines = data.split('\n');
-        // Skip header
-        for (let i = 1; i < lines.length; i++) {
-          const line = lines[i];
-          const parts = line.split(',');
-          // stop_id,stop_name,stop_lat,stop_lon
-          if (parts.length >= 2) {
-            const stopId = parts[0];
-            const stopName = this.formatStopName(parts[1]);
+    return this.http.get<Station[]>('assets/stations.json').pipe(
+      map((stations) => {
+        this.stationToStopIds.clear();
+        this.stopIdToName.clear();
 
-            this.stopIdToName.set(stopId, stopName);
-
-            if (!this.stationToStopIds.has(stopName)) {
-              this.stationToStopIds.set(stopName, []);
-            }
-            this.stationToStopIds.get(stopName)!.push(stopId);
-          }
-        }
+        stations.forEach((station) => {
+          this.stationToStopIds.set(station.name, station.ids);
+          station.ids.forEach((stopId) => {
+            this.stopIdToName.set(stopId, station.name);
+          });
+        });
         this.loaded = true;
       }),
       catchError((error) => {
-        console.error('Error loading stop names:', error);
+        console.error('Error loading stations.json:', error);
         return of(undefined);
       })
     );
@@ -63,13 +54,5 @@ export class StopNameService {
 
   public getStopIdsForStation(stationName: string): string[] | undefined {
     return this.stationToStopIds.get(stationName);
-  }
-
-  private formatStopName(name: string): string {
-    return name
-      .toLowerCase()
-      .split(' ')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
   }
 }

@@ -2,7 +2,7 @@ import { Injectable, signal, inject } from '@angular/core';
 import { TripUpdate } from './generated/gtfs-realtime';
 import { MtaDataService } from './mta-data.service';
 import { StopNameService } from './stop-name.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import Long from 'long';
 import { NyctStopTimeUpdate } from './generated/nyct-subway';
 
@@ -45,18 +45,61 @@ export class StateService {
       return;
     }
 
-    this.arrivalsSub = this.mtaDataService
-      .fetchAllFeeds()
-      .subscribe(([allUpdates, stopToRoutesMap]) => {
-        this.stopToRoutesMap.set(stopToRoutesMap);
-        const newTripUpdatesMap = new Map(
-          allUpdates
-            .filter((tu) => tu.trip?.tripId)
-            .map((tu) => [tu.trip!.tripId!, tu])
-        );
+    let fetcher: Observable<[TripUpdate[], Map<string, Set<string>>]>;
+
+    if (this.stopToRoutesMap().size === 0) {
+      // First time loading, fetch all feeds to build the stopToRoutesMap
+      fetcher = this.mtaDataService.fetchAllFeeds();
+    } else {
+      // Subsequent loads, fetch only the feeds for the routes at this station
+      const routes = new Set<string>();
+      stopIds.forEach((stopId) => {
+        this.stopToRoutesMap()
+          .get(stopId)
+          ?.forEach((route) => routes.add(route));
+      });
+      fetcher = this.mtaDataService.fetchFeedsForRoutes(Array.from(routes));
+    }
+
+    this.arrivalsSub = fetcher.subscribe(
+      ([allUpdates, newStopToRoutesMap]) => {
+        // First, update the stop-to-routes map. This is crucial for subsequent fetches.
+        const currentStopToRoutesMap = new Map(this.stopToRoutesMap());
+        newStopToRoutesMap.forEach((routes, stopId) => {
+          currentStopToRoutesMap.set(stopId, routes);
+        });
+        this.stopToRoutesMap.set(currentStopToRoutesMap);
+
+        // Identify the routes included in this fresh data payload.
+        const routesInThisUpdate = new Set<string>();
+        allUpdates.forEach((tu) => {
+          if (tu.trip?.routeId) {
+            routesInThisUpdate.add(tu.trip.routeId);
+          }
+        });
+
+        // Create a new map for trip updates.
+        const newTripUpdatesMap = new Map<string, TripUpdate>();
+
+        // 1. Copy over all trips that are *not* on the routes we're updating.
+        this.tripUpdatesMap().forEach((tripUpdate, tripId) => {
+          if (!routesInThisUpdate.has(tripUpdate.trip?.routeId ?? '')) {
+            newTripUpdatesMap.set(tripId, tripUpdate);
+          }
+        });
+
+        // 2. Add all the new trips from the fresh data.
+        allUpdates.forEach((tripUpdate) => {
+          if (tripUpdate.trip?.tripId) {
+            newTripUpdatesMap.set(tripUpdate.trip.tripId, tripUpdate);
+          }
+        });
+
+        // Atomically update the signal with the new map.
         this.tripUpdatesMap.set(newTripUpdatesMap);
 
-        const newArrivalTimes = allUpdates
+        // Now, re-calculate the arrival times for the selected station based on the new state.
+        const newArrivalTimes = Array.from(newTripUpdatesMap.values())
           .map((tripUpdate) => {
             const { trip } = tripUpdate;
             const routeId = trip?.routeId;
@@ -91,7 +134,8 @@ export class StateService {
           })
           .filter((a) => a !== null && a.arrivalTime !== undefined);
         this.arrivalTimes.set(newArrivalTimes as ArrivalTime[]);
-      });
+      }
+    );
   }
 
   private convertToNumber(

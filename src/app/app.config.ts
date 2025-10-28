@@ -9,12 +9,16 @@ import { TransfersService } from './transfers.service';
 import { AccessibilityService } from './accessibility.service';
 import { MtaColorsService } from './mta-colors.service';
 import { DestinationPipe } from './destination.pipe';
+import { MtaDataService } from './mta-data.service';
+import { StateService } from './state.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
+    MtaDataService,
+    StateService,
     StopNameService,
     TransfersService,
     StopNamePipe,
