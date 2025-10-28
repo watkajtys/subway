@@ -21,7 +21,7 @@ export class MtaDataService {
 
   constructor(private http: HttpClient) {}
 
-  public fetchAllFeeds(): Observable<TripUpdate[]> {
+  public fetchAllFeeds(): Observable<[TripUpdate[], Map<string, Set<string>>]> {
     const requests = this.feedUrls.map((url) =>
       this.http.get(url, { responseType: 'arraybuffer' }).pipe(
         catchError((error) => {
@@ -34,6 +34,7 @@ export class MtaDataService {
     return forkJoin(requests).pipe(
       map((buffers) => {
         const allUpdates: TripUpdate[] = [];
+        const stopToRoutesMap = new Map<string, Set<string>>();
         buffers.forEach((buffer, index) => {
           if (buffer.byteLength === 0) return;
 
@@ -42,6 +43,18 @@ export class MtaDataService {
             feed.entity.forEach((entity) => {
               if (entity.tripUpdate) {
                 allUpdates.push(entity.tripUpdate);
+                const routeId = entity.tripUpdate.trip?.routeId;
+                if (routeId && entity.tripUpdate.stopTimeUpdate) {
+                  entity.tripUpdate.stopTimeUpdate.forEach((stopTimeUpdate) => {
+                    const stopId = stopTimeUpdate.stopId;
+                    if (stopId) {
+                      if (!stopToRoutesMap.has(stopId)) {
+                        stopToRoutesMap.set(stopId, new Set());
+                      }
+                      stopToRoutesMap.get(stopId)!.add(routeId);
+                    }
+                  });
+                }
               }
             });
           } catch (error) {
@@ -51,7 +64,7 @@ export class MtaDataService {
             );
           }
         });
-        return allUpdates;
+        return [allUpdates, stopToRoutesMap];
       })
     );
   }
