@@ -87,13 +87,12 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
 
     const nowInSeconds = this.state.time().getTime() / 1000;
     const diffInSeconds = arrival - nowInSeconds;
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
 
-    if (diffInMinutes < 1) {
+    if (diffInSeconds < 30) {
       return { blink: true, 'blink-on': this.state.blinker() };
     }
 
-    if (diffInMinutes < 2) {
+    if (diffInSeconds < 120) {
       return { near: true };
     }
 
