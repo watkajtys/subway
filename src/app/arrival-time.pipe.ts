@@ -4,6 +4,7 @@ import { StateService } from './state.service';
 @Pipe({
   name: 'arrivalTime',
   standalone: true,
+  pure: false,
 })
 export class ArrivalTimePipe implements PipeTransform {
   private state: StateService = inject(StateService);
@@ -14,12 +15,15 @@ export class ArrivalTimePipe implements PipeTransform {
     }
     const nowInSeconds = this.state.time().getTime() / 1000;
     const diffInSeconds = arrival - nowInSeconds;
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
 
-    if (diffInMinutes < 1) {
+    if (diffInSeconds < 15) {
       return 'NOW';
     }
 
-    return `${diffInMinutes} min`;
+    if (diffInSeconds < 60) {
+      return '1 min';
+    }
+
+    return `${Math.floor(diffInSeconds / 60)} min`;
   }
 }

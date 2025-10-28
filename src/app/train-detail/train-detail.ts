@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StateService } from '../state.service';
@@ -25,6 +25,16 @@ import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
   styleUrl: './train-detail.css',
 })
 export class TrainDetailComponent {
+  private baselineAllStops = signal<TripUpdate_StopTimeUpdate[] | undefined>(undefined);
+  protected accumulatedPastStops = computed(() => {
+    const baseline = this.baselineAllStops();
+    if (!baseline) {
+      return [];
+    }
+    const futureStopIds = new Set(this.futureStops().map(s => s.stopId));
+    return baseline.filter(s => !futureStopIds.has(s.stopId));
+  });
+
   private route: ActivatedRoute = inject(ActivatedRoute);
   private router: Router = inject(Router);
   protected state: StateService = inject(StateService);
@@ -33,6 +43,15 @@ export class TrainDetailComponent {
   private tripId = this.route.snapshot.paramMap.get('id');
   private accessibilityService = inject(AccessibilityService);
   private mtaColorsService = inject(MtaColorsService);
+
+  constructor() {
+    effect(() => {
+      const all = this.allStops();
+      if (all.length > 0 && !this.baselineAllStops()) {
+        this.baselineAllStops.set(all);
+      }
+    });
+  }
 
   protected onStationClick(stopId: string) {
     const stationName = this.stopNamePipe.transform(stopId);
@@ -110,7 +129,36 @@ export class TrainDetailComponent {
     return this.futureStops()[0];
   });
 
-  protected mostRecentPastStop = computed(() => {
-    return this.pastStops().slice(-1)[0];
+  protected isArriving = computed(() => {
+    if (!this.nextStop()) {
+      return false;
+    }
+    const arrivalTime = this.nextStop().arrival?.time;
+    if (!arrivalTime) {
+      return false;
+    }
+    const nowInSeconds = this.state.time().getTime() / 1000;
+    return arrivalTime - nowInSeconds < 60;
   });
+
+  protected getTimeClass(arrival: number | undefined): {
+    [key: string]: boolean;
+  } {
+    if (arrival === undefined) {
+      return {};
+    }
+
+    const nowInSeconds = this.state.time().getTime() / 1000;
+    const diffInSeconds = arrival - nowInSeconds;
+
+    if (diffInSeconds < 15) {
+      return { blink: true, 'blink-on': this.state.blinker() };
+    }
+
+    if (diffInSeconds < 60) {
+      return { near: true };
+    }
+
+    return {};
+  }
 }
