@@ -3,7 +3,9 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  standalone: true,
   imports: [RouterModule],
 })
 export class App {}

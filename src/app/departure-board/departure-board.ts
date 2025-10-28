@@ -5,6 +5,7 @@ import {
   inject,
   computed,
   effect,
+  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
@@ -13,6 +14,7 @@ import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { DestinationPipe } from '../destination.pipe';
 import { RouterModule } from '@angular/router';
 import { StopNameService, Station } from '../stop-name.service';
+import { StopNamePipe } from '../stop-name.pipe';
 
 @Component({
   selector: 'app-departure-board',
@@ -22,9 +24,9 @@ import { StopNameService, Station } from '../stop-name.service';
     ArrivalTimePipe,
     DestinationPipe,
     RouterModule,
+    StopNamePipe,
   ],
   templateUrl: './departure-board.html',
-  styleUrl: './departure-board.css',
 })
 export class DepartureBoardComponent implements OnInit, OnDestroy {
   private clockInterval?: number;
@@ -32,20 +34,23 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   public state: StateService = inject(StateService);
   private stopNameService: StopNameService = inject(StopNameService);
 
-  protected stations: Station[] = [];
+  protected activeFilter = signal<'all' | 'northbound' | 'southbound'>('all');
 
-  protected arrivalsByDirection = computed(() => {
+  protected filteredArrivals = computed(() => {
     const nowInSeconds = this.state.time().getTime() / 1000;
     const upcoming = this.state
       .arrivalTimes()
       .filter((a) => a.arrivalTime && a.arrivalTime > nowInSeconds)
       .sort((a, b) => a.arrivalTime! - b.arrivalTime!);
 
-    const northbound = upcoming.filter((a) => a.direction === 'N').slice(0, 10);
+    const filter = this.activeFilter();
 
-    const southbound = upcoming.filter((a) => a.direction === 'S').slice(0, 10);
-
-    return { northbound, southbound };
+    if (filter === 'all') {
+      return upcoming;
+    }
+    return upcoming.filter((a) =>
+      filter === 'northbound' ? a.direction === 'N' : a.direction === 'S'
+    );
   });
 
   constructor() {
@@ -56,16 +61,21 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     });
   }
 
+  protected stations: Station[] = [];
+
   ngOnInit() {
     this.stations = this.stopNameService.getStations();
   }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 
   protected onStationChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     this.state.selectedStation.set(target.value);
+  }
+
+  protected setFilter(filter: 'all' | 'northbound' | 'southbound') {
+    this.activeFilter.set(filter);
   }
 
   protected getTimeClass(arrival: number | undefined): {
