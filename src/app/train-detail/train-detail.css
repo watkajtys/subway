@@ -30,8 +30,14 @@ h1 {
 .stop-row {
   display: flex;
   justify-content: space-between;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0.25rem;
   border-bottom: 1px solid #444;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.stop-row:not(.header-row):hover {
+  background-color: #2a2a2a;
 }
 
 .header-row {

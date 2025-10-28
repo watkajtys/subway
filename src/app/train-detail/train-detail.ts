@@ -1,6 +1,6 @@
 import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StateService } from '../state.service';
 import { TransfersService } from '../transfers.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
@@ -23,9 +23,17 @@ import { DestinationPipe } from '../destination.pipe';
 })
 export class TrainDetailComponent {
   private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
   protected state: StateService = inject(StateService);
   private transfersService: TransfersService = inject(TransfersService);
+  private stopNamePipe = inject(StopNamePipe);
   private tripId = this.route.snapshot.paramMap.get('id');
+
+  protected onStationClick(stopId: string) {
+    const stationName = this.stopNamePipe.transform(stopId);
+    this.state.selectedStation.set(stationName);
+    this.router.navigate(['/']);
+  }
 
   protected getTransfersForStop(stopId: string): string[] {
     const parentStopId = stopId.slice(0, -1);
