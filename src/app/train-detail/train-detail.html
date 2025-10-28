@@ -13,7 +13,13 @@
       <span class="arrival-time">Arrives</span>
     </div>
     <div *ngFor="let stop of futureStops()" class="stop-row">
-      <span class="stop-name">{{ stop.stopId ?? '' | stopName }}</span>
+      <span class="stop-name">
+        {{ stop.stopId ?? '' | stopName }}
+        <div class="transfers" *ngIf="getTransfersForStop(stop.stopId ?? '').length > 0">
+          Transfers:
+          <app-route-badge *ngFor="let routeId of getTransfersForStop(stop.stopId ?? '')" [routeId]="routeId"></app-route-badge>
+        </div>
+      </span>
       <span class="arrival-time">{{ stop.arrival?.time | arrivalTime }}</span>
     </div>
   </div>

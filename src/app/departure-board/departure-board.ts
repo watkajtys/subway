@@ -87,7 +87,8 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
 
     this.arrivalsSub = this.mtaDataService
       .fetchAllFeeds()
-      .subscribe((allUpdates) => {
+      .subscribe(([allUpdates, stopToRoutesMap]) => {
+        this.state.stopToRoutesMap.set(stopToRoutesMap);
         const newTripUpdatesMap = new Map(
           allUpdates
             .filter((tu) => tu.trip?.tripId)

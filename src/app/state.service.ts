@@ -16,6 +16,7 @@ export interface ArrivalTime {
 export class StateService {
   public arrivalTimes = signal<ArrivalTime[]>([]);
   public tripUpdatesMap = signal<Map<string, TripUpdate>>(new Map());
+  public stopToRoutesMap = signal<Map<string, Set<string>>>(new Map());
   public time = signal(new Date());
   public blinker = signal(false);
   public selectedStation = signal<string>('Times Sq - 42 St');
