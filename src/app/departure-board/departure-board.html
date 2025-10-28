@@ -1,77 +1,63 @@
-<div class="p-4 md:max-w-2xl lg:max-w-4xl mx-auto text-white font-display">
-  <header class="flex justify-between items-center mb-6">
-    <div class="text-left">
-      <h1 class="text-2xl font-bold">{{ state.selectedStation() }}</h1>
-      <select id="station" [value]="state.selectedStation()" (change)="onStationChange($event)" class="bg-zinc-900 text-white text-sm rounded-md p-1">
-        <option *ngFor="let station of stations" [value]="station.name">
-          {{ station.name }}
-        </option>
-      </select>
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-zinc-900 dark:text-white group/design-root overflow-x-hidden">
+  <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
+    <!-- Top App Bar -->
+    <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
+      <div class="flex-1 text-left">
+        <h1 class="text-xl font-bold">{{ state.selectedStation() }}</h1>
+        <select id="station" [value]="state.selectedStation()" (change)="onStationChange($event)" class="bg-transparent text-zinc-500 dark:text-zinc-400 text-sm p-1 -ml-1">
+          <option *ngFor="let station of stations" [value]="station.name" class="bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white">
+            {{ station.name }}
+          </option>
+        </select>
+      </div>
+      <div class="flex size-12 shrink-0 items-center justify-end">
+        <span class="material-symbols-outlined text-2xl">more_vert</span>
+      </div>
+    </header>
+
+    <!-- Filters -->
+    <div class="flex space-x-2 p-4 pt-2">
+      <button (click)="setFilter('all')" class="flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors" [ngClass]="{
+          'bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white': activeFilter() === 'all',
+          'bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800': activeFilter() !== 'all'
+        }">
+        All
+      </button>
+      <button (click)="setFilter('northbound')" class="flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors" [ngClass]="{
+          'bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white': activeFilter() === 'northbound',
+          'bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800': activeFilter() !== 'northbound'
+        }">
+        Uptown
+      </button>
+      <button (click)="setFilter('southbound')" class="flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors" [ngClass]="{
+          'bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white': activeFilter() === 'southbound',
+          'bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800': activeFilter() !== 'southbound'
+        }">
+        Downtown
+      </button>
     </div>
-    <span class="material-symbols-outlined text-gray-400">
-      settings
-    </span>
-  </header>
 
-  <div class="flex space-x-2 mb-6">
-    <button
-      (click)="setFilter('all')"
-      class="flex-1 py-2 px-4 rounded-full text-sm font-medium"
-      [ngClass]="{
-        'bg-zinc-800 text-white': activeFilter() === 'all',
-        'bg-zinc-900 text-gray-400': activeFilter() !== 'all'
-      }"
-    >
-      All
-    </button>
-    <button
-      (click)="setFilter('northbound')"
-      class="flex-1 py-2 px-4 rounded-full text-sm"
-      [ngClass]="{
-        'bg-zinc-800 text-white': activeFilter() === 'northbound',
-        'bg-zinc-900 text-gray-400': activeFilter() !== 'northbound'
-      }"
-    >
-      Uptown
-    </button>
-    <button
-      (click)="setFilter('southbound')"
-      class="flex-1 py-2 px-4 rounded-full text-sm"
-      [ngClass]="{
-        'bg-zinc-800 text-white': activeFilter() === 'southbound',
-        'bg-zinc-900 text-gray-400': activeFilter() !== 'southbound'
-      }"
-    >
-      Downtown
-    </button>
-  </div>
-
-  <main>
-    <ul class="space-y-3">
-      <li *ngIf="filteredArrivals().length === 0">
-        <p class="text-center text-gray-400">No upcoming departures.</p>
-      </li>
-      <a
-        *ngFor="let arrival of filteredArrivals(); trackBy: trackByTripId"
-        [routerLink]="['/trip', arrival.tripId]"
-        class="bg-zinc-900 rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-zinc-800"
-      >
-        <div class="flex items-center space-x-4">
-          <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
-          <div>
-            <p class="font-semibold">{{ arrival.routeId | destination:arrival.direction }}</p>
-            <p class="text-xs text-gray-400">{{ arrival.direction === 'N' ? 'Uptown' : 'Downtown' }}</p>
+    <!-- Departure List -->
+    <main class="px-4">
+      <ul class="flex flex-col">
+        <li *ngIf="filteredArrivals().length === 0" class="py-4 text-center text-zinc-500 dark:text-zinc-400">
+          No upcoming departures.
+        </li>
+        <a *ngFor="let arrival of filteredArrivals(); trackBy: trackByTripId" [routerLink]="['/trip', arrival.tripId]" class="flex items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900">
+          <div class="flex items-center space-x-4">
+            <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
+            <div>
+              <p class="font-semibold text-base">{{ arrival.routeId | destination:arrival.direction }}</p>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400">{{ arrival.direction === 'N' ? 'Uptown' : 'Downtown' }}</p>
+            </div>
           </div>
-        </div>
-        <div class="text-right">
-          <p
-            class="font-bold text-lg"
-            [ngStyle]="getTimeStyles(arrival.arrivalTime)"
-          >
-            {{ arrival.arrivalTime ? (arrival.arrivalTime | arrivalTime) : 'N/A' }}
-          </p>
-        </div>
-      </a>
-    </ul>
-  </main>
+          <div class="text-right">
+            <p class="font-bold text-lg" [ngStyle]="getTimeStyles(arrival.arrivalTime)">
+              {{ arrival.arrivalTime ? (arrival.arrivalTime | arrivalTime) : 'N/A' }}
+            </p>
+          </div>
+        </a>
+      </ul>
+    </main>
+  </div>
 </div>
