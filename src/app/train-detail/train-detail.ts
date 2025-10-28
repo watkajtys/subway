@@ -33,11 +33,15 @@ export class TrainDetailComponent {
   });
 
   protected direction = computed(() => {
-    const trip = this.trip();
-    if (!trip) {
+    const futureStops = this.futureStops();
+    if (futureStops.length === 0) {
       return '';
     }
-    return (trip.trip as any)?.nyctTripDescriptor?.direction?.slice(0, 1) ?? '';
+    return futureStops[0].stopId!.slice(-1) as 'N' | 'S';
+  });
+
+  protected trainId = computed(() => {
+    return this.trip()?.trip?.tripId ?? '';
   });
 
   protected futureStops = computed(() => {

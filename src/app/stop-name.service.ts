@@ -21,7 +21,7 @@ export class StopNameService {
         lines.forEach((line) => {
           const parts = line.split(',');
           if (parts.length >= 3) {
-            this.stopNames.set(parts[0], this.formatStopName(parts[2]));
+            this.stopNames.set(parts[0], this.formatStopName(parts[1]));
           }
         });
         this.loaded = true;
