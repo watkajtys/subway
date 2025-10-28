@@ -6,6 +6,8 @@ import { routes } from './app.routes';
 import { StopNamePipe } from './stop-name.pipe';
 import { StopNameService } from './stop-name.service';
 import { TransfersService } from './transfers.service';
+import { AccessibilityService } from './accessibility.service';
+import { MtaColorsService } from './mta-colors.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +18,7 @@ export const appConfig: ApplicationConfig = {
     StopNameService,
     TransfersService,
     StopNamePipe,
+    AccessibilityService,
+    MtaColorsService,
   ],
 };

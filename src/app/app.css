@@ -1,0 +1,13 @@
+.near {
+  color: #fdd835; /* Bright yellow */
+}
+
+.blink {
+  color: #00ff00; /* Bright Green */
+  opacity: 0.2;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.blink-on {
+  opacity: 1;
+}
