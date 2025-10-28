@@ -1,57 +1,77 @@
-<div class="container">
-  <div class="header">
-    <div class="station-selector">
-      <label for="station">Station</label>
-      <select id="station" [value]="state.selectedStation()" (change)="onStationChange($event)">
+<div class="p-4 md:max-w-2xl lg:max-w-4xl mx-auto text-white font-display">
+  <header class="flex justify-between items-center mb-6">
+    <div class="text-left">
+      <h1 class="text-2xl font-bold">{{ state.selectedStation() }}</h1>
+      <select id="station" [value]="state.selectedStation()" (change)="onStationChange($event)" class="bg-zinc-900 text-white text-sm rounded-md p-1">
         <option *ngFor="let station of stations" [value]="station.name">
           {{ station.name }}
         </option>
       </select>
     </div>
-    <div class="clock">{{ state.time() | date:'shortTime' }}</div>
+    <span class="material-symbols-outlined text-gray-400">
+      settings
+    </span>
+  </header>
+
+  <div class="flex space-x-2 mb-6">
+    <button
+      (click)="setFilter('all')"
+      class="flex-1 py-2 px-4 rounded-full text-sm font-medium"
+      [ngClass]="{
+        'bg-zinc-800 text-white': activeFilter() === 'all',
+        'bg-zinc-900 text-gray-400': activeFilter() !== 'all'
+      }"
+    >
+      All
+    </button>
+    <button
+      (click)="setFilter('northbound')"
+      class="flex-1 py-2 px-4 rounded-full text-sm"
+      [ngClass]="{
+        'bg-zinc-800 text-white': activeFilter() === 'northbound',
+        'bg-zinc-900 text-gray-400': activeFilter() !== 'northbound'
+      }"
+    >
+      Uptown
+    </button>
+    <button
+      (click)="setFilter('southbound')"
+      class="flex-1 py-2 px-4 rounded-full text-sm"
+      [ngClass]="{
+        'bg-zinc-800 text-white': activeFilter() === 'southbound',
+        'bg-zinc-900 text-gray-400': activeFilter() !== 'southbound'
+      }"
+    >
+      Downtown
+    </button>
   </div>
-  <div class="boards-container">
-    <div class="board">
-      <h2>Northbound</h2>
-      <div *ngIf="arrivalsByDirection().northbound.length > 0; else loadingNorth">
-        <div class="arrival-row header-row">
-          <span class="route">Route</span>
-          <span class="destination">Destination</span>
-          <span class="time">Arrives</span>
-        </div>
-        <a *ngFor="let arrival of arrivalsByDirection().northbound; trackBy: trackByTripId" class="arrival-row" [routerLink]="['/trip', arrival.tripId]">
+
+  <main>
+    <ul class="space-y-3">
+      <li *ngIf="filteredArrivals().length === 0">
+        <p class="text-center text-gray-400">No upcoming departures.</p>
+      </li>
+      <a
+        *ngFor="let arrival of filteredArrivals(); trackBy: trackByTripId"
+        [routerLink]="['/trip', arrival.tripId]"
+        class="bg-zinc-900 rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-zinc-800"
+      >
+        <div class="flex items-center space-x-4">
           <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
-          <span class="destination">{{ arrival.routeId | destination:'N' }}</span>
-          <span
-            class="time"
-            [ngClass]="getTimeClass(arrival.arrivalTime)"
-          >{{ arrival.arrivalTime ? (arrival.arrivalTime | arrivalTime) : 'N/A' }}</span>
-        </a>
-      </div>
-      <ng-template #loadingNorth>
-        <p>Loading...</p>
-      </ng-template>
-    </div>
-    <div class="board">
-      <h2>Southbound</h2>
-      <div *ngIf="arrivalsByDirection().southbound.length > 0; else loadingSouth">
-        <div class="arrival-row header-row">
-          <span class="route">Route</span>
-          <span class="destination">Destination</span>
-          <span class="time">Arrives</span>
+          <div>
+            <p class="font-semibold">{{ arrival.routeId | destination:arrival.direction }}</p>
+            <p class="text-xs text-gray-400">{{ arrival.direction === 'N' ? 'Uptown' : 'Downtown' }}</p>
+          </div>
         </div>
-        <a *ngFor="let arrival of arrivalsByDirection().southbound; trackBy: trackByTripId" class="arrival-row" [routerLink]="['/trip', arrival.tripId]">
-          <app-route-badge [routeId]="arrival.routeId"></app-route-badge>
-          <span class="destination">{{ arrival.routeId | destination:'S' }}</span>
-          <span
-            class="time"
+        <div class="text-right">
+          <p
+            class="font-bold text-lg"
             [ngClass]="getTimeClass(arrival.arrivalTime)"
-          >{{ arrival.arrivalTime ? (arrival.arrivalTime | arrivalTime) : 'N/A' }}</span>
-        </a>
-      </div>
-      <ng-template #loadingSouth>
-        <p>Loading...</p>
-      </ng-template>
-    </div>
-  </div>
+          >
+            {{ arrival.arrivalTime ? (arrival.arrivalTime | arrivalTime) : 'N/A' }}
+          </p>
+        </div>
+      </a>
+    </ul>
+  </main>
 </div>

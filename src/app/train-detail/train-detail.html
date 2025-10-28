@@ -1,94 +1,96 @@
 <div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden" *ngIf="trip() as trip">
-  <!-- Top App Bar -->
-  <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
-    <div class="flex size-12 shrink-0 items-center text-zinc-900 dark:text-white">
-      <a routerLink="/" class="material-symbols-outlined text-2xl">arrow_back</a>
-    </div>
-    <h1 class="flex-1 text-lg font-bold leading-tight tracking-[-0.015em] text-zinc-900 dark:text-white">
-      {{ routeId() }} Train to {{ routeId() | destination:direction() }}
-    </h1>
-    <div class="flex size-12 shrink-0 items-center justify-end text-zinc-900 dark:text-white">
-      <span class="material-symbols-outlined text-2xl">more_vert</span>
-    </div>
-  </header>
-  <!-- Summary Card -->
-  <div class="flex items-center gap-4 bg-transparent px-4 min-h-[72px] py-4">
-    <div class="flex size-12 shrink-0 items-center justify-center rounded-full" [style.background-color]="lineColor()">
-      <span class="text-2xl font-bold text-black">{{ routeId() }}</span>
-    </div>
-    <div class="flex flex-col justify-center">
-      <p class="text-base font-medium leading-normal text-zinc-900 dark:text-white line-clamp-1" *ngIf="nextStop()">
-        <span *ngIf="isArriving()">Arriving at</span>
-        <span *ngIf="!isArriving()">En Route to</span>
-        {{ nextStop().stopId | stopName }}
-      </p>
-      <p class="text-sm font-normal leading-normal text-zinc-500 dark:text-zinc-400 line-clamp-2">
-        {{ direction() === 'N' ? 'Uptown' : 'Downtown' }}
-      </p>
-    </div>
-  </div>
-  <!-- Vertical Route Timeline -->
-  <div class="grid grid-cols-[auto_1fr] gap-x-4 px-4 pb-4">
-    <!-- Past Stops -->
-    <ng-container *ngFor="let stop of accumulatedPastStops()">
-      <div class="flex flex-col items-center gap-1 pt-3">
-        <div class="flex items-center justify-center rounded-full border-2 border-zinc-500 dark:border-zinc-500 bg-transparent p-1">
-          <span class="material-symbols-outlined text-base text-zinc-500 dark:text-zinc-500">check</span>
-        </div>
-        <div class="w-[2px] grow bg-zinc-300 dark:bg-zinc-700"></div>
+  <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
+    <!-- Top App Bar -->
+    <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
+      <div class="flex size-12 shrink-0 items-center text-zinc-900 dark:text-white">
+        <a routerLink="/" class="material-symbols-outlined text-2xl">arrow_back</a>
       </div>
-      <div class="flex flex-1 flex-col py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer" (click)="onStationClick(stop.stopId!)">
-        <p class="text-base font-medium leading-normal text-zinc-500 dark:text-zinc-500">
-          {{ stop.stopId | stopName }}
+      <h1 class="flex-1 text-lg font-bold leading-tight tracking-[-0.015em] text-zinc-900 dark:text-white">
+        {{ routeId() }} Train to {{ routeId() | destination:direction() }}
+      </h1>
+      <div class="flex size-12 shrink-0 items-center justify-end text-zinc-900 dark:text-white">
+        <span class="material-symbols-outlined text-2xl">more_vert</span>
+      </div>
+    </header>
+    <!-- Summary Card -->
+    <div class="flex items-center gap-4 bg-transparent px-4 min-h-[72px] py-4">
+      <div class="flex size-12 shrink-0 items-center justify-center rounded-full" [style.background-color]="lineColor()">
+        <span class="text-2xl font-bold text-black">{{ routeId() }}</span>
+      </div>
+      <div class="flex flex-col justify-center">
+        <p class="text-base font-medium leading-normal text-zinc-900 dark:text-white line-clamp-1" *ngIf="nextStop()">
+          <span *ngIf="isArriving()">Arriving at</span>
+          <span *ngIf="!isArriving()">En Route to</span>
+          {{ nextStop().stopId | stopName }}
         </p>
-        <div class="flex items-center gap-2 mt-1">
-          <span class="material-symbols-outlined text-lg text-zinc-500 dark:text-zinc-500" title="Accessibility" *ngIf="isAccessible(stop.stopId!)">accessible</span>
-          <div class="flex items-center gap-1.5 flex-wrap">
-            <app-route-badge *ngFor="let route of getTransfersForStop(stop.stopId!)" [routeId]="route"></app-route-badge>
+        <p class="text-sm font-normal leading-normal text-zinc-500 dark:text-zinc-400 line-clamp-2">
+          {{ direction() === 'N' ? 'Uptown' : 'Downtown' }}
+        </p>
+      </div>
+    </div>
+    <!-- Vertical Route Timeline -->
+    <div class="grid grid-cols-[auto_1fr] gap-x-4 px-4 pb-4">
+      <!-- Past Stops -->
+      <ng-container *ngFor="let stop of accumulatedPastStops()">
+        <div class="flex flex-col items-center gap-1 pt-3">
+          <div class="flex items-center justify-center rounded-full border-2 border-zinc-500 dark:border-zinc-500 bg-transparent p-1">
+            <span class="material-symbols-outlined text-base text-zinc-500 dark:text-zinc-500">check</span>
           </div>
+          <div class="w-[2px] grow bg-zinc-300 dark:bg-zinc-700"></div>
         </div>
-      </div>
-    </ng-container>
-
-    <!-- Current Progress -->
-    <ng-container *ngIf="!isArriving() && futureStops().length > 0">
-      <div class="flex flex-col items-center gap-0">
-        <div class="w-[2px] h-8 bg-zinc-300 dark:bg-zinc-700"></div>
-        <div class="text-zinc-900 dark:text-white z-10 my-[-4px]">
-          <span class="material-symbols-outlined text-3xl !font-bold" [style.color]="lineColor()">train</span>
-        </div>
-        <div class="w-[2px] grow" [style.background-color]="lineColor()"></div>
-      </div>
-      <div class="flex flex-1 flex-col py-3 border-b border-zinc-200 dark:border-zinc-800">
-        <!-- This is a spacer for the moving train icon -->
-      </div>
-    </ng-container>
-
-    <!-- Upcoming Stops -->
-    <ng-container *ngFor="let stop of futureStops(); let i = index">
-      <div class="flex flex-col items-center gap-1">
-        <div class="w-[2px] h-2" [style.background-color]="i === 0 ? lineColor() : '#444'"></div>
-        <div class="box-border flex size-6 items-center justify-center rounded-full border-2" [class.border-zinc-300]="i > 0" [class.dark:border-zinc-700]="i > 0" [style.border-color]="i === 0 ? lineColor() : ''" [style.background-color]="i === 0 ? (lineColor() + '10') : 'transparent'">
-          <div *ngIf="i === 0" class="size-2.5 rounded-full" [style.background-color]="lineColor()"></div>
-        </div>
-        <div class="w-[2px] grow bg-zinc-300 dark:bg-zinc-700"></div>
-      </div>
-      <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer" (click)="onStationClick(stop.stopId!)">
-        <div>
-          <p class="text-base font-medium leading-normal text-zinc-900 dark:text-white">
+        <div class="flex flex-1 flex-col py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer" (click)="onStationClick(stop.stopId!)">
+          <p class="text-base font-medium leading-normal text-zinc-500 dark:text-zinc-500">
             {{ stop.stopId | stopName }}
           </p>
-          <div class="flex items-center gap-2 mt-1" *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)">
-            <span class="material-symbols-outlined text-lg text-zinc-500 dark:text-zinc-400" title="Accessibility" *ngIf="isAccessible(stop.stopId!)">accessible</span>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="material-symbols-outlined text-lg text-zinc-500 dark:text-zinc-500" title="Accessibility" *ngIf="isAccessible(stop.stopId!)">accessible</span>
             <div class="flex items-center gap-1.5 flex-wrap">
               <app-route-badge *ngFor="let route of getTransfersForStop(stop.stopId!)" [routeId]="route"></app-route-badge>
             </div>
           </div>
         </div>
-        <p class="text-base font-medium leading-normal" [class.text-primary]="i === 0" [class.text-zinc-500]="i > 0" [class.dark:text-zinc-400]="i > 0" [ngClass]="getTimeClass(stop.arrival?.time)">
-          {{ stop.arrival?.time | arrivalTime }}
-        </p>
-      </div>
-    </ng-container>
+      </ng-container>
+
+      <!-- Current Progress -->
+      <ng-container *ngIf="!isArriving() && futureStops().length > 0">
+        <div class="flex flex-col items-center gap-0">
+          <div class="w-[2px] h-8 bg-zinc-300 dark:bg-zinc-700"></div>
+          <div class="text-zinc-900 dark:text-white z-10 my-[-4px]">
+            <span class="material-symbols-outlined text-3xl !font-bold" [style.color]="lineColor()">train</span>
+          </div>
+          <div class="w-[2px] grow" [style.background-color]="lineColor()"></div>
+        </div>
+        <div class="flex flex-1 flex-col py-3 border-b border-zinc-200 dark:border-zinc-800">
+          <!-- This is a spacer for the moving train icon -->
+        </div>
+      </ng-container>
+
+      <!-- Upcoming Stops -->
+      <ng-container *ngFor="let stop of futureStops(); let i = index">
+        <div class="flex flex-col items-center gap-1">
+          <div class="w-[2px] h-2" [style.background-color]="i === 0 ? lineColor() : '#444'"></div>
+          <div class="box-border flex size-6 items-center justify-center rounded-full border-2" [class.border-zinc-300]="i > 0" [class.dark:border-zinc-700]="i > 0" [style.border-color]="i === 0 ? lineColor() : ''" [style.background-color]="i === 0 ? (lineColor() + '10') : 'transparent'">
+            <div *ngIf="i === 0" class="size-2.5 rounded-full" [style.background-color]="lineColor()"></div>
+          </div>
+          <div class="w-[2px] grow bg-zinc-300 dark:bg-zinc-700"></div>
+        </div>
+        <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer" (click)="onStationClick(stop.stopId!)">
+          <div>
+            <p class="text-base font-medium leading-normal text-zinc-900 dark:text-white">
+              {{ stop.stopId | stopName }}
+            </p>
+            <div class="flex items-center gap-2 mt-1" *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)">
+              <span class="material-symbols-outlined text-lg text-zinc-500 dark:text-zinc-400" title="Accessibility" *ngIf="isAccessible(stop.stopId!)">accessible</span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <app-route-badge *ngFor="let route of getTransfersForStop(stop.stopId!)" [routeId]="route"></app-route-badge>
+              </div>
+            </div>
+          </div>
+          <p class="text-base font-medium leading-normal" [class.text-primary]="i === 0" [class.text-zinc-500]="i > 0" [class.dark:text-zinc-400]="i > 0" [ngClass]="getTimeClass(stop.arrival?.time)">
+            {{ stop.arrival?.time | arrivalTime }}
+          </p>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
