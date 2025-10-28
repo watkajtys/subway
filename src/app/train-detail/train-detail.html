@@ -86,7 +86,7 @@
               </div>
             </div>
           </div>
-          <p class="text-base font-medium leading-normal" [class.text-primary]="i === 0" [class.text-zinc-500]="i > 0" [class.dark:text-zinc-400]="i > 0" [ngClass]="getTimeClass(stop.arrival?.time)">
+          <p class="text-base font-medium leading-normal" [class.text-zinc-500]="i > 0" [class.dark:text-zinc-400]="i > 0" [ngStyle]="getTimeStyles(stop.arrival?.time)">
             {{ stop.arrival?.time | arrivalTime }}
           </p>
         </div>
