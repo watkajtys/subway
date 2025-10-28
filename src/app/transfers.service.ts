@@ -50,12 +50,16 @@ export class TransfersService {
     const stopToRoutesMap = this.state.stopToRoutesMap();
     const toStopIds = this.transfersMap.get(fromStopId) ?? [];
 
+    // Also include the current stop in the list of stops to check for routes
+    const allStopIds = new Set([fromStopId, ...toStopIds]);
+
     const transferRoutes = new Set<string>();
 
-    toStopIds.forEach(toStopId => {
-      const routes = stopToRoutesMap.get(toStopId);
-      if (routes) {
-        routes.forEach(route => transferRoutes.add(route));
+    allStopIds.forEach(parentStopId => {
+      for (const [platformId, routes] of stopToRoutesMap.entries()) {
+        if (platformId.startsWith(parentStopId)) {
+          routes.forEach(route => transferRoutes.add(route));
+        }
       }
     });
 

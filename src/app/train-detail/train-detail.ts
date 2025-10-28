@@ -28,7 +28,13 @@ export class TrainDetailComponent {
   private tripId = this.route.snapshot.paramMap.get('id');
 
   protected getTransfersForStop(stopId: string): string[] {
-    return this.transfersService.getTransfers(stopId) ?? [];
+    const parentStopId = stopId.slice(0, -1);
+    const allTransfers = this.transfersService.getTransfers(parentStopId) ?? [];
+    const currentRouteId = this.trip()?.trip?.routeId;
+    if (currentRouteId) {
+      return allTransfers.filter((routeId) => routeId !== currentRouteId);
+    }
+    return allTransfers;
   }
 
   protected trip = computed(() => {
