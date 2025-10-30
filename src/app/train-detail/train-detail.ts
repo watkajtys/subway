@@ -141,6 +141,47 @@ export class TrainDetailComponent {
     return arrivalTime - nowInSeconds < 60;
   });
 
+  protected getTrainPosition = computed(() => {
+    if (!this.nextStop()) {
+      return 'between';
+    }
+    const arrivalTime = this.nextStop().arrival?.time;
+    if (!arrivalTime) {
+      return 'between';
+    }
+    const nowInSeconds = this.state.time().getTime() / 1000;
+    const diffInSeconds = arrivalTime - nowInSeconds;
+
+    if (diffInSeconds < 30) {
+      return 'at-station';
+    }
+    if (diffInSeconds < 60) {
+      return 'soon';
+    }
+    return 'between';
+  });
+
+  protected routeColor = computed(() => {
+    return this.mtaColorsService.getColor(this.routeId());
+  });
+
+  protected getLineColor(
+    stop: TripUpdate_StopTimeUpdate,
+    index: number
+  ): string {
+    const nextStop = this.nextStop();
+    const trainPosition = this.getTrainPosition();
+
+    if (
+      trainPosition === 'at-station' &&
+      nextStop?.stopId === stop.stopId
+    ) {
+      return 'grey';
+    }
+
+    return this.mtaColorsService.getColor(this.routeId());
+  }
+
   protected getTimeStyles(arrival: number | undefined): {
     [key: string]: string;
   } {

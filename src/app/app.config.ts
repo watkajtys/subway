@@ -14,6 +14,7 @@ import { StateService } from './state.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideRouter(routes),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
@@ -25,6 +26,5 @@ export const appConfig: ApplicationConfig = {
     AccessibilityService,
     MtaColorsService,
     DestinationPipe,
-    provideRouter(routes),
   ],
 };
