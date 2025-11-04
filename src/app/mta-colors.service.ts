@@ -47,4 +47,12 @@ export class MtaColorsService {
   getColor(line: string): string {
     return this.lineColors[line.toUpperCase()] || '#7C858C'; // Default to gray
   }
+
+  getLineTextColor(line: string): string {
+    const yellowLines = ['N', 'Q', 'R', 'W'];
+    if (yellowLines.includes(line.toUpperCase())) {
+      return '#000000';
+    }
+    return '#FFFFFF';
+  }
 }

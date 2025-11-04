@@ -18,4 +18,8 @@ export class RouteBadgeComponent {
   protected backgroundColor = computed(() => {
     return this.mtaColorsSvc.getColor(this.routeId);
   });
+
+  protected textColor = computed(() => {
+    return this.mtaColorsSvc.getLineTextColor(this.routeId);
+  });
 }
