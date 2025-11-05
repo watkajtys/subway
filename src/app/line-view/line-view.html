@@ -1,18 +1,6 @@
+<app-header [title]="headerTitle()"></app-header>
 <div class="p-4 text-zinc-900 dark:text-white">
   <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
-    <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
-        <div class="flex size-12 shrink-0 items-center">
-          <a routerLink="/" class="material-symbols-outlined text-2xl">arrow_back</a>
-        </div>
-        @if (lineId(); as lineId) {
-        <h1 class="flex-1 text-lg text-center font-bold">
-          {{ lineId }} Line
-        </h1>
-        }
-        <div class="flex size-12 shrink-0 items-center justify-end">
-          <span class="material-symbols-outlined text-2xl">more_vert</span>
-        </div>
-      </header>
 
     @if (lineId(); as lineId) {
       <div class="flex items-center gap-4 px-4 py-4">

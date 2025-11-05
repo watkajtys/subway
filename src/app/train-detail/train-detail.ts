@@ -10,6 +10,7 @@ import { DestinationPipe } from '../destination.pipe';
 import { AccessibilityService } from '../accessibility.service';
 import { MtaColorsService } from '../mta-colors.service';
 import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
+import { HeaderComponent } from '../header/header';
 
 @Component({
   selector: 'app-train-detail',
@@ -20,6 +21,7 @@ import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
     ArrivalTimePipe,
     StopNamePipe,
     DestinationPipe,
+    HeaderComponent,
   ],
   templateUrl: './train-detail.html',
   styleUrl: './train-detail.css',
@@ -52,6 +54,15 @@ export class TrainDetailComponent {
       }
     });
   }
+
+  protected headerTitle = computed(() => {
+    const trip = this.trip();
+    if (!trip || !trip.trip) {
+      return 'Train Details';
+    }
+    const destinationPipe = new DestinationPipe();
+    return destinationPipe.transform(trip.trip.routeId!, this.direction() as 'N' | 'S');
+  });
 
   protected onStationClick(stopId: string) {
     const stationName = this.stopNamePipe.transform(stopId);

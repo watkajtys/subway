@@ -19,6 +19,7 @@ export const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
+    resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
   },
   {
     path: 'station/:id',

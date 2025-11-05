@@ -1,17 +1,6 @@
 <div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-zinc-900 dark:text-white group/design-root overflow-x-hidden" *ngIf="trip() as trip">
   <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
-    <!-- Top App Bar -->
-    <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
-      <div class="flex size-12 shrink-0 items-center">
-        <a routerLink="/" class="material-symbols-outlined text-2xl">arrow_back</a>
-      </div>
-      <h1 class="flex-1 text-lg text-center font-bold">
-        {{ routeId() }} Train to {{ routeId() | destination:direction() }}
-      </h1>
-      <div class="flex size-12 shrink-0 items-center justify-end">
-        <span class="material-symbols-outlined text-2xl">more_vert</span>
-      </div>
-    </header>
+    <app-header [title]="headerTitle()"></app-header>
 
     <!-- Summary Card -->
     <div class="flex items-center gap-4 px-4 py-4">
@@ -20,7 +9,7 @@
         <p class="text-base font-medium" *ngIf="nextStop()">
           <span *ngIf="isArriving()">Arriving at</span>
           <span *ngIf="!isArriving()">En Route to</span>
-          {{ nextStop()?.stopId | stopName }}
+          {{ nextStop().stopId | stopName }}
         </p>
         <p class="text-sm text-zinc-500 dark:text-zinc-400">
           {{ direction() === 'N' ? 'Uptown' : 'Downtown' }}

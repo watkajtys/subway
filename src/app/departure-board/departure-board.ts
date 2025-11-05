@@ -13,8 +13,9 @@ import { StateService, ArrivalTime } from '../state.service';
 import Long from 'long';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { DestinationPipe } from '../destination.pipe';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { StopNameService, Station } from '../stop-name.service';
+import { HeaderComponent } from '../header/header';
 import { StopNamePipe } from '../stop-name.pipe';
 
 @Component({
@@ -26,13 +27,13 @@ import { StopNamePipe } from '../stop-name.pipe';
     DestinationPipe,
     RouterModule,
     StopNamePipe,
+    HeaderComponent,
   ],
   templateUrl: './departure-board.html',
 })
 export class DepartureBoardComponent implements OnInit {
   public state: StateService = inject(StateService);
   private stopNameService: StopNameService = inject(StopNameService);
-  private route: ActivatedRoute = inject(ActivatedRoute);
 
   protected activeFilter = signal<'all' | 'northbound' | 'southbound'>('all');
 
@@ -82,17 +83,6 @@ export class DepartureBoardComponent implements OnInit {
 
   ngOnInit() {
     this.stations = this.stopNameService.getStations();
-    this.route.params.subscribe((params) => {
-      const stationId = params['id'];
-      if (stationId) {
-        const station = this.stopNameService.getStationByIds(
-          stationId.split(',')
-        );
-        if (station) {
-          this.state.selectedStation.set(station.name);
-        }
-      }
-    });
   }
 
   protected onStationChange(event: Event) {

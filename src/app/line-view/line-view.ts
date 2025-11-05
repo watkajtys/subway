@@ -12,6 +12,7 @@ import { TransfersService } from '../transfers.service';
 import { StateService } from '../state.service';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
+import { HeaderComponent } from '../header/header';
 
 interface Station {
   stationId: string;
@@ -29,6 +30,7 @@ interface Station {
     StopNamePipe,
     RouteBadgeComponent,
     ArrivalTimePipe,
+    HeaderComponent,
   ],
   templateUrl: './line-view.html',
   styleUrl: './line-view.css',
@@ -44,6 +46,11 @@ export class LineViewComponent implements OnInit, OnDestroy {
   lineId = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('id')))
   );
+
+  protected headerTitle = computed(() => {
+    const line = this.lineId();
+    return line ? `${line} Line` : 'Line';
+  });
 
   stations = toSignal(
     this.route.paramMap.pipe(

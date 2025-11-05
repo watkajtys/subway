@@ -1,25 +1,41 @@
+<app-header title="did i miss my train"></app-header>
 <div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-zinc-900 dark:text-white group/design-root overflow-x-hidden">
-  <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
-    <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
-      <div class="flex-1 text-left">
-        <h1 class="text-xl font-bold">Did I Miss My Train?</h1>
+  <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full p-4">
+    <div class="relative">
+      <input
+        type="text"
+        placeholder="Search for a station..."
+        (input)="handleSearch($event)"
+        class="w-full p-4 bg-zinc-100 dark:bg-zinc-800 rounded-lg"
+      />
+      <div
+        *ngIf="searchTerm()"
+        class="absolute top-full left-0 w-full bg-zinc-100 dark:bg-zinc-800 rounded-lg mt-2 z-10"
+      >
+        <ul>
+          <li
+            *ngFor="let station of filteredStations()"
+            (click)="navigateToStation(station.name)"
+            class="p-4 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700"
+          >
+            {{ station.name }}
+          </li>
+        </ul>
       </div>
-    </header>
-
-    <main class="flex flex-1 flex-col justify-center p-6">
-      <div class="w-full max-w-md mx-auto mt-10 space-y-8">
-        <app-station-search></app-station-search>
-
-        <div class="space-y-6">
-          <div *ngFor="let group of lineGroups" class="space-y-4">
-            <div class="flex justify-start gap-4 flex-wrap">
-              <a *ngFor="let line of group.lines" [routerLink]="['/line', line]" class="focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark rounded-full">
-                <app-route-badge [routeId]="line" [size]="'large'"></app-route-badge>
-              </a>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="mt-8 flex flex-col items-start space-y-4">
+      <div
+        *ngFor="let group of groupedLines"
+        class="flex items-center justify-start space-x-2"
+      >
+        <a
+          *ngFor="let line of group"
+          [routerLink]="['/line', line]"
+          class="no-underline"
+        >
+          <app-route-badge [routeId]="line" size="large"></app-route-badge>
+        </a>
       </div>
-    </main>
+    </div>
   </div>
 </div>

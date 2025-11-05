@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 
-export interface LineGroup {
-  name: string;
-  lines: string[];
-}
-
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class MtaColorsService {
   private readonly lineColors: { [key: string]: string } = {
@@ -49,49 +44,6 @@ export class MtaColorsService {
     'T': '#008EB7'
   };
 
-  private readonly lineGroups: LineGroup[] = [
-    {
-      name: 'IRT Lexington Avenue Line',
-      lines: ['4', '5', '6'],
-    },
-    {
-      name: 'IRT Broadway-Seventh Avenue Line',
-      lines: ['1', '2', '3'],
-    },
-    {
-      name: 'IRT Flushing Line',
-      lines: ['7'],
-    },
-    {
-      name: 'IND Eighth Avenue Line',
-      lines: ['A', 'C', 'E'],
-    },
-    {
-      name: 'IND Sixth Avenue Line',
-      lines: ['B', 'D', 'F', 'M'],
-    },
-    {
-      name: 'IND Crosstown Line',
-      lines: ['G'],
-    },
-    {
-      name: 'BMT Canarsie Line',
-      lines: ['L'],
-    },
-    {
-      name: 'BMT Nassau Street Line',
-      lines: ['J', 'Z'],
-    },
-    {
-      name: 'BMT Broadway Line',
-      lines: ['N', 'Q', 'R', 'W'],
-    },
-    {
-      name: 'Shuttle',
-      lines: ['S'],
-    },
-  ];
-
   getColor(line: string): string {
     return this.lineColors[line.toUpperCase()] || '#7C858C'; // Default to gray
   }
@@ -104,11 +56,17 @@ export class MtaColorsService {
     return '#FFFFFF';
   }
 
-  getLineIds(): string[] {
-    return Object.keys(this.lineColors);
-  }
-
-  getGroupedLines(): LineGroup[] {
-    return this.lineGroups;
+  getGroupedLines() {
+    return [
+      ['4', '5', '6'],
+      ['1', '2', '3'],
+      ['7'],
+      ['A', 'C', 'E'],
+      ['B', 'D', 'F', 'M'],
+      ['G'],
+      ['L'],
+      ['J', 'Z'],
+      ['N', 'Q', 'R', 'W'],
+    ];
   }
 }
