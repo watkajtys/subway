@@ -176,7 +176,7 @@ export class TrainDetailComponent {
       trainPosition === 'at-station' &&
       nextStop?.stopId === stop.stopId
     ) {
-      return 'grey';
+      return '#4a5568';
     }
 
     return this.mtaColorsService.getColor(this.routeId());
