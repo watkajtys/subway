@@ -55,4 +55,16 @@ export class StopNameService {
   public getStopIdsForStation(stationName: string): string[] | undefined {
     return this.stationToStopIds.get(stationName);
   }
+
+  public getStationByIds(ids: string[]): Station | undefined {
+    for (const [name, stationIds] of this.stationToStopIds.entries()) {
+      if (
+        ids.length === stationIds.length &&
+        ids.every((id) => stationIds.includes(id))
+      ) {
+        return { name, ids: stationIds };
+      }
+    }
+    return undefined;
+  }
 }
