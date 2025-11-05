@@ -1,0 +1,288 @@
+[
+  {
+    "stationId": "726",
+    "name": "34 St-Hudson Yards",
+    "stops": {
+      "N": [
+        "726N"
+      ],
+      "S": [
+        "726S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "725",
+    "name": "Times Sq-42 St",
+    "stops": {
+      "N": [
+        "725N"
+      ],
+      "S": [
+        "725S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "724",
+    "name": "5 Av",
+    "stops": {
+      "N": [
+        "724N"
+      ],
+      "S": [
+        "724S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "723",
+    "name": "Grand Central-42 St",
+    "stops": {
+      "N": [
+        "723N"
+      ],
+      "S": [
+        "723S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "721",
+    "name": "Vernon Blvd-Jackson Av",
+    "stops": {
+      "N": [
+        "721N"
+      ],
+      "S": [
+        "721S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "720",
+    "name": "Hunters Point Av",
+    "stops": {
+      "N": [
+        "720N"
+      ],
+      "S": [
+        "720S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "719",
+    "name": "Court Sq",
+    "stops": {
+      "N": [
+        "719N"
+      ],
+      "S": [
+        "719S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "718",
+    "name": "Queensboro Plaza",
+    "stops": {
+      "N": [
+        "718N"
+      ],
+      "S": [
+        "718S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "716",
+    "name": "33 St-Rawson St",
+    "stops": {
+      "N": [
+        "716N"
+      ],
+      "S": [
+        "716S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "715",
+    "name": "40 St-Lowery St",
+    "stops": {
+      "N": [
+        "715N"
+      ],
+      "S": [
+        "715S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "714",
+    "name": "46 St-Bliss St",
+    "stops": {
+      "N": [
+        "714N"
+      ],
+      "S": [
+        "714S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "713",
+    "name": "52 St",
+    "stops": {
+      "N": [
+        "713N"
+      ],
+      "S": [
+        "713S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "712",
+    "name": "61 St-Woodside",
+    "stops": {
+      "N": [
+        "712N"
+      ],
+      "S": [
+        "712S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "711",
+    "name": "69 St",
+    "stops": {
+      "N": [
+        "711N"
+      ],
+      "S": [
+        "711S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "710",
+    "name": "74 St-Broadway",
+    "stops": {
+      "N": [
+        "710N"
+      ],
+      "S": [
+        "710S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "709",
+    "name": "82 St-Jackson Hts",
+    "stops": {
+      "N": [
+        "709N"
+      ],
+      "S": [
+        "709S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "708",
+    "name": "90 St-Elmhurst Av",
+    "stops": {
+      "N": [
+        "708N"
+      ],
+      "S": [
+        "708S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "707",
+    "name": "Junction Blvd",
+    "stops": {
+      "N": [
+        "707N"
+      ],
+      "S": [
+        "707S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "706",
+    "name": "103 St-Corona Plaza",
+    "stops": {
+      "N": [
+        "706N"
+      ],
+      "S": [
+        "706S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "705",
+    "name": "111 St",
+    "stops": {
+      "N": [
+        "705N"
+      ],
+      "S": [
+        "705S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "702",
+    "name": "Mets-Willets Point",
+    "stops": {
+      "N": [
+        "702N"
+      ],
+      "S": [
+        "702S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "701",
+    "name": "Flushing-Main St",
+    "stops": {
+      "N": [
+        "701N"
+      ],
+      "S": [
+        "701S"
+      ]
+    },
+    "isExpress": true
+  }
+]

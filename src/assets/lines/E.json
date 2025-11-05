@@ -1,0 +1,418 @@
+[
+  {
+    "stationId": "G05",
+    "name": "Jamaica Center-Parsons/Archer",
+    "stops": {
+      "N": [
+        "G05N"
+      ],
+      "S": [
+        "G05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G06",
+    "name": "Sutphin Blvd-Archer Av-JFK Airport",
+    "stops": {
+      "N": [
+        "G06N"
+      ],
+      "S": [
+        "G06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G07",
+    "name": "Jamaica-Van Wyck",
+    "stops": {
+      "N": [
+        "G07N"
+      ],
+      "S": [
+        "G07S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "F05",
+    "name": "Briarwood",
+    "stops": {
+      "N": [
+        "F05N"
+      ],
+      "S": [
+        "F05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "F06",
+    "name": "Kew Gardens-Union Tpke",
+    "stops": {
+      "N": [
+        "F06N"
+      ],
+      "S": [
+        "F06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "F07",
+    "name": "75 Av",
+    "stops": {
+      "N": [
+        "F07N"
+      ],
+      "S": [
+        "F07S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G08",
+    "name": "Forest Hills-71 Av",
+    "stops": {
+      "N": [
+        "G08N"
+      ],
+      "S": [
+        "G08S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G09",
+    "name": "67 Av",
+    "stops": {
+      "N": [
+        "G09N"
+      ],
+      "S": [
+        "G09S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G10",
+    "name": "63 Dr-Rego Park",
+    "stops": {
+      "N": [
+        "G10N"
+      ],
+      "S": [
+        "G10S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G11",
+    "name": "Woodhaven Blvd",
+    "stops": {
+      "N": [
+        "G11N"
+      ],
+      "S": [
+        "G11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G12",
+    "name": "Grand Av-Newtown",
+    "stops": {
+      "N": [
+        "G12N"
+      ],
+      "S": [
+        "G12S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G13",
+    "name": "Elmhurst Av",
+    "stops": {
+      "N": [
+        "G13N"
+      ],
+      "S": [
+        "G13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G14",
+    "name": "Jackson Hts-Roosevelt Av",
+    "stops": {
+      "N": [
+        "G14N"
+      ],
+      "S": [
+        "G14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G15",
+    "name": "65 St",
+    "stops": {
+      "N": [
+        "G15N"
+      ],
+      "S": [
+        "G15S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G16",
+    "name": "Northern Blvd",
+    "stops": {
+      "N": [
+        "G16N"
+      ],
+      "S": [
+        "G16S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G18",
+    "name": "46 St",
+    "stops": {
+      "N": [
+        "G18N"
+      ],
+      "S": [
+        "G18S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G19",
+    "name": "Steinway St",
+    "stops": {
+      "N": [
+        "G19N"
+      ],
+      "S": [
+        "G19S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G20",
+    "name": "36 St",
+    "stops": {
+      "N": [
+        "G20N"
+      ],
+      "S": [
+        "G20S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G21",
+    "name": "Queens Plaza",
+    "stops": {
+      "N": [
+        "G21N"
+      ],
+      "S": [
+        "G21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "F09",
+    "name": "Court Sq-23 St",
+    "stops": {
+      "N": [
+        "F09N"
+      ],
+      "S": [
+        "F09S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "F11",
+    "name": "Lexington Av/53 St",
+    "stops": {
+      "N": [
+        "F11N"
+      ],
+      "S": [
+        "F11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "F12",
+    "name": "5 Av/53 St",
+    "stops": {
+      "N": [
+        "F12N"
+      ],
+      "S": [
+        "F12S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D14",
+    "name": "7 Av",
+    "stops": {
+      "N": [
+        "D14N"
+      ],
+      "S": [
+        "D14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A25",
+    "name": "50 St",
+    "stops": {
+      "N": [
+        "A25N"
+      ],
+      "S": [
+        "A25S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A27",
+    "name": "42 St-Port Authority Bus Terminal",
+    "stops": {
+      "N": [
+        "A27N"
+      ],
+      "S": [
+        "A27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A28",
+    "name": "34 St-Penn Station",
+    "stops": {
+      "N": [
+        "A28N"
+      ],
+      "S": [
+        "A28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A30",
+    "name": "23 St",
+    "stops": {
+      "N": [
+        "A30N"
+      ],
+      "S": [
+        "A30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A31",
+    "name": "14 St",
+    "stops": {
+      "N": [
+        "A31N"
+      ],
+      "S": [
+        "A31S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A32",
+    "name": "W 4 St-Wash Sq",
+    "stops": {
+      "N": [
+        "A32N"
+      ],
+      "S": [
+        "A32S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A33",
+    "name": "Spring St",
+    "stops": {
+      "N": [
+        "A33N"
+      ],
+      "S": [
+        "A33S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A34",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "A34N"
+      ],
+      "S": [
+        "A34S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "E01",
+    "name": "World Trade Center",
+    "stops": {
+      "N": [
+        "E01N"
+      ],
+      "S": [
+        "E01S"
+      ]
+    },
+    "isExpress": true
+  }
+]

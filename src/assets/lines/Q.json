@@ -1,0 +1,444 @@
+[
+  {
+    "stationId": "Q05",
+    "name": "96 St",
+    "stops": {
+      "N": [
+        "Q05N"
+      ],
+      "S": [
+        "Q05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "Q04",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "Q04N"
+      ],
+      "S": [
+        "Q04S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "Q03",
+    "name": "72 St",
+    "stops": {
+      "N": [
+        "Q03N"
+      ],
+      "S": [
+        "Q03S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "B08",
+    "name": "Lexington Av/63 St",
+    "stops": {
+      "N": [
+        "B08N"
+      ],
+      "S": [
+        "B08S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R14",
+    "name": "57 St-7 Av",
+    "stops": {
+      "N": [
+        "R14N"
+      ],
+      "S": [
+        "R14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R15",
+    "name": "49 St",
+    "stops": {
+      "N": [
+        "R15N"
+      ],
+      "S": [
+        "R15S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R16",
+    "name": "Times Sq-42 St",
+    "stops": {
+      "N": [
+        "R16N"
+      ],
+      "S": [
+        "R16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R17",
+    "name": "34 St-Herald Sq",
+    "stops": {
+      "N": [
+        "R17N"
+      ],
+      "S": [
+        "R17S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R18",
+    "name": "28 St",
+    "stops": {
+      "N": [
+        "R18N"
+      ],
+      "S": [
+        "R18S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R19",
+    "name": "23 St",
+    "stops": {
+      "N": [
+        "R19N"
+      ],
+      "S": [
+        "R19S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R20",
+    "name": "14 St-Union Sq",
+    "stops": {
+      "N": [
+        "R20N"
+      ],
+      "S": [
+        "R20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R21",
+    "name": "8 St-NYU",
+    "stops": {
+      "N": [
+        "R21N"
+      ],
+      "S": [
+        "R21S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R22",
+    "name": "Prince St",
+    "stops": {
+      "N": [
+        "R22N"
+      ],
+      "S": [
+        "R22S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "Q01",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "Q01N"
+      ],
+      "S": [
+        "Q01S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R30",
+    "name": "DeKalb Av",
+    "stops": {
+      "N": [
+        "R30N"
+      ],
+      "S": [
+        "R30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D24",
+    "name": "Atlantic Av-Barclays Ctr",
+    "stops": {
+      "N": [
+        "D24N"
+      ],
+      "S": [
+        "D24S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D25",
+    "name": "7 Av",
+    "stops": {
+      "N": [
+        "D25N"
+      ],
+      "S": [
+        "D25S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D26",
+    "name": "Prospect Park",
+    "stops": {
+      "N": [
+        "D26N"
+      ],
+      "S": [
+        "D26S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D27",
+    "name": "Parkside Av",
+    "stops": {
+      "N": [
+        "D27N"
+      ],
+      "S": [
+        "D27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D28",
+    "name": "Church Av",
+    "stops": {
+      "N": [
+        "D28N"
+      ],
+      "S": [
+        "D28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D29",
+    "name": "Beverley Rd",
+    "stops": {
+      "N": [
+        "D29N"
+      ],
+      "S": [
+        "D29S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D30",
+    "name": "Cortelyou Rd",
+    "stops": {
+      "N": [
+        "D30N"
+      ],
+      "S": [
+        "D30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D31",
+    "name": "Newkirk Plaza",
+    "stops": {
+      "N": [
+        "D31N"
+      ],
+      "S": [
+        "D31S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D32",
+    "name": "Avenue H",
+    "stops": {
+      "N": [
+        "D32N"
+      ],
+      "S": [
+        "D32S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D33",
+    "name": "Avenue J",
+    "stops": {
+      "N": [
+        "D33N"
+      ],
+      "S": [
+        "D33S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D34",
+    "name": "Avenue M",
+    "stops": {
+      "N": [
+        "D34N"
+      ],
+      "S": [
+        "D34S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D35",
+    "name": "Kings Hwy",
+    "stops": {
+      "N": [
+        "D35N"
+      ],
+      "S": [
+        "D35S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D37",
+    "name": "Avenue U",
+    "stops": {
+      "N": [
+        "D37N"
+      ],
+      "S": [
+        "D37S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D38",
+    "name": "Neck Rd",
+    "stops": {
+      "N": [
+        "D38N"
+      ],
+      "S": [
+        "D38S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D39",
+    "name": "Sheepshead Bay",
+    "stops": {
+      "N": [
+        "D39N"
+      ],
+      "S": [
+        "D39S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D40",
+    "name": "Brighton Beach",
+    "stops": {
+      "N": [
+        "D40N"
+      ],
+      "S": [
+        "D40S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D41",
+    "name": "Ocean Pkwy",
+    "stops": {
+      "N": [
+        "D41N"
+      ],
+      "S": [
+        "D41S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D42",
+    "name": "W 8 St-NY Aquarium",
+    "stops": {
+      "N": [
+        "D42N"
+      ],
+      "S": [
+        "D42S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D43",
+    "name": "Coney Island-Stillwell Av",
+    "stops": {
+      "N": [
+        "D43N"
+      ],
+      "S": [
+        "D43S"
+      ]
+    },
+    "isExpress": true
+  }
+]

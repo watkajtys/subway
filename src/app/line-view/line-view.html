@@ -1,0 +1,106 @@
+<div class="p-4">
+  <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
+      <div class="flex size-12 shrink-0 items-center">
+        <a routerLink="/" class="material-symbols-outlined text-2xl">arrow_back</a>
+      </div>
+      @if (lineId(); as lineId) {
+      <h1 class="flex-1 text-lg text-center font-bold">
+        {{ lineId }} Line
+      </h1>
+      }
+      <div class="flex size-12 shrink-0 items-center justify-end">
+        <span class="material-symbols-outlined text-2xl">more_vert</span>
+      </div>
+    </header>
+
+  @if (lineId(); as lineId) {
+    <div class="flex items-center gap-4 px-4 py-4">
+      <app-route-badge [routeId]="lineId" size="large"></app-route-badge>
+      <div class="flex flex-col justify-center">
+        <p class="text-base font-medium">
+          {{ lineId }} Line
+        </p>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400">
+          All Stops
+        </p>
+      </div>
+    </div>
+  }
+
+  @if(stations(); as stations) {
+  <main class="px-4">
+    <ul class="flex flex-col">
+    @for(station of stations; track station.stationId; let i = $index; let last = $last) {
+      <li class="flex">
+        <!-- Timeline -->
+        <div class="flex flex-col items-center w-12 mr-4">
+          <div
+            class="flex-1 w-0.5"
+            [style.background-color]="lineColor()"
+          ></div>
+          <div
+            class="flex items-center justify-center size-5 rounded-full border-2 -my-px z-10 bg-background-light dark:bg-background-dark"
+            [style.border-color]="lineColor()"
+          >
+            <div
+              class="size-2 rounded-full m-0.5"
+              [style.background-color]="station.isExpress ? lineColor() : 'transparent'"
+            ></div>
+          </div>
+          <div
+            class="flex-1 w-0.5"
+            [style.background-color]="!last ? lineColor() : 'transparent'"
+          ></div>
+        </div>
+
+        <!-- Stop Details -->
+        <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800">
+          <div>
+            <p class="font-medium text-base">{{ station.name }}</p>
+            @if(transfersSvc.getTransfers(station.stationId); as transfers) {
+              <div class="flex items-center gap-1.5 flex-wrap mt-1">
+                @for(transfer of transfers; track transfer) {
+                  <app-route-badge [routeId]="transfer"></app-route-badge>
+                }
+              </div>
+            }
+          </div>
+          @if(arrivalTimes()?.get(station.stationId); as arrivals) {
+            <div class="flex-shrink-0 tabular-nums text-right">
+              @if(arrivals.N) {
+                <div class="flex items-center gap-2">
+                  <span class="text-zinc-500 text-sm">Uptown</span>
+                  <span class="font-bold text-lg"
+                    [ngClass]="{
+                      'text-green-400 transition-opacity': (arrivals.N | arrivalTime) === 'NOW',
+                      'opacity-50': (arrivals.N | arrivalTime) === 'NOW' && !stateSvc.blinker(),
+                      'text-yellow-400': (arrivals.N | arrivalTime) === 'soon'
+                    }"
+                    >{{ (arrivals.N | arrivalTime) }}</span
+                  >
+                </div>
+              }
+              @if(arrivals.S) {
+                <div class="flex items-center gap-2">
+                   <span class="text-zinc-500 text-sm">Downtown</span>
+                  <span class="font-bold text-lg"
+                    [ngClass]="{
+                      'text-green-400 transition-opacity': (arrivals.S | arrivalTime) === 'NOW',
+                      'opacity-50': (arrivals.S | arrivalTime) === 'NOW' && !stateSvc.blinker(),
+                      'text-yellow-400': (arrivals.S | arrivalTime) === 'soon'
+                    }"
+                    >{{ (arrivals.S | arrivalTime) }}</span
+                  >
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </li>
+    }
+    </ul>
+  </main>
+  } @else {
+  <p>Loading...</p>
+  }
+</div>

@@ -1,0 +1,314 @@
+[
+  {
+    "stationId": "L29",
+    "name": "Canarsie-Rockaway Pkwy",
+    "stops": {
+      "N": [
+        "L29N"
+      ],
+      "S": [
+        "L29S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "L28",
+    "name": "East 105 St",
+    "stops": {
+      "N": [
+        "L28N"
+      ],
+      "S": [
+        "L28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L27",
+    "name": "New Lots Av",
+    "stops": {
+      "N": [
+        "L27N"
+      ],
+      "S": [
+        "L27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L26",
+    "name": "Livonia Av",
+    "stops": {
+      "N": [
+        "L26N"
+      ],
+      "S": [
+        "L26S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L25",
+    "name": "Sutter Av",
+    "stops": {
+      "N": [
+        "L25N"
+      ],
+      "S": [
+        "L25S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L24",
+    "name": "Atlantic Av",
+    "stops": {
+      "N": [
+        "L24N"
+      ],
+      "S": [
+        "L24S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L22",
+    "name": "Broadway Junction",
+    "stops": {
+      "N": [
+        "L22N"
+      ],
+      "S": [
+        "L22S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L21",
+    "name": "Bushwick Av-Aberdeen St",
+    "stops": {
+      "N": [
+        "L21N"
+      ],
+      "S": [
+        "L21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L20",
+    "name": "Wilson Av",
+    "stops": {
+      "N": [
+        "L20N"
+      ],
+      "S": [
+        "L20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L19",
+    "name": "Halsey St",
+    "stops": {
+      "N": [
+        "L19N"
+      ],
+      "S": [
+        "L19S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L17",
+    "name": "Myrtle-Wyckoff Avs",
+    "stops": {
+      "N": [
+        "L17N"
+      ],
+      "S": [
+        "L17S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L16",
+    "name": "DeKalb Av",
+    "stops": {
+      "N": [
+        "L16N"
+      ],
+      "S": [
+        "L16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L15",
+    "name": "Jefferson St",
+    "stops": {
+      "N": [
+        "L15N"
+      ],
+      "S": [
+        "L15S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L14",
+    "name": "Morgan Av",
+    "stops": {
+      "N": [
+        "L14N"
+      ],
+      "S": [
+        "L14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L13",
+    "name": "Montrose Av",
+    "stops": {
+      "N": [
+        "L13N"
+      ],
+      "S": [
+        "L13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L12",
+    "name": "Grand St",
+    "stops": {
+      "N": [
+        "L12N"
+      ],
+      "S": [
+        "L12S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L11",
+    "name": "Graham Av",
+    "stops": {
+      "N": [
+        "L11N"
+      ],
+      "S": [
+        "L11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L10",
+    "name": "Lorimer St",
+    "stops": {
+      "N": [
+        "L10N"
+      ],
+      "S": [
+        "L10S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L08",
+    "name": "Bedford Av",
+    "stops": {
+      "N": [
+        "L08N"
+      ],
+      "S": [
+        "L08S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L06",
+    "name": "1 Av",
+    "stops": {
+      "N": [
+        "L06N"
+      ],
+      "S": [
+        "L06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L05",
+    "name": "3 Av",
+    "stops": {
+      "N": [
+        "L05N"
+      ],
+      "S": [
+        "L05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L03",
+    "name": "14 St-Union Sq",
+    "stops": {
+      "N": [
+        "L03N"
+      ],
+      "S": [
+        "L03S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L02",
+    "name": "6 Av",
+    "stops": {
+      "N": [
+        "L02N"
+      ],
+      "S": [
+        "L02S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "L01",
+    "name": "8 Av",
+    "stops": {
+      "N": [
+        "L01N"
+      ],
+      "S": [
+        "L01S"
+      ]
+    },
+    "isExpress": true
+  }
+]

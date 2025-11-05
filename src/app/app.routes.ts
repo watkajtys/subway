@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DepartureBoardComponent } from './departure-board/departure-board';
 import { TrainDetailComponent } from './train-detail/train-detail';
+import { LineViewComponent } from './line-view/line-view';
 import { StopNameService } from './stop-name.service';
 import { inject } from '@angular/core';
 import { TransfersService } from './transfers.service';
@@ -22,6 +23,11 @@ export const routes: Routes = [
   {
     path: 'trip/:id',
     component: TrainDetailComponent,
+    resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
+  },
+  {
+    path: 'line/:id',
+    component: LineViewComponent,
     resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
   },
 ];

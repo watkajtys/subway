@@ -1,0 +1,470 @@
+[
+  {
+    "stationId": "M01",
+    "name": "Middle Village-Metropolitan Av",
+    "stops": {
+      "N": [
+        "M01N"
+      ],
+      "S": [
+        "M01S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M04",
+    "name": "Fresh Pond Rd",
+    "stops": {
+      "N": [
+        "M04N"
+      ],
+      "S": [
+        "M04S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M05",
+    "name": "Forest Av",
+    "stops": {
+      "N": [
+        "M05N"
+      ],
+      "S": [
+        "M05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M06",
+    "name": "Seneca Av",
+    "stops": {
+      "N": [
+        "M06N"
+      ],
+      "S": [
+        "M06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M08",
+    "name": "Myrtle-Wyckoff Avs",
+    "stops": {
+      "N": [
+        "M08N"
+      ],
+      "S": [
+        "M08S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M09",
+    "name": "Knickerbocker Av",
+    "stops": {
+      "N": [
+        "M09N"
+      ],
+      "S": [
+        "M09S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M10",
+    "name": "Central Av",
+    "stops": {
+      "N": [
+        "M10N"
+      ],
+      "S": [
+        "M10S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M11",
+    "name": "Myrtle Av",
+    "stops": {
+      "N": [
+        "M11N"
+      ],
+      "S": [
+        "M11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M12",
+    "name": "Flushing Av",
+    "stops": {
+      "N": [
+        "M12N"
+      ],
+      "S": [
+        "M12S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M13",
+    "name": "Lorimer St",
+    "stops": {
+      "N": [
+        "M13N"
+      ],
+      "S": [
+        "M13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M14",
+    "name": "Hewes St",
+    "stops": {
+      "N": [
+        "M14N"
+      ],
+      "S": [
+        "M14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M16",
+    "name": "Marcy Av",
+    "stops": {
+      "N": [
+        "M16N"
+      ],
+      "S": [
+        "M16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M18",
+    "name": "Delancey St-Essex St",
+    "stops": {
+      "N": [
+        "M18N"
+      ],
+      "S": [
+        "M18S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "D21",
+    "name": "Broadway-Lafayette St",
+    "stops": {
+      "N": [
+        "D21N"
+      ],
+      "S": [
+        "D21S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "D20",
+    "name": "W 4 St-Wash Sq",
+    "stops": {
+      "N": [
+        "D20N"
+      ],
+      "S": [
+        "D20S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "D19",
+    "name": "14 St",
+    "stops": {
+      "N": [
+        "D19N"
+      ],
+      "S": [
+        "D19S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "D18",
+    "name": "23 St",
+    "stops": {
+      "N": [
+        "D18N"
+      ],
+      "S": [
+        "D18S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "D17",
+    "name": "34 St-Herald Sq",
+    "stops": {
+      "N": [
+        "D17N"
+      ],
+      "S": [
+        "D17S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "D16",
+    "name": "42 St-Bryant Pk",
+    "stops": {
+      "N": [
+        "D16N"
+      ],
+      "S": [
+        "D16S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "D15",
+    "name": "47-50 Sts-Rockefeller Ctr",
+    "stops": {
+      "N": [
+        "D15N"
+      ],
+      "S": [
+        "D15S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F12",
+    "name": "5 Av/53 St",
+    "stops": {
+      "N": [
+        "F12N"
+      ],
+      "S": [
+        "F12S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F11",
+    "name": "Lexington Av/53 St",
+    "stops": {
+      "N": [
+        "F11N"
+      ],
+      "S": [
+        "F11S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F09",
+    "name": "Court Sq-23 St",
+    "stops": {
+      "N": [
+        "F09N"
+      ],
+      "S": [
+        "F09S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G21",
+    "name": "Queens Plaza",
+    "stops": {
+      "N": [
+        "G21N"
+      ],
+      "S": [
+        "G21S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G20",
+    "name": "36 St",
+    "stops": {
+      "N": [
+        "G20N"
+      ],
+      "S": [
+        "G20S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G19",
+    "name": "Steinway St",
+    "stops": {
+      "N": [
+        "G19N"
+      ],
+      "S": [
+        "G19S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G18",
+    "name": "46 St",
+    "stops": {
+      "N": [
+        "G18N"
+      ],
+      "S": [
+        "G18S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G16",
+    "name": "Northern Blvd",
+    "stops": {
+      "N": [
+        "G16N"
+      ],
+      "S": [
+        "G16S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G15",
+    "name": "65 St",
+    "stops": {
+      "N": [
+        "G15N"
+      ],
+      "S": [
+        "G15S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G14",
+    "name": "Jackson Hts-Roosevelt Av",
+    "stops": {
+      "N": [
+        "G14N"
+      ],
+      "S": [
+        "G14S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G13",
+    "name": "Elmhurst Av",
+    "stops": {
+      "N": [
+        "G13N"
+      ],
+      "S": [
+        "G13S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G12",
+    "name": "Grand Av-Newtown",
+    "stops": {
+      "N": [
+        "G12N"
+      ],
+      "S": [
+        "G12S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G11",
+    "name": "Woodhaven Blvd",
+    "stops": {
+      "N": [
+        "G11N"
+      ],
+      "S": [
+        "G11S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G10",
+    "name": "63 Dr-Rego Park",
+    "stops": {
+      "N": [
+        "G10N"
+      ],
+      "S": [
+        "G10S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G09",
+    "name": "67 Av",
+    "stops": {
+      "N": [
+        "G09N"
+      ],
+      "S": [
+        "G09S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G08",
+    "name": "Forest Hills-71 Av",
+    "stops": {
+      "N": [
+        "G08N"
+      ],
+      "S": [
+        "G08S"
+      ]
+    },
+    "isExpress": false
+  }
+]

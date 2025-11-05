@@ -1,0 +1,574 @@
+[
+  {
+    "stationId": "N10",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "N10N"
+      ],
+      "S": [
+        "N10S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N09",
+    "name": "Avenue U",
+    "stops": {
+      "N": [
+        "N09N"
+      ],
+      "S": [
+        "N09S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N08",
+    "name": "Kings Hwy",
+    "stops": {
+      "N": [
+        "N08N"
+      ],
+      "S": [
+        "N08S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N07",
+    "name": "Bay Pkwy",
+    "stops": {
+      "N": [
+        "N07N"
+      ],
+      "S": [
+        "N07S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N06",
+    "name": "20 Av",
+    "stops": {
+      "N": [
+        "N06N"
+      ],
+      "S": [
+        "N06S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N05",
+    "name": "18 Av",
+    "stops": {
+      "N": [
+        "N05N"
+      ],
+      "S": [
+        "N05S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N04",
+    "name": "New Utrecht Av",
+    "stops": {
+      "N": [
+        "N04N"
+      ],
+      "S": [
+        "N04S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N03",
+    "name": "Fort Hamilton Pkwy",
+    "stops": {
+      "N": [
+        "N03N"
+      ],
+      "S": [
+        "N03S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "N02",
+    "name": "8 Av",
+    "stops": {
+      "N": [
+        "N02N"
+      ],
+      "S": [
+        "N02S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R41",
+    "name": "59 St",
+    "stops": {
+      "N": [
+        "R41N"
+      ],
+      "S": [
+        "R41S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R40",
+    "name": "53 St",
+    "stops": {
+      "N": [
+        "R40N"
+      ],
+      "S": [
+        "R40S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R39",
+    "name": "45 St",
+    "stops": {
+      "N": [
+        "R39N"
+      ],
+      "S": [
+        "R39S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "R36",
+    "name": "36 St",
+    "stops": {
+      "N": [
+        "R36N"
+      ],
+      "S": [
+        "R36S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R35",
+    "name": "25 St",
+    "stops": {
+      "N": [
+        "R35N"
+      ],
+      "S": [
+        "R35S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R34",
+    "name": "Prospect Av",
+    "stops": {
+      "N": [
+        "R34N"
+      ],
+      "S": [
+        "R34S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R33",
+    "name": "4 Av-9 St",
+    "stops": {
+      "N": [
+        "R33N"
+      ],
+      "S": [
+        "R33S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R32",
+    "name": "Union St",
+    "stops": {
+      "N": [
+        "R32N"
+      ],
+      "S": [
+        "R32S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R31",
+    "name": "Atlantic Av-Barclays Ctr",
+    "stops": {
+      "N": [
+        "R31N"
+      ],
+      "S": [
+        "R31S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R30",
+    "name": "DeKalb Av",
+    "stops": {
+      "N": [
+        "R30N"
+      ],
+      "S": [
+        "R30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R29",
+    "name": "Jay St-MetroTech",
+    "stops": {
+      "N": [
+        "R29N"
+      ],
+      "S": [
+        "R29S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R28",
+    "name": "Court St",
+    "stops": {
+      "N": [
+        "R28N"
+      ],
+      "S": [
+        "R28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R27",
+    "name": "Whitehall St-South Ferry",
+    "stops": {
+      "N": [
+        "R27N"
+      ],
+      "S": [
+        "R27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R26",
+    "name": "Rector St",
+    "stops": {
+      "N": [
+        "R26N"
+      ],
+      "S": [
+        "R26S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R25",
+    "name": "Cortlandt St",
+    "stops": {
+      "N": [
+        "R25N"
+      ],
+      "S": [
+        "R25S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R24",
+    "name": "City Hall",
+    "stops": {
+      "N": [
+        "R24N"
+      ],
+      "S": [
+        "R24S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R23",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "R23N"
+      ],
+      "S": [
+        "R23S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R22",
+    "name": "Prince St",
+    "stops": {
+      "N": [
+        "R22N"
+      ],
+      "S": [
+        "R22S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R21",
+    "name": "8 St-NYU",
+    "stops": {
+      "N": [
+        "R21N"
+      ],
+      "S": [
+        "R21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R20",
+    "name": "14 St-Union Sq",
+    "stops": {
+      "N": [
+        "R20N"
+      ],
+      "S": [
+        "R20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R19",
+    "name": "23 St",
+    "stops": {
+      "N": [
+        "R19N"
+      ],
+      "S": [
+        "R19S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R18",
+    "name": "28 St",
+    "stops": {
+      "N": [
+        "R18N"
+      ],
+      "S": [
+        "R18S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R17",
+    "name": "34 St-Herald Sq",
+    "stops": {
+      "N": [
+        "R17N"
+      ],
+      "S": [
+        "R17S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R16",
+    "name": "Times Sq-42 St",
+    "stops": {
+      "N": [
+        "R16N"
+      ],
+      "S": [
+        "R16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R15",
+    "name": "49 St",
+    "stops": {
+      "N": [
+        "R15N"
+      ],
+      "S": [
+        "R15S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R14",
+    "name": "57 St-7 Av",
+    "stops": {
+      "N": [
+        "R14N"
+      ],
+      "S": [
+        "R14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R13",
+    "name": "5 Av/59 St",
+    "stops": {
+      "N": [
+        "R13N"
+      ],
+      "S": [
+        "R13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R11",
+    "name": "Lexington Av/59 St",
+    "stops": {
+      "N": [
+        "R11N"
+      ],
+      "S": [
+        "R11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R09",
+    "name": "Queensboro Plaza",
+    "stops": {
+      "N": [
+        "R09N"
+      ],
+      "S": [
+        "R09S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R08",
+    "name": "39 Av-Dutch Kills",
+    "stops": {
+      "N": [
+        "R08N"
+      ],
+      "S": [
+        "R08S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R06",
+    "name": "36 Av",
+    "stops": {
+      "N": [
+        "R06N"
+      ],
+      "S": [
+        "R06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R05",
+    "name": "Broadway",
+    "stops": {
+      "N": [
+        "R05N"
+      ],
+      "S": [
+        "R05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R04",
+    "name": "30 Av",
+    "stops": {
+      "N": [
+        "R04N"
+      ],
+      "S": [
+        "R04S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R03",
+    "name": "Astoria Blvd",
+    "stops": {
+      "N": [
+        "R03N"
+      ],
+      "S": [
+        "R03S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R01",
+    "name": "Astoria-Ditmars Blvd",
+    "stops": {
+      "N": [
+        "R01N"
+      ],
+      "S": [
+        "R01S"
+      ]
+    },
+    "isExpress": true
+  }
+]
