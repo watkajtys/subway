@@ -1,19 +1,16 @@
 <div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-zinc-900 dark:text-white group/design-root overflow-x-hidden">
   <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
     <!-- Top App Bar -->
-    <header class="sticky top-0 z-10 flex items-center bg-background-light/80 dark:bg-background-dark/80 p-4 pb-2 justify-between backdrop-blur-sm">
-      <div class="flex-1 text-left">
-        <h1 class="text-xl font-bold">{{ state.selectedStation() }}</h1>
-        <select id="station" [value]="state.selectedStation()" (change)="onStationChange($event)" class="bg-transparent text-zinc-500 dark:text-zinc-400 text-sm p-1 -ml-1">
-          <option *ngFor="let station of stations" [value]="station.name" class="bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white">
-            {{ station.name }}
-          </option>
-        </select>
-      </div>
-      <div class="flex size-12 shrink-0 items-center justify-end">
-        <span class="material-symbols-outlined text-2xl">more_vert</span>
-      </div>
-    </header>
+    <app-header [title]="state.selectedStation()"></app-header>
+
+    <!-- Station Selector -->
+    <div class="p-4 pt-2">
+      <select id="station" [value]="state.selectedStation()" (change)="onStationChange($event)" class="bg-transparent text-zinc-500 dark:text-zinc-400 text-sm p-1 -ml-1">
+        <option *ngFor="let station of stations" [value]="station.name" class="bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white">
+          {{ station.name }}
+        </option>
+      </select>
+    </div>
 
     <!-- Filters -->
     <div class="flex space-x-2 p-4 pt-2">
