@@ -1,0 +1,275 @@
+[
+  {
+    "stationId": "S31",
+    "name": "St George",
+    "stops": {
+      "N": [
+        "S31N"
+      ],
+      "S": [
+        "S31S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S30",
+    "name": "Tompkinsville",
+    "stops": {
+      "N": [
+        "S30N"
+      ],
+      "S": [
+        "S30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S29",
+    "name": "Stapleton",
+    "stops": {
+      "N": [
+        "S29N"
+      ],
+      "S": [
+        "S29S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S28",
+    "name": "Clifton",
+    "stops": {
+      "N": [
+        "S28N"
+      ],
+      "S": [
+        "S28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S27",
+    "name": "Grasmere",
+    "stops": {
+      "N": [
+        "S27N"
+      ],
+      "S": [
+        "S27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S26",
+    "name": "Old Town",
+    "stops": {
+      "N": [
+        "S26N"
+      ],
+      "S": [
+        "S26S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S25",
+    "name": "Dongan Hills",
+    "stops": {
+      "N": [
+        "S25N"
+      ],
+      "S": [
+        "S25S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S24",
+    "name": "Jefferson Av",
+    "stops": {
+      "N": [
+        "S24N"
+      ],
+      "S": [
+        "S24S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S23",
+    "name": "Grant City",
+    "stops": {
+      "N": [
+        "S23N"
+      ],
+      "S": [
+        "S23S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S22",
+    "name": "New Dorp",
+    "stops": {
+      "N": [
+        "S22N"
+      ],
+      "S": [
+        "S22S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S21",
+    "name": "Oakwood Heights",
+    "stops": {
+      "N": [
+        "S21N"
+      ],
+      "S": [
+        "S21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S20",
+    "name": "Bay Terrace",
+    "stops": {
+      "N": [
+        "S20N"
+      ],
+      "S": [
+        "S20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S19",
+    "name": "Great Kills",
+    "stops": {
+      "N": [
+        "S19N"
+      ],
+      "S": [
+        "S19S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S18",
+    "name": "Eltingville",
+    "stops": {
+      "N": [
+        "S18N"
+      ],
+      "S": [
+        "S18S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S17",
+    "name": "Annadale",
+    "stops": {
+      "N": [
+        "S17N"
+      ],
+      "S": [
+        "S17S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S16",
+    "name": "Huguenot",
+    "stops": {
+      "N": [
+        "S16N"
+      ],
+      "S": [
+        "S16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S15",
+    "name": "Prince's Bay",
+    "stops": {
+      "N": [
+        "S15N"
+      ],
+      "S": [
+        "S15S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S14",
+    "name": "Pleasant Plains",
+    "stops": {
+      "N": [
+        "S14N"
+      ],
+      "S": [
+        "S14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S13",
+    "name": "Richmond Valley",
+    "stops": {
+      "N": [
+        "S13N"
+      ],
+      "S": [
+        "S13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S11",
+    "name": "Arthur Kill",
+    "stops": {
+      "N": [
+        "S11N"
+      ],
+      "S": [
+        "S11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "S09",
+    "name": "Tottenville",
+    "stops": {
+      "N": [
+        "S09N"
+      ],
+      "S": [
+        "S09S"
+      ]
+    },
+    "isExpress": true
+  }
+]

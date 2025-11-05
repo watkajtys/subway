@@ -1,0 +1,392 @@
+[
+  {
+    "stationId": "G05",
+    "name": "Jamaica Center-Parsons/Archer",
+    "stops": {
+      "N": [
+        "G05N"
+      ],
+      "S": [
+        "G05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "G06",
+    "name": "Sutphin Blvd-Archer Av-JFK Airport",
+    "stops": {
+      "N": [
+        "G06N"
+      ],
+      "S": [
+        "G06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J12",
+    "name": "121 St",
+    "stops": {
+      "N": [
+        "J12N"
+      ],
+      "S": [
+        "J12S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J13",
+    "name": "111 St",
+    "stops": {
+      "N": [
+        "J13N"
+      ],
+      "S": [
+        "J13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J14",
+    "name": "104 St",
+    "stops": {
+      "N": [
+        "J14N"
+      ],
+      "S": [
+        "J14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J15",
+    "name": "Woodhaven Blvd",
+    "stops": {
+      "N": [
+        "J15N"
+      ],
+      "S": [
+        "J15S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J16",
+    "name": "85 St-Forest Pkwy",
+    "stops": {
+      "N": [
+        "J16N"
+      ],
+      "S": [
+        "J16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J17",
+    "name": "75 St-Elderts Ln",
+    "stops": {
+      "N": [
+        "J17N"
+      ],
+      "S": [
+        "J17S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J19",
+    "name": "Cypress Hills",
+    "stops": {
+      "N": [
+        "J19N"
+      ],
+      "S": [
+        "J19S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J20",
+    "name": "Crescent St",
+    "stops": {
+      "N": [
+        "J20N"
+      ],
+      "S": [
+        "J20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J21",
+    "name": "Norwood Av",
+    "stops": {
+      "N": [
+        "J21N"
+      ],
+      "S": [
+        "J21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J22",
+    "name": "Cleveland St",
+    "stops": {
+      "N": [
+        "J22N"
+      ],
+      "S": [
+        "J22S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J23",
+    "name": "Van Siclen Av",
+    "stops": {
+      "N": [
+        "J23N"
+      ],
+      "S": [
+        "J23S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J24",
+    "name": "Alabama Av",
+    "stops": {
+      "N": [
+        "J24N"
+      ],
+      "S": [
+        "J24S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J27",
+    "name": "Broadway Junction",
+    "stops": {
+      "N": [
+        "J27N"
+      ],
+      "S": [
+        "J27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J28",
+    "name": "Chauncey St",
+    "stops": {
+      "N": [
+        "J28N"
+      ],
+      "S": [
+        "J28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J29",
+    "name": "Halsey St",
+    "stops": {
+      "N": [
+        "J29N"
+      ],
+      "S": [
+        "J29S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J30",
+    "name": "Gates Av",
+    "stops": {
+      "N": [
+        "J30N"
+      ],
+      "S": [
+        "J30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "J31",
+    "name": "Kosciuszko St",
+    "stops": {
+      "N": [
+        "J31N"
+      ],
+      "S": [
+        "J31S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M11",
+    "name": "Myrtle Av",
+    "stops": {
+      "N": [
+        "M11N"
+      ],
+      "S": [
+        "M11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M12",
+    "name": "Flushing Av",
+    "stops": {
+      "N": [
+        "M12N"
+      ],
+      "S": [
+        "M12S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M13",
+    "name": "Lorimer St",
+    "stops": {
+      "N": [
+        "M13N"
+      ],
+      "S": [
+        "M13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M14",
+    "name": "Hewes St",
+    "stops": {
+      "N": [
+        "M14N"
+      ],
+      "S": [
+        "M14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M16",
+    "name": "Marcy Av",
+    "stops": {
+      "N": [
+        "M16N"
+      ],
+      "S": [
+        "M16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M18",
+    "name": "Delancey St-Essex St",
+    "stops": {
+      "N": [
+        "M18N"
+      ],
+      "S": [
+        "M18S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M19",
+    "name": "Bowery",
+    "stops": {
+      "N": [
+        "M19N"
+      ],
+      "S": [
+        "M19S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M20",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "M20N"
+      ],
+      "S": [
+        "M20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M21",
+    "name": "Chambers St",
+    "stops": {
+      "N": [
+        "M21N"
+      ],
+      "S": [
+        "M21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M22",
+    "name": "Fulton St",
+    "stops": {
+      "N": [
+        "M22N"
+      ],
+      "S": [
+        "M22S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M23",
+    "name": "Broad St",
+    "stops": {
+      "N": [
+        "M23N"
+      ],
+      "S": [
+        "M23S"
+      ]
+    },
+    "isExpress": true
+  }
+]

@@ -1,0 +1,509 @@
+[
+  {
+    "stationId": "257",
+    "name": "New Lots Av",
+    "stops": {
+      "N": [
+        "257N"
+      ],
+      "S": [
+        "257S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "256",
+    "name": "Van Siclen Av",
+    "stops": {
+      "N": [
+        "256N"
+      ],
+      "S": [
+        "256S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "255",
+    "name": "Pennsylvania Av",
+    "stops": {
+      "N": [
+        "255N"
+      ],
+      "S": [
+        "255S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "254",
+    "name": "Junius St",
+    "stops": {
+      "N": [
+        "254N"
+      ],
+      "S": [
+        "254S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "253",
+    "name": "Rockaway Av",
+    "stops": {
+      "N": [
+        "253N"
+      ],
+      "S": [
+        "253S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "252",
+    "name": "Saratoga Av",
+    "stops": {
+      "N": [
+        "252N"
+      ],
+      "S": [
+        "252S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "251",
+    "name": "Sutter Av-Rutland Rd",
+    "stops": {
+      "N": [
+        "251N"
+      ],
+      "S": [
+        "251S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "250",
+    "name": "Crown Hts-Utica Av",
+    "stops": {
+      "N": [
+        "250N"
+      ],
+      "S": [
+        "250S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "249",
+    "name": "Kingston Av",
+    "stops": {
+      "N": [
+        "249N"
+      ],
+      "S": [
+        "249S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "248",
+    "name": "Nostrand Av",
+    "stops": {
+      "N": [
+        "248N"
+      ],
+      "S": [
+        "248S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "239",
+    "name": "Franklin Av-Medgar Evers College",
+    "stops": {
+      "N": [
+        "239N"
+      ],
+      "S": [
+        "239S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "235",
+    "name": "Atlantic Av-Barclays Ctr",
+    "stops": {
+      "N": [
+        "235N"
+      ],
+      "S": [
+        "235S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "234",
+    "name": "Nevins St",
+    "stops": {
+      "N": [
+        "234N"
+      ],
+      "S": [
+        "234S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "423",
+    "name": "Borough Hall",
+    "stops": {
+      "N": [
+        "423N"
+      ],
+      "S": [
+        "423S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "420",
+    "name": "Bowling Green",
+    "stops": {
+      "N": [
+        "420N"
+      ],
+      "S": [
+        "420S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "419",
+    "name": "Wall St",
+    "stops": {
+      "N": [
+        "419N"
+      ],
+      "S": [
+        "419S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "418",
+    "name": "Fulton St",
+    "stops": {
+      "N": [
+        "418N"
+      ],
+      "S": [
+        "418S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "640",
+    "name": "Brooklyn Bridge-City Hall",
+    "stops": {
+      "N": [
+        "640N"
+      ],
+      "S": [
+        "640S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "635",
+    "name": "14 St-Union Sq",
+    "stops": {
+      "N": [
+        "635N"
+      ],
+      "S": [
+        "635S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "631",
+    "name": "Grand Central-42 St",
+    "stops": {
+      "N": [
+        "631N"
+      ],
+      "S": [
+        "631S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "629",
+    "name": "59 St",
+    "stops": {
+      "N": [
+        "629N"
+      ],
+      "S": [
+        "629S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "626",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "626N"
+      ],
+      "S": [
+        "626S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "621",
+    "name": "125 St",
+    "stops": {
+      "N": [
+        "621N"
+      ],
+      "S": [
+        "621S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "416",
+    "name": "138 St-Grand Concourse",
+    "stops": {
+      "N": [
+        "416N"
+      ],
+      "S": [
+        "416S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "222",
+    "name": "149 St-Grand Concourse",
+    "stops": {
+      "N": [
+        "222N"
+      ],
+      "S": [
+        "222S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "221",
+    "name": "3 Av-149 St",
+    "stops": {
+      "N": [
+        "221N"
+      ],
+      "S": [
+        "221S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "220",
+    "name": "Jackson Av",
+    "stops": {
+      "N": [
+        "220N"
+      ],
+      "S": [
+        "220S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "219",
+    "name": "Prospect Av",
+    "stops": {
+      "N": [
+        "219N"
+      ],
+      "S": [
+        "219S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "218",
+    "name": "Intervale Av",
+    "stops": {
+      "N": [
+        "218N"
+      ],
+      "S": [
+        "218S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "217",
+    "name": "Simpson St",
+    "stops": {
+      "N": [
+        "217N"
+      ],
+      "S": [
+        "217S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "216",
+    "name": "Freeman St",
+    "stops": {
+      "N": [
+        "216N"
+      ],
+      "S": [
+        "216S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "215",
+    "name": "174 St",
+    "stops": {
+      "N": [
+        "215N"
+      ],
+      "S": [
+        "215S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "214",
+    "name": "West Farms Sq-E Tremont Av",
+    "stops": {
+      "N": [
+        "214N"
+      ],
+      "S": [
+        "214S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "213",
+    "name": "E 180 St",
+    "stops": {
+      "N": [
+        "213N"
+      ],
+      "S": [
+        "213S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "505",
+    "name": "Morris Park",
+    "stops": {
+      "N": [
+        "505N"
+      ],
+      "S": [
+        "505S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "504",
+    "name": "Pelham Pkwy",
+    "stops": {
+      "N": [
+        "504N"
+      ],
+      "S": [
+        "504S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "503",
+    "name": "Gun Hill Rd",
+    "stops": {
+      "N": [
+        "503N"
+      ],
+      "S": [
+        "503S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "502",
+    "name": "Baychester Av",
+    "stops": {
+      "N": [
+        "502N"
+      ],
+      "S": [
+        "502S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "501",
+    "name": "Eastchester-Dyre Av",
+    "stops": {
+      "N": [
+        "501N"
+      ],
+      "S": [
+        "501S"
+      ]
+    },
+    "isExpress": true
+  }
+]

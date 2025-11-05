@@ -1,11 +1,12 @@
 import { Component, Input, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MtaColorsService } from '../mta-colors.service';
 
 @Component({
   selector: 'app-route-badge',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './route-badge.html',
   styleUrl: './route-badge.css'
 })

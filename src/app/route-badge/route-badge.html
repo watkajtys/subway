@@ -1,6 +1,11 @@
-<div
-  class="flex items-center justify-center font-bold rounded-full"
-  [style.backgroundColor]="backgroundColor()"
+<a
+  [routerLink]="['/line', routeId]"
+  [style.cursor]="'pointer'"
+  class="block"
+>
+  <div
+    class="flex items-center justify-center font-bold rounded-full"
+    [style.backgroundColor]="backgroundColor()"
   [style.color]="textColor()"
   [ngClass]="{
     'size-8': size === 'small',
@@ -9,5 +14,6 @@
     'text-xl': size === 'large'
   }"
 >
-  <span>{{ routeId }}</span>
-</div>
+    <span>{{ routeId }}</span>
+  </div>
+</a>

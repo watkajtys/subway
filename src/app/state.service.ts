@@ -1,5 +1,6 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { TripUpdate } from './generated/gtfs-realtime';
+export { TripUpdate } from './generated/gtfs-realtime';
 import { MtaDataService } from './mta-data.service';
 import { StopNameService } from './stop-name.service';
 import { Subscription, Observable } from 'rxjs';
