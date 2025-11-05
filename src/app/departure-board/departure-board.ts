@@ -29,9 +29,7 @@ import { StopNamePipe } from '../stop-name.pipe';
   ],
   templateUrl: './departure-board.html',
 })
-export class DepartureBoardComponent implements OnInit, OnDestroy {
-  private clockInterval?: number;
-  private blinkerInterval?: number;
+export class DepartureBoardComponent implements OnInit {
   public state: StateService = inject(StateService);
   private stopNameService: StopNameService = inject(StopNameService);
 
@@ -68,21 +66,22 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     );
   });
 
+  protected stations: Station[] = [];
+
   constructor() {
-    effect(() => {
-      // Re-fetch arrivals when selected station changes
-      this.state.selectedStation();
-      this.state.fetchArrivals();
+    effect((onCleanup) => {
+      const station = this.state.selectedStation();
+      this.state.registerStation(station);
+
+      onCleanup(() => {
+        this.state.unregisterStation(station);
+      });
     });
   }
-
-  protected stations: Station[] = [];
 
   ngOnInit() {
     this.stations = this.stopNameService.getStations();
   }
-
-  ngOnDestroy() {}
 
   protected onStationChange(event: Event) {
     const target = event.target as HTMLSelectElement;

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -9,10 +9,9 @@ import { MtaColorsService } from '../mta-colors.service';
 import { StopNamePipe } from '../stop-name.pipe';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { TransfersService } from '../transfers.service';
-import { MtaDataService } from '../mta-data.service';
 import { StateService } from '../state.service';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
-import { TripUpdate, TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
+import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
 
 interface Station {
   stationId: string;
@@ -34,11 +33,10 @@ interface Station {
   templateUrl: './line-view.html',
   styleUrl: './line-view.css',
 })
-export class LineViewComponent {
+export class LineViewComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly http = inject(HttpClient);
   private readonly mtaColorsSvc = inject(MtaColorsService);
-  private readonly mtaDataSvc = inject(MtaDataService);
   protected readonly stateSvc = inject(StateService);
 
   protected readonly transfersSvc = inject(TransfersService);
@@ -50,26 +48,23 @@ export class LineViewComponent {
   stations = toSignal(
     this.route.paramMap.pipe(
       map((params) => params.get('id')),
-      switchMap((id) => this.http.get<Station[]>(`/assets/lines/${id}.json`)),
-      tap((stations) => {
-        const lineId = this.lineId();
-        if (lineId) {
-          this.mtaDataSvc
-            .fetchFeedsForRoutes([lineId])
-            .subscribe(([tripUpdates]) => {
-              this.stateSvc.tripUpdatesMap.update((currentMap) => {
-                tripUpdates.forEach((tu) => {
-                  if (tu.trip?.tripId) {
-                    currentMap.set(tu.trip.tripId, tu);
-                  }
-                });
-                return new Map(currentMap);
-              });
-            });
-        }
-      })
+      switchMap((id) => this.http.get<Station[]>(`/assets/lines/${id}.json`))
     )
   );
+
+  ngOnInit() {
+    const line = this.lineId();
+    if (line) {
+      this.stateSvc.registerLine(line);
+    }
+  }
+
+  ngOnDestroy() {
+    const line = this.lineId();
+    if (line) {
+      this.stateSvc.unregisterLine(line);
+    }
+  }
 
   arrivalTimes = computed(() => {
     const stations = this.stations();
