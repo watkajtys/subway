@@ -35,11 +35,11 @@
         <li *ngFor="let stop of accumulatedPastStops(); let last = last" class="flex">
           <!-- Timeline -->
           <div class="flex flex-col items-center w-12 mr-4 text-zinc-700">
-            <div class="flex-1 w-0.5 bg-zinc-700"></div>
+            <div class="flex-1 w-0.5 bg-current"></div>
             <span class="material-symbols-outlined text-2xl -my-1 z-10">check_circle</span>
             <div
               class="relative flex-1 w-0.5"
-              [class.bg-zinc-700]="
+              [class.bg-current]="
                 !last || (last && getTrainPosition() === 'at-station')
               "
               [style.background-color]="
