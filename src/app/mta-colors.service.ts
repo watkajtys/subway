@@ -55,4 +55,18 @@ export class MtaColorsService {
     }
     return '#FFFFFF';
   }
+
+  getGroupedLines() {
+    return [
+      ['4', '5', '6'],
+      ['1', '2', '3'],
+      ['7'],
+      ['A', 'C', 'E'],
+      ['B', 'D', 'F', 'M'],
+      ['G'],
+      ['L'],
+      ['J', 'Z'],
+      ['N', 'Q', 'R', 'W'],
+    ];
+  }
 }

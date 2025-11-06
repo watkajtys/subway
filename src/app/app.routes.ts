@@ -5,6 +5,7 @@ import { LineViewComponent } from './line-view/line-view';
 import { StopNameService } from './stop-name.service';
 import { inject } from '@angular/core';
 import { TransfersService } from './transfers.service';
+import { HomeComponent } from './home/home';
 
 const stopNameResolver = () => {
   return inject(StopNameService).loadStopNames();
@@ -17,6 +18,10 @@ const transfersResolver = () => {
 export const routes: Routes = [
   {
     path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'station/:id',
     component: DepartureBoardComponent,
     resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
   },
