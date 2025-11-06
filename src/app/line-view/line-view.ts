@@ -11,6 +11,7 @@ import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { TransfersService } from '../transfers.service';
 import { StateService } from '../state.service';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
+import { HeaderComponent } from '../header/header';
 import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
 
 interface Station {
@@ -29,6 +30,7 @@ interface Station {
     StopNamePipe,
     RouteBadgeComponent,
     ArrivalTimePipe,
+    HeaderComponent,
   ],
   templateUrl: './line-view.html',
   styleUrl: './line-view.css',

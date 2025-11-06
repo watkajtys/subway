@@ -16,6 +16,7 @@ import { DestinationPipe } from '../destination.pipe';
 import { RouterModule } from '@angular/router';
 import { StopNameService, Station } from '../stop-name.service';
 import { StopNamePipe } from '../stop-name.pipe';
+import { HeaderComponent } from '../header/header';
 
 @Component({
   selector: 'app-departure-board',
@@ -26,6 +27,7 @@ import { StopNamePipe } from '../stop-name.pipe';
     DestinationPipe,
     RouterModule,
     StopNamePipe,
+    HeaderComponent,
   ],
   templateUrl: './departure-board.html',
 })
