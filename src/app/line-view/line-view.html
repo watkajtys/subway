@@ -45,7 +45,7 @@
           <!-- Stop Details -->
           <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800">
             <div>
-              <a routerLink="/" (click)="stateSvc.selectedStation.set(station.name)">
+              <a [routerLink]="['/station', station.stationId]">
                 <p class="font-semibold text-base">{{ station.name }}</p>
               </a>
               @if(transfersSvc.getTransfers(station.stationId); as transfers) {
