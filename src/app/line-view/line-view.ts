@@ -1,9 +1,9 @@
-import { Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, computed, inject, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map, switchMap, tap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 
 import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
@@ -33,7 +33,7 @@ interface Station {
   templateUrl: './line-view.html',
   styleUrl: './line-view.css',
 })
-export class LineViewComponent implements OnInit, OnDestroy {
+export class LineViewComponent implements OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly http = inject(HttpClient);
   private readonly mtaColorsSvc = inject(MtaColorsService);
@@ -41,9 +41,18 @@ export class LineViewComponent implements OnInit, OnDestroy {
 
   protected readonly transfersSvc = inject(TransfersService);
 
-  lineId = toSignal(
-    this.route.paramMap.pipe(map((params) => params.get('id')))
-  );
+  private _lineId: string | null = null;
+
+  @Input() set lineId(lineId: string) {
+    this._lineId = lineId;
+    if (lineId) {
+      this.stateSvc.registerLine(lineId);
+    }
+  }
+
+  get lineId(): string | null {
+    return this._lineId;
+  }
 
   stations = toSignal(
     this.route.paramMap.pipe(
@@ -52,17 +61,9 @@ export class LineViewComponent implements OnInit, OnDestroy {
     )
   );
 
-  ngOnInit() {
-    const line = this.lineId();
-    if (line) {
-      this.stateSvc.registerLine(line);
-    }
-  }
-
   ngOnDestroy() {
-    const line = this.lineId();
-    if (line) {
-      this.stateSvc.unregisterLine(line);
+    if (this._lineId) {
+      this.stateSvc.unregisterLine(this._lineId);
     }
   }
 
@@ -112,8 +113,7 @@ export class LineViewComponent implements OnInit, OnDestroy {
   });
 
   lineColor = computed(() => {
-    const lineId = this.lineId();
-    if (!lineId) return 'inherit';
-    return this.mtaColorsSvc.getColor(lineId);
+    if (!this.lineId) return 'inherit';
+    return this.mtaColorsSvc.getColor(this.lineId);
   });
 }

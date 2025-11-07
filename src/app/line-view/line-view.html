@@ -1,8 +1,8 @@
 <div class="text-zinc-900 dark:text-white">
   <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
-    <app-header [title]="(lineId() ?? '') + ' Line'"></app-header>
+    <app-header [title]="(lineId ?? '') + ' Line'"></app-header>
 
-    @if (lineId(); as lineId) {
+    @if (lineId) {
       <div class="flex items-center gap-4 px-4 py-4">
         <app-route-badge [routeId]="lineId" size="large"></app-route-badge>
         <div class="flex flex-col justify-center">

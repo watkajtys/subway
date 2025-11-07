@@ -32,7 +32,7 @@ export const routes: Routes = [
     resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
   },
   {
-    path: 'line/:id',
+    path: 'line/:lineId',
     component: LineViewComponent,
     resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
   },
