@@ -55,4 +55,49 @@ export class MtaColorsService {
     }
     return '#FFFFFF';
   }
+
+  getGroupedLines() {
+    return [
+      {
+        name: 'IRT Lexington Avenue Line',
+        lines: ['4', '5', '6'],
+      },
+      {
+        name: 'IRT Broadway-7th Avenue Line',
+        lines: ['1', '2', '3'],
+      },
+      {
+        name: 'IRT Flushing Line',
+        lines: ['7'],
+      },
+      {
+        name: 'IND 8th Avenue Line',
+        lines: ['A', 'C', 'E'],
+      },
+      {
+        name: 'IND 6th Avenue Line',
+        lines: ['B', 'D', 'F', 'M'],
+      },
+      {
+        name: 'IND Crosstown Line',
+        lines: ['G'],
+      },
+      {
+        name: 'BMT Broadway Line',
+        lines: ['N', 'Q', 'R', 'W'],
+      },
+      {
+        name: 'BMT Nassau Street Line',
+        lines: ['J', 'Z'],
+      },
+      {
+        name: 'BMT Canarsie Line',
+        lines: ['L'],
+      },
+      {
+        name: 'Shuttles',
+        lines: ['S'],
+      },
+    ];
+  }
 }

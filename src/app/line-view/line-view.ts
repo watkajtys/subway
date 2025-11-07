@@ -6,7 +6,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map, switchMap, tap } from 'rxjs';
 
 import { MtaColorsService } from '../mta-colors.service';
-import { StopNamePipe } from '../stop-name.pipe';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { TransfersService } from '../transfers.service';
 import { StateService } from '../state.service';
@@ -27,7 +26,6 @@ interface Station {
   imports: [
     CommonModule,
     RouterModule,
-    StopNamePipe,
     RouteBadgeComponent,
     ArrivalTimePipe,
     HeaderComponent,
