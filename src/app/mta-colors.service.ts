@@ -67,20 +67,12 @@ export class MtaColorsService {
         lines: ['1', '2', '3'],
       },
       {
-        name: 'IRT Flushing Line',
-        lines: ['7'],
-      },
-      {
         name: 'IND 8th Avenue Line',
         lines: ['A', 'C', 'E'],
       },
       {
         name: 'IND 6th Avenue Line',
         lines: ['B', 'D', 'F', 'M'],
-      },
-      {
-        name: 'IND Crosstown Line',
-        lines: ['G'],
       },
       {
         name: 'BMT Broadway Line',
@@ -91,12 +83,8 @@ export class MtaColorsService {
         lines: ['J', 'Z'],
       },
       {
-        name: 'BMT Canarsie Line',
-        lines: ['L'],
-      },
-      {
-        name: 'Shuttles',
-        lines: ['S'],
+        name: 'Singles',
+        lines: ['7', 'G', 'L', 'S'],
       },
     ];
   }
