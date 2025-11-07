@@ -53,6 +53,15 @@ export class StopNameService {
   }
 
   public getStopIdsForStation(stationName: string): string[] | undefined {
+    if (!stationName) {
+      return undefined;
+    }
+    const lowerCaseStationName = stationName.toLowerCase();
+    for (const [key, value] of this.stationToStopIds.entries()) {
+      if (key.toLowerCase() === lowerCaseStationName) {
+        return value;
+      }
+    }
     return this.stationToStopIds.get(stationName);
   }
 }

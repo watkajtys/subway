@@ -71,7 +71,7 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.stationName = params['id'];
+      this.stationName = decodeURIComponent(params['id']);
       if (this.stationName) {
         this.state.selectedStation.set(this.stationName);
         this.state.registerStation(this.stationName);
