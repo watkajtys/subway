@@ -38,10 +38,8 @@ export class TrainDetailComponent {
   });
 
   private route: ActivatedRoute = inject(ActivatedRoute);
-  private router: Router = inject(Router);
   protected state: StateService = inject(StateService);
   private transfersService: TransfersService = inject(TransfersService);
-  private stopNamePipe = inject(StopNamePipe);
   private tripId = this.route.snapshot.paramMap.get('id');
   private accessibilityService = inject(AccessibilityService);
   private mtaColorsService = inject(MtaColorsService);
@@ -53,12 +51,6 @@ export class TrainDetailComponent {
         this.baselineAllStops.set(all);
       }
     });
-  }
-
-  protected onStationClick(stopId: string) {
-    const stationName = this.stopNamePipe.transform(stopId);
-    this.state.selectedStation.set(stationName);
-    this.router.navigate(['/']);
   }
 
   protected getTransfersForStop(stopId: string): string[] {

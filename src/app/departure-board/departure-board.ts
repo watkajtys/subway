@@ -1,22 +1,21 @@
 import {
   Component,
   OnInit,
-  OnDestroy,
   inject,
   computed,
   effect,
   signal,
+  OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { StateService, ArrivalTime } from '../state.service';
 import Long from 'long';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { DestinationPipe } from '../destination.pipe';
-import { RouterModule } from '@angular/router';
-import { StopNameService, Station } from '../stop-name.service';
-import { StopNamePipe } from '../stop-name.pipe';
 import { HeaderComponent } from '../header/header';
+import { StopNameService } from '../stop-name.service';
 
 @Component({
   selector: 'app-departure-board',
@@ -26,16 +25,18 @@ import { HeaderComponent } from '../header/header';
     ArrivalTimePipe,
     DestinationPipe,
     RouterModule,
-    StopNamePipe,
     HeaderComponent,
   ],
   templateUrl: './departure-board.html',
+  standalone: true,
 })
-export class DepartureBoardComponent implements OnInit {
+export class DepartureBoardComponent implements OnInit, OnDestroy {
   public state: StateService = inject(StateService);
-  private stopNameService: StopNameService = inject(StopNameService);
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  protected stopNameService: StopNameService = inject(StopNameService);
 
   protected activeFilter = signal<'all' | 'northbound' | 'southbound'>('all');
+  private stationName: string | null = null;
 
   protected filteredArrivals = computed(() => {
     const nowInSeconds = this.state.time().getTime() / 1000;
@@ -68,26 +69,20 @@ export class DepartureBoardComponent implements OnInit {
     );
   });
 
-  protected stations: Station[] = [];
-
-  constructor() {
-    effect((onCleanup) => {
-      const station = this.state.selectedStation();
-      this.state.registerStation(station);
-
-      onCleanup(() => {
-        this.state.unregisterStation(station);
-      });
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.stationName = params['id'];
+      if (this.stationName) {
+        this.state.selectedStation.set(this.stationName);
+        this.state.registerStation(this.stationName);
+      }
     });
   }
 
-  ngOnInit() {
-    this.stations = this.stopNameService.getStations();
-  }
-
-  protected onStationChange(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    this.state.selectedStation.set(target.value);
+  ngOnDestroy() {
+    if (this.stationName) {
+      this.state.unregisterStation(this.stationName);
+    }
   }
 
   protected setFilter(filter: 'all' | 'northbound' | 'southbound') {
