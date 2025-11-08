@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,7 @@ interface Station {
   templateUrl: './line-view.html',
   styleUrl: './line-view.css',
 })
-export class LineViewComponent implements OnInit, OnDestroy {
+export class LineViewComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly http = inject(HttpClient);
   private readonly mtaColorsSvc = inject(MtaColorsService);
@@ -52,18 +52,22 @@ export class LineViewComponent implements OnInit, OnDestroy {
     )
   );
 
-  ngOnInit() {
-    const line = this.lineId();
-    if (line) {
-      this.stateSvc.registerLine(line);
-    }
-  }
+  constructor() {
+    effect(
+      (onCleanup) => {
+        const line = this.lineId();
+        if (line) {
+          this.stateSvc.registerLine(line);
+        }
 
-  ngOnDestroy() {
-    const line = this.lineId();
-    if (line) {
-      this.stateSvc.unregisterLine(line);
-    }
+        onCleanup(() => {
+          if (line) {
+            this.stateSvc.unregisterLine(line);
+          }
+        });
+      },
+      { allowSignalWrites: true }
+    );
   }
 
   arrivalTimes = computed(() => {
