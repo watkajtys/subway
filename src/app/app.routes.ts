@@ -11,29 +11,25 @@ const stopNameResolver = () => {
   return inject(StopNameService).loadStopNames();
 };
 
-const transfersResolver = () => {
-  return inject(TransfersService).loadTransfers();
-};
-
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
+    resolve: { stopNames: stopNameResolver },
   },
   {
     path: 'station/:id',
     component: DepartureBoardComponent,
-    resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
+    resolve: { stopNames: stopNameResolver },
   },
   {
     path: 'trip/:id',
     component: TrainDetailComponent,
-    resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
+    resolve: { stopNames: stopNameResolver },
   },
   {
     path: 'line/:id',
     component: LineViewComponent,
-    resolve: { stopNames: stopNameResolver, transfers: transfersResolver },
+    resolve: { stopNames: stopNameResolver },
   },
 ];

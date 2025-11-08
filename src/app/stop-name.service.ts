@@ -15,6 +15,7 @@ export class StopNameService {
   private http: HttpClient = inject(HttpClient);
   private stopIdToName: Map<string, string> = new Map();
   private stationToStopIds: Map<string, string[]> = new Map();
+  private stopIdToStation: Map<string, Station> = new Map();
   private loaded = false;
 
   public loadStopNames(): Observable<void> {
@@ -25,11 +26,13 @@ export class StopNameService {
       map((stations) => {
         this.stationToStopIds.clear();
         this.stopIdToName.clear();
+        this.stopIdToStation.clear();
 
         stations.forEach((station) => {
           this.stationToStopIds.set(station.name, station.ids);
           station.ids.forEach((stopId) => {
             this.stopIdToName.set(stopId, station.name);
+            this.stopIdToStation.set(stopId, station);
           });
         });
         this.loaded = true;
@@ -63,5 +66,10 @@ export class StopNameService {
       }
     }
     return this.stationToStopIds.get(stationName);
+  }
+
+  public getStopIdsForStationComplex(stopId: string): string[] {
+    const station = this.stopIdToStation.get(stopId.slice(0, -1));
+    return station ? station.ids : [stopId.slice(0, -1)];
   }
 }

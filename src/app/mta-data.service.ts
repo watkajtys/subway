@@ -17,13 +17,14 @@ export class MtaDataService {
     JZ: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-jz',
     G: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-g',
     L: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-l',
+    W: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-w',
     SI: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-si',
   };
 
   private readonly routeToFeedMap: { [key: string]: string } = {
     '1': '123456S', '2': '123456S', '3': '123456S', '4': '123456S', '5': '123456S', '6': '123456S', 'S': '123456S',
     'A': 'ACE', 'C': 'ACE', 'E': 'ACE',
-    'N': 'NQRW', 'Q': 'NQRW', 'R': 'NQRW', 'W': 'NQRW',
+    'N': 'NQRW', 'Q': 'NQRW', 'R': 'NQRW', 'W': 'W',
     'B': 'BDFM', 'D': 'BDFM', 'F': 'BDFM', 'M': 'BDFM',
     'J': 'JZ', 'Z': 'JZ',
     'G': 'G',
