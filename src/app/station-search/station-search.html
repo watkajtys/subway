@@ -1,0 +1,21 @@
+<div class="relative">
+  <input
+    type="text"
+    [value]="searchTerm"
+    (input)="filterStations($event)"
+    placeholder="Search for a station..."
+    class="w-full p-2 border rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white"
+  />
+  <ul
+    *ngIf="filteredStations.length > 0"
+    class="absolute z-10 w-full mt-1 bg-white dark:bg-zinc-800 border rounded-md shadow-lg"
+  >
+    <li
+      *ngFor="let station of filteredStations"
+      (click)="selectStation(station)"
+      class="p-2 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white"
+    >
+      {{ station.name }}
+    </li>
+  </ul>
+</div>
