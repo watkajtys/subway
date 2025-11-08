@@ -25,6 +25,7 @@ import { HeaderComponent } from '../header/header';
   ],
   templateUrl: './train-detail.html',
   styleUrl: './train-detail.css',
+  providers: [StopNamePipe],
 })
 export class TrainDetailComponent {
   private baselineAllStops = signal<TripUpdate_StopTimeUpdate[] | undefined>(undefined);
@@ -38,6 +39,8 @@ export class TrainDetailComponent {
   });
 
   private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
+  private stopNamePipe: StopNamePipe = inject(StopNamePipe);
   protected state: StateService = inject(StateService);
   private transfersService: TransfersService = inject(TransfersService);
   private tripId = this.route.snapshot.paramMap.get('id');
@@ -51,6 +54,11 @@ export class TrainDetailComponent {
         this.baselineAllStops.set(all);
       }
     });
+  }
+
+  protected navigateToStation(stopId: string) {
+    const stopName = this.stopNamePipe.transform(stopId);
+    this.router.navigate(['/station', stopName]);
   }
 
   protected getTransfersForStop(stopId: string): string[] {

@@ -107,7 +107,7 @@
           </div>
 
           <!-- Stop Details -->
-          <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900">
+          <div (click)="navigateToStation(stop.stopId!)" class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900">
             <div>
               <p class="font-medium text-base">{{ stop.stopId | stopName }}</p>
               <div class="flex items-center gap-2 mt-1" *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)">
