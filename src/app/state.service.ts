@@ -134,56 +134,9 @@ export class StateService {
   }
 
   private fetchRequiredData() {
-    const stations = this.activeStationSubscriptions();
-    const lines = this.activeLineSubscriptions();
-    const routesToFetch = new Set<string>(lines);
-    let needsBootstrap = this.stopToRoutesMap().size === 0;
-
-    stations.forEach((stationName) => {
-      const stopIds = this.stopNameService.getStopIdsForStation(stationName);
-      if (stopIds) {
-        let stationHasKnownRoutes = false;
-        stopIds.forEach((stopId) => {
-          const routes = this.stopToRoutesMap().get(stopId);
-          if (routes) {
-            stationHasKnownRoutes = true;
-            routes.forEach((route) => routesToFetch.add(route));
-          }
-        });
-        if (!stationHasKnownRoutes && !needsBootstrap) {
-          needsBootstrap = true;
-        }
-      }
-    });
-
-    let fetcher: Observable<[TripUpdate[], Map<string, Set<string>>]>;
-
-    if (needsBootstrap) {
-      fetcher = this.mtaDataService.fetchAllFeeds();
-    } else if (routesToFetch.size > 0) {
-      fetcher = this.mtaDataService.fetchFeedsForRoutes(Array.from(routesToFetch));
-    } else {
-      return;
-    }
-
-    fetcher.subscribe(([allUpdates, newStopToRoutesMap]) => {
-      const currentStopToRoutesMap = new Map(this.stopToRoutesMap());
-      newStopToRoutesMap.forEach((routes, stopId) => {
-        currentStopToRoutesMap.set(stopId, routes);
-      });
-      this.stopToRoutesMap.set(currentStopToRoutesMap);
-
-      const routesInThisUpdate = new Set<string>();
-      allUpdates.forEach((tu) => {
-        if (tu.trip?.routeId) routesInThisUpdate.add(tu.trip.routeId);
-      });
-
+    this.mtaDataService.fetchAllFeeds().subscribe(([allUpdates, newStopToRoutesMap]) => {
+      this.stopToRoutesMap.set(newStopToRoutesMap);
       const newTripUpdatesMap = new Map<string, TripUpdate>();
-      this.tripUpdatesMap().forEach((tripUpdate, tripId) => {
-        if (!routesInThisUpdate.has(tripUpdate.trip?.routeId ?? '')) {
-          newTripUpdatesMap.set(tripId, tripUpdate);
-        }
-      });
       allUpdates.forEach((tripUpdate) => {
         if (tripUpdate.trip?.tripId) {
           newTripUpdatesMap.set(tripUpdate.trip.tripId, tripUpdate);

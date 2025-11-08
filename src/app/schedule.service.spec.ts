@@ -5,6 +5,16 @@ import {
 } from '@angular/common/http/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ScheduleService } from './schedule.service';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { StopNameService } from './stop-name.service';
+import { TransfersService } from './transfers.service';
+import { AccessibilityService } from './accessibility.service';
+import { MtaColorsService } from './mta-colors.service';
+import { DestinationPipe } from './destination.pipe';
+import { MtaDataService } from './mta-data.service';
+import { RealtimeService } from './realtime.service';
+import { StateService } from './state.service';
 
 describe('ScheduleService', () => {
   let service: ScheduleService;
@@ -13,7 +23,19 @@ describe('ScheduleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ScheduleService, provideZonelessChangeDetection()],
+      providers: [
+        ScheduleService,
+        provideRouter(routes),
+        provideZonelessChangeDetection(),
+        MtaDataService,
+        StateService,
+        StopNameService,
+        TransfersService,
+        RealtimeService,
+        AccessibilityService,
+        MtaColorsService,
+        DestinationPipe,
+      ],
     });
     service = TestBed.inject(ScheduleService);
     httpMock = TestBed.inject(HttpTestingController);

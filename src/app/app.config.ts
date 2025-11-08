@@ -9,6 +9,7 @@ import { AccessibilityService } from './accessibility.service';
 import { MtaColorsService } from './mta-colors.service';
 import { DestinationPipe } from './destination.pipe';
 import { MtaDataService } from './mta-data.service';
+import { RealtimeService } from './realtime.service';
 import { StateService } from './state.service';
 
 export const appConfig: ApplicationConfig = {
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     StateService,
     StopNameService,
     TransfersService,
+    RealtimeService,
     AccessibilityService,
     MtaColorsService,
     DestinationPipe,
