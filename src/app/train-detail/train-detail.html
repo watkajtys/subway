@@ -22,7 +22,7 @@
     <main class="px-4">
       <ul class="flex flex-col">
         <!-- Past Stops -->
-        <li *ngFor="let stop of accumulatedPastStops(); let last = last" class="flex">
+        <li *ngFor="let stop of accumulatedPastStops(); let last = last" class="flex cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900" [routerLink]="['/station', getStationName(stop.stopId)]">
           <!-- Timeline -->
           <div class="flex flex-col items-center w-12 mr-4 text-zinc-700">
             <div class="flex-1 w-0.5 bg-current"></div>
@@ -75,7 +75,7 @@
         </li>
 
         <!-- Upcoming Stops -->
-        <li *ngFor="let stop of futureStops(); let i = index; let last = last" class="flex">
+        <li *ngFor="let stop of futureStops(); let i = index; let last = last" class="flex cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900" [routerLink]="['/station', getStationName(stop.stopId)]">
           <!-- Timeline -->
           <div class="flex flex-col items-center w-12 mr-4">
             <div
@@ -107,7 +107,7 @@
           </div>
 
           <!-- Stop Details -->
-          <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900">
+          <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800">
             <div>
               <p class="font-medium text-base">{{ stop.stopId | stopName }}</p>
               <div class="flex items-center gap-2 mt-1" *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)">

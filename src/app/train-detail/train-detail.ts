@@ -9,6 +9,7 @@ import { StopNamePipe } from '../stop-name.pipe';
 import { DestinationPipe } from '../destination.pipe';
 import { AccessibilityService } from '../accessibility.service';
 import { MtaColorsService } from '../mta-colors.service';
+import { StopNameService } from '../stop-name.service';
 import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
 import { HeaderComponent } from '../header/header';
 
@@ -43,6 +44,7 @@ export class TrainDetailComponent {
   private tripId = this.route.snapshot.paramMap.get('id');
   private accessibilityService = inject(AccessibilityService);
   private mtaColorsService = inject(MtaColorsService);
+  private stopNameService = inject(StopNameService);
 
   constructor() {
     effect(() => {
@@ -51,6 +53,13 @@ export class TrainDetailComponent {
         this.baselineAllStops.set(all);
       }
     });
+  }
+
+  protected getStationName(stopId: string | undefined): string {
+    if (!stopId) {
+      return '';
+    }
+    return this.stopNameService.getStopName(stopId) ?? '';
   }
 
   protected getTransfersForStop(stopId: string): string[] {
