@@ -1,0 +1,496 @@
+[
+  {
+    "stationId": "101",
+    "name": "Van Cortlandt Park-242 St",
+    "stops": {
+      "N": [
+        "101N"
+      ],
+      "S": [
+        "101S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "103",
+    "name": "238 St",
+    "stops": {
+      "N": [
+        "103N"
+      ],
+      "S": [
+        "103S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "104",
+    "name": "231 St",
+    "stops": {
+      "N": [
+        "104N"
+      ],
+      "S": [
+        "104S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "106",
+    "name": "Marble Hill-225 St",
+    "stops": {
+      "N": [
+        "106N"
+      ],
+      "S": [
+        "106S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "107",
+    "name": "215 St",
+    "stops": {
+      "N": [
+        "107N"
+      ],
+      "S": [
+        "107S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "108",
+    "name": "207 St",
+    "stops": {
+      "N": [
+        "108N"
+      ],
+      "S": [
+        "108S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "109",
+    "name": "Dyckman St",
+    "stops": {
+      "N": [
+        "109N"
+      ],
+      "S": [
+        "109S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "110",
+    "name": "191 St",
+    "stops": {
+      "N": [
+        "110N"
+      ],
+      "S": [
+        "110S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "111",
+    "name": "181 St",
+    "stops": {
+      "N": [
+        "111N"
+      ],
+      "S": [
+        "111S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "112",
+    "name": "168 St-Washington Hts",
+    "stops": {
+      "N": [
+        "112N"
+      ],
+      "S": [
+        "112S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "113",
+    "name": "157 St",
+    "stops": {
+      "N": [
+        "113N"
+      ],
+      "S": [
+        "113S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "114",
+    "name": "145 St",
+    "stops": {
+      "N": [
+        "114N"
+      ],
+      "S": [
+        "114S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "115",
+    "name": "137 St-City College",
+    "stops": {
+      "N": [
+        "115N"
+      ],
+      "S": [
+        "115S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "116",
+    "name": "125 St",
+    "stops": {
+      "N": [
+        "116N"
+      ],
+      "S": [
+        "116S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "117",
+    "name": "116 St-Columbia University",
+    "stops": {
+      "N": [
+        "117N"
+      ],
+      "S": [
+        "117S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "118",
+    "name": "Cathedral Pkwy (110 St)",
+    "stops": {
+      "N": [
+        "118N"
+      ],
+      "S": [
+        "118S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "119",
+    "name": "103 St",
+    "stops": {
+      "N": [
+        "119N"
+      ],
+      "S": [
+        "119S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "120",
+    "name": "96 St",
+    "stops": {
+      "N": [
+        "120N"
+      ],
+      "S": [
+        "120S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "121",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "121N"
+      ],
+      "S": [
+        "121S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "122",
+    "name": "79 St",
+    "stops": {
+      "N": [
+        "122N"
+      ],
+      "S": [
+        "122S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "123",
+    "name": "72 St",
+    "stops": {
+      "N": [
+        "123N"
+      ],
+      "S": [
+        "123S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "124",
+    "name": "66 St-Lincoln Center",
+    "stops": {
+      "N": [
+        "124N"
+      ],
+      "S": [
+        "124S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "125",
+    "name": "59 St-Columbus Circle",
+    "stops": {
+      "N": [
+        "125N"
+      ],
+      "S": [
+        "125S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "126",
+    "name": "50 St",
+    "stops": {
+      "N": [
+        "126N"
+      ],
+      "S": [
+        "126S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "127",
+    "name": "Times Sq-42 St",
+    "stops": {
+      "N": [
+        "127N"
+      ],
+      "S": [
+        "127S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "128",
+    "name": "34 St-Penn Station",
+    "stops": {
+      "N": [
+        "128N"
+      ],
+      "S": [
+        "128S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "129",
+    "name": "28 St",
+    "stops": {
+      "N": [
+        "129N"
+      ],
+      "S": [
+        "129S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "130",
+    "name": "23 St",
+    "stops": {
+      "N": [
+        "130N"
+      ],
+      "S": [
+        "130S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "131",
+    "name": "18 St",
+    "stops": {
+      "N": [
+        "131N"
+      ],
+      "S": [
+        "131S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "132",
+    "name": "14 St",
+    "stops": {
+      "N": [
+        "132N"
+      ],
+      "S": [
+        "132S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "133",
+    "name": "Christopher St-Stonewall",
+    "stops": {
+      "N": [
+        "133N"
+      ],
+      "S": [
+        "133S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "134",
+    "name": "Houston St",
+    "stops": {
+      "N": [
+        "134N"
+      ],
+      "S": [
+        "134S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "135",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "135N"
+      ],
+      "S": [
+        "135S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "136",
+    "name": "Franklin St",
+    "stops": {
+      "N": [
+        "136N"
+      ],
+      "S": [
+        "136S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "137",
+    "name": "Chambers St",
+    "stops": {
+      "N": [
+        "137N"
+      ],
+      "S": [
+        "137S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "138",
+    "name": "WTC Cortlandt",
+    "stops": {
+      "N": [
+        "138N"
+      ],
+      "S": [
+        "138S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "139",
+    "name": "Rector St",
+    "stops": {
+      "N": [
+        "139N"
+      ],
+      "S": [
+        "139S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "142",
+    "name": "South Ferry",
+    "stops": {
+      "N": [
+        "142N"
+      ],
+      "S": [
+        "142S"
+      ]
+    },
+    "isExpress": false
+  }
+]

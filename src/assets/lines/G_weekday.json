@@ -1,0 +1,275 @@
+[
+  {
+    "stationId": "G22",
+    "name": "Court Sq",
+    "stops": {
+      "N": [
+        "G22N"
+      ],
+      "S": [
+        "G22S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G24",
+    "name": "21 St",
+    "stops": {
+      "N": [
+        "G24N"
+      ],
+      "S": [
+        "G24S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G26",
+    "name": "Greenpoint Av",
+    "stops": {
+      "N": [
+        "G26N"
+      ],
+      "S": [
+        "G26S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G28",
+    "name": "Nassau Av",
+    "stops": {
+      "N": [
+        "G28N"
+      ],
+      "S": [
+        "G28S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G29",
+    "name": "Metropolitan Av",
+    "stops": {
+      "N": [
+        "G29N"
+      ],
+      "S": [
+        "G29S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G30",
+    "name": "Broadway",
+    "stops": {
+      "N": [
+        "G30N"
+      ],
+      "S": [
+        "G30S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G31",
+    "name": "Flushing Av",
+    "stops": {
+      "N": [
+        "G31N"
+      ],
+      "S": [
+        "G31S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G32",
+    "name": "Myrtle-Willoughby Avs",
+    "stops": {
+      "N": [
+        "G32N"
+      ],
+      "S": [
+        "G32S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G33",
+    "name": "Bedford-Nostrand Avs",
+    "stops": {
+      "N": [
+        "G33N"
+      ],
+      "S": [
+        "G33S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G34",
+    "name": "Classon Av",
+    "stops": {
+      "N": [
+        "G34N"
+      ],
+      "S": [
+        "G34S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G35",
+    "name": "Clinton-Washington Avs",
+    "stops": {
+      "N": [
+        "G35N"
+      ],
+      "S": [
+        "G35S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G36",
+    "name": "Fulton St",
+    "stops": {
+      "N": [
+        "G36N"
+      ],
+      "S": [
+        "G36S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "A42",
+    "name": "Hoyt-Schermerhorn Sts",
+    "stops": {
+      "N": [
+        "A42N"
+      ],
+      "S": [
+        "A42S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F20",
+    "name": "Bergen St",
+    "stops": {
+      "N": [
+        "F20N"
+      ],
+      "S": [
+        "F20S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F21",
+    "name": "Carroll St",
+    "stops": {
+      "N": [
+        "F21N"
+      ],
+      "S": [
+        "F21S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F22",
+    "name": "Smith-9 Sts",
+    "stops": {
+      "N": [
+        "F22N"
+      ],
+      "S": [
+        "F22S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F23",
+    "name": "4 Av-9 St",
+    "stops": {
+      "N": [
+        "F23N"
+      ],
+      "S": [
+        "F23S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F24",
+    "name": "7 Av",
+    "stops": {
+      "N": [
+        "F24N"
+      ],
+      "S": [
+        "F24S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F25",
+    "name": "15 St-Prospect Park",
+    "stops": {
+      "N": [
+        "F25N"
+      ],
+      "S": [
+        "F25S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F26",
+    "name": "Fort Hamilton Pkwy",
+    "stops": {
+      "N": [
+        "F26N"
+      ],
+      "S": [
+        "F26S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "F27",
+    "name": "Church Av",
+    "stops": {
+      "N": [
+        "F27N"
+      ],
+      "S": [
+        "F27S"
+      ]
+    },
+    "isExpress": false
+  }
+]

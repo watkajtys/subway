@@ -1,0 +1,327 @@
+[
+  {
+    "stationId": "501",
+    "name": "Eastchester-Dyre Av",
+    "stops": {
+      "N": [
+        "501N"
+      ],
+      "S": [
+        "501S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "502",
+    "name": "Baychester Av",
+    "stops": {
+      "N": [
+        "502N"
+      ],
+      "S": [
+        "502S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "503",
+    "name": "Gun Hill Rd",
+    "stops": {
+      "N": [
+        "503N"
+      ],
+      "S": [
+        "503S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "504",
+    "name": "Pelham Pkwy",
+    "stops": {
+      "N": [
+        "504N"
+      ],
+      "S": [
+        "504S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "505",
+    "name": "Morris Park",
+    "stops": {
+      "N": [
+        "505N"
+      ],
+      "S": [
+        "505S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "213",
+    "name": "E 180 St",
+    "stops": {
+      "N": [
+        "213N"
+      ],
+      "S": [
+        "213S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "214",
+    "name": "West Farms Sq-E Tremont Av",
+    "stops": {
+      "N": [
+        "214N"
+      ],
+      "S": [
+        "214S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "215",
+    "name": "174 St",
+    "stops": {
+      "N": [
+        "215N"
+      ],
+      "S": [
+        "215S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "216",
+    "name": "Freeman St",
+    "stops": {
+      "N": [
+        "216N"
+      ],
+      "S": [
+        "216S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "217",
+    "name": "Simpson St",
+    "stops": {
+      "N": [
+        "217N"
+      ],
+      "S": [
+        "217S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "218",
+    "name": "Intervale Av",
+    "stops": {
+      "N": [
+        "218N"
+      ],
+      "S": [
+        "218S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "219",
+    "name": "Prospect Av",
+    "stops": {
+      "N": [
+        "219N"
+      ],
+      "S": [
+        "219S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "220",
+    "name": "Jackson Av",
+    "stops": {
+      "N": [
+        "220N"
+      ],
+      "S": [
+        "220S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "221",
+    "name": "3 Av-149 St",
+    "stops": {
+      "N": [
+        "221N"
+      ],
+      "S": [
+        "221S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "222",
+    "name": "149 St-Grand Concourse",
+    "stops": {
+      "N": [
+        "222N"
+      ],
+      "S": [
+        "222S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "416",
+    "name": "138 St-Grand Concourse",
+    "stops": {
+      "N": [
+        "416N"
+      ],
+      "S": [
+        "416S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "621",
+    "name": "125 St",
+    "stops": {
+      "N": [
+        "621N"
+      ],
+      "S": [
+        "621S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "626",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "626N"
+      ],
+      "S": [
+        "626S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "629",
+    "name": "59 St",
+    "stops": {
+      "N": [
+        "629N"
+      ],
+      "S": [
+        "629S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "631",
+    "name": "Grand Central-42 St",
+    "stops": {
+      "N": [
+        "631N"
+      ],
+      "S": [
+        "631S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "635",
+    "name": "14 St-Union Sq",
+    "stops": {
+      "N": [
+        "635N"
+      ],
+      "S": [
+        "635S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "640",
+    "name": "Brooklyn Bridge-City Hall",
+    "stops": {
+      "N": [
+        "640N"
+      ],
+      "S": [
+        "640S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "418",
+    "name": "Fulton St",
+    "stops": {
+      "N": [
+        "418N"
+      ],
+      "S": [
+        "418S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "419",
+    "name": "Wall St",
+    "stops": {
+      "N": [
+        "419N"
+      ],
+      "S": [
+        "419S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "420",
+    "name": "Bowling Green",
+    "stops": {
+      "N": [
+        "420N"
+      ],
+      "S": [
+        "420S"
+      ]
+    },
+    "isExpress": false
+  }
+]

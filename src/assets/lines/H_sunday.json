@@ -1,0 +1,67 @@
+[
+  {
+    "stationId": "H04",
+    "name": "Broad Channel",
+    "stops": {
+      "N": [
+        "H04N"
+      ],
+      "S": [
+        "H04S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "H12",
+    "name": "Beach 90 St",
+    "stops": {
+      "N": [
+        "H12N"
+      ],
+      "S": [
+        "H12S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "H13",
+    "name": "Beach 98 St",
+    "stops": {
+      "N": [
+        "H13N"
+      ],
+      "S": [
+        "H13S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "H14",
+    "name": "Beach 105 St",
+    "stops": {
+      "N": [
+        "H14N"
+      ],
+      "S": [
+        "H14S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "H15",
+    "name": "Rockaway Park-Beach 116 St",
+    "stops": {
+      "N": [
+        "H15N"
+      ],
+      "S": [
+        "H15S"
+      ]
+    },
+    "isExpress": false
+  }
+]

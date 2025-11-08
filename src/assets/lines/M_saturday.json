@@ -1,0 +1,171 @@
+[
+  {
+    "stationId": "M01",
+    "name": "Middle Village-Metropolitan Av",
+    "stops": {
+      "N": [
+        "M01N"
+      ],
+      "S": [
+        "M01S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M04",
+    "name": "Fresh Pond Rd",
+    "stops": {
+      "N": [
+        "M04N"
+      ],
+      "S": [
+        "M04S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M05",
+    "name": "Forest Av",
+    "stops": {
+      "N": [
+        "M05N"
+      ],
+      "S": [
+        "M05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M06",
+    "name": "Seneca Av",
+    "stops": {
+      "N": [
+        "M06N"
+      ],
+      "S": [
+        "M06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M08",
+    "name": "Myrtle-Wyckoff Avs",
+    "stops": {
+      "N": [
+        "M08N"
+      ],
+      "S": [
+        "M08S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M09",
+    "name": "Knickerbocker Av",
+    "stops": {
+      "N": [
+        "M09N"
+      ],
+      "S": [
+        "M09S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M10",
+    "name": "Central Av",
+    "stops": {
+      "N": [
+        "M10N"
+      ],
+      "S": [
+        "M10S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M11",
+    "name": "Myrtle Av",
+    "stops": {
+      "N": [
+        "M11N"
+      ],
+      "S": [
+        "M11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "M12",
+    "name": "Flushing Av",
+    "stops": {
+      "N": [
+        "M12N"
+      ],
+      "S": [
+        "M12S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "M13",
+    "name": "Lorimer St",
+    "stops": {
+      "N": [
+        "M13N"
+      ],
+      "S": [
+        "M13S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "M14",
+    "name": "Hewes St",
+    "stops": {
+      "N": [
+        "M14N"
+      ],
+      "S": [
+        "M14S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "M16",
+    "name": "Marcy Av",
+    "stops": {
+      "N": [
+        "M16N"
+      ],
+      "S": [
+        "M16S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "M18",
+    "name": "Delancey St-Essex St",
+    "stops": {
+      "N": [
+        "M18N"
+      ],
+      "S": [
+        "M18S"
+      ]
+    },
+    "isExpress": false
+  }
+]

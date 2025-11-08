@@ -3,7 +3,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map, switchMap, tap } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
@@ -12,6 +13,7 @@ import { StateService } from '../state.service';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { HeaderComponent } from '../header/header';
 import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
+import { ScheduleService } from '../schedule.service';
 
 interface Station {
   stationId: string;
@@ -38,6 +40,7 @@ export class LineViewComponent {
   private readonly http = inject(HttpClient);
   private readonly mtaColorsSvc = inject(MtaColorsService);
   protected readonly stateSvc = inject(StateService);
+  private readonly scheduleSvc = inject(ScheduleService);
 
   protected readonly transfersSvc = inject(TransfersService);
 
@@ -48,7 +51,21 @@ export class LineViewComponent {
   stations = toSignal(
     this.route.paramMap.pipe(
       map((params) => params.get('id')),
-      switchMap((id) => this.http.get<Station[]>(`/assets/lines/${id}.json`))
+      switchMap((id) =>
+        this.scheduleSvc.getServiceDay(new Date()).pipe(
+          switchMap((serviceDay) =>
+            this.http.get<Station[]>(`/assets/lines/${id}_${serviceDay}.json`).pipe(
+              catchError(() => {
+                // If the service day file doesn't exist (e.g. B line on weekends),
+                // try to fall back to the weekday service.
+                return this.http.get<Station[]>(`/assets/lines/${id}_weekday.json`).pipe(
+                  catchError(() => of([])) // If that also fails, return an empty array.
+                );
+              })
+            )
+          )
+        )
+      )
     )
   );
 
@@ -65,8 +82,7 @@ export class LineViewComponent {
             this.stateSvc.unregisterLine(line);
           }
         });
-      },
-      { allowSignalWrites: true }
+      }
     );
   }
 

@@ -1,0 +1,769 @@
+[
+  {
+    "stationId": "H11",
+    "name": "Far Rockaway-Mott Av",
+    "stops": {
+      "N": [
+        "H11N"
+      ],
+      "S": [
+        "H11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H10",
+    "name": "Beach 25 St",
+    "stops": {
+      "N": [
+        "H10N"
+      ],
+      "S": [
+        "H10S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H09",
+    "name": "Beach 36 St",
+    "stops": {
+      "N": [
+        "H09N"
+      ],
+      "S": [
+        "H09S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H08",
+    "name": "Beach 44 St",
+    "stops": {
+      "N": [
+        "H08N"
+      ],
+      "S": [
+        "H08S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H07",
+    "name": "Beach 60 St",
+    "stops": {
+      "N": [
+        "H07N"
+      ],
+      "S": [
+        "H07S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H06",
+    "name": "Beach 67 St",
+    "stops": {
+      "N": [
+        "H06N"
+      ],
+      "S": [
+        "H06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H04",
+    "name": "Broad Channel",
+    "stops": {
+      "N": [
+        "H04N"
+      ],
+      "S": [
+        "H04S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H03",
+    "name": "Howard Beach-JFK Airport",
+    "stops": {
+      "N": [
+        "H03N"
+      ],
+      "S": [
+        "H03S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H02",
+    "name": "Aqueduct-N Conduit Av",
+    "stops": {
+      "N": [
+        "H02N"
+      ],
+      "S": [
+        "H02S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "H01",
+    "name": "Aqueduct Racetrack",
+    "stops": {
+      "N": [
+        "H01N"
+      ],
+      "S": [
+        "H01S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A61",
+    "name": "Rockaway Blvd",
+    "stops": {
+      "N": [
+        "A61N"
+      ],
+      "S": [
+        "A61S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A60",
+    "name": "88 St",
+    "stops": {
+      "N": [
+        "A60N"
+      ],
+      "S": [
+        "A60S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A59",
+    "name": "80 St",
+    "stops": {
+      "N": [
+        "A59N"
+      ],
+      "S": [
+        "A59S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A57",
+    "name": "Grant Av",
+    "stops": {
+      "N": [
+        "A57N"
+      ],
+      "S": [
+        "A57S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A55",
+    "name": "Euclid Av",
+    "stops": {
+      "N": [
+        "A55N"
+      ],
+      "S": [
+        "A55S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A54",
+    "name": "Shepherd Av",
+    "stops": {
+      "N": [
+        "A54N"
+      ],
+      "S": [
+        "A54S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A53",
+    "name": "Van Siclen Av",
+    "stops": {
+      "N": [
+        "A53N"
+      ],
+      "S": [
+        "A53S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A52",
+    "name": "Liberty Av",
+    "stops": {
+      "N": [
+        "A52N"
+      ],
+      "S": [
+        "A52S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A51",
+    "name": "Broadway Junction",
+    "stops": {
+      "N": [
+        "A51N"
+      ],
+      "S": [
+        "A51S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A50",
+    "name": "Rockaway Av",
+    "stops": {
+      "N": [
+        "A50N"
+      ],
+      "S": [
+        "A50S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A49",
+    "name": "Ralph Av",
+    "stops": {
+      "N": [
+        "A49N"
+      ],
+      "S": [
+        "A49S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A48",
+    "name": "Utica Av",
+    "stops": {
+      "N": [
+        "A48N"
+      ],
+      "S": [
+        "A48S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A47",
+    "name": "Kingston-Throop Avs",
+    "stops": {
+      "N": [
+        "A47N"
+      ],
+      "S": [
+        "A47S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A46",
+    "name": "Nostrand Av",
+    "stops": {
+      "N": [
+        "A46N"
+      ],
+      "S": [
+        "A46S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A45",
+    "name": "Franklin Av",
+    "stops": {
+      "N": [
+        "A45N"
+      ],
+      "S": [
+        "A45S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A44",
+    "name": "Clinton-Washington Avs",
+    "stops": {
+      "N": [
+        "A44N"
+      ],
+      "S": [
+        "A44S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A43",
+    "name": "Lafayette Av",
+    "stops": {
+      "N": [
+        "A43N"
+      ],
+      "S": [
+        "A43S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A42",
+    "name": "Hoyt-Schermerhorn Sts",
+    "stops": {
+      "N": [
+        "A42N"
+      ],
+      "S": [
+        "A42S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A41",
+    "name": "Jay St-MetroTech",
+    "stops": {
+      "N": [
+        "A41N"
+      ],
+      "S": [
+        "A41S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A40",
+    "name": "High St",
+    "stops": {
+      "N": [
+        "A40N"
+      ],
+      "S": [
+        "A40S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A38",
+    "name": "Fulton St",
+    "stops": {
+      "N": [
+        "A38N"
+      ],
+      "S": [
+        "A38S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A36",
+    "name": "Chambers St",
+    "stops": {
+      "N": [
+        "A36N"
+      ],
+      "S": [
+        "A36S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A34",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "A34N"
+      ],
+      "S": [
+        "A34S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A33",
+    "name": "Spring St",
+    "stops": {
+      "N": [
+        "A33N"
+      ],
+      "S": [
+        "A33S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A32",
+    "name": "W 4 St-Wash Sq",
+    "stops": {
+      "N": [
+        "A32N"
+      ],
+      "S": [
+        "A32S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A31",
+    "name": "14 St",
+    "stops": {
+      "N": [
+        "A31N"
+      ],
+      "S": [
+        "A31S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A30",
+    "name": "23 St",
+    "stops": {
+      "N": [
+        "A30N"
+      ],
+      "S": [
+        "A30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A28",
+    "name": "34 St-Penn Station",
+    "stops": {
+      "N": [
+        "A28N"
+      ],
+      "S": [
+        "A28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A27",
+    "name": "42 St-Port Authority Bus Terminal",
+    "stops": {
+      "N": [
+        "A27N"
+      ],
+      "S": [
+        "A27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A25",
+    "name": "50 St",
+    "stops": {
+      "N": [
+        "A25N"
+      ],
+      "S": [
+        "A25S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A24",
+    "name": "59 St-Columbus Circle",
+    "stops": {
+      "N": [
+        "A24N"
+      ],
+      "S": [
+        "A24S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A22",
+    "name": "72 St",
+    "stops": {
+      "N": [
+        "A22N"
+      ],
+      "S": [
+        "A22S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A21",
+    "name": "81 St-Museum of Natural History",
+    "stops": {
+      "N": [
+        "A21N"
+      ],
+      "S": [
+        "A21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A20",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "A20N"
+      ],
+      "S": [
+        "A20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A19",
+    "name": "96 St",
+    "stops": {
+      "N": [
+        "A19N"
+      ],
+      "S": [
+        "A19S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A18",
+    "name": "103 St",
+    "stops": {
+      "N": [
+        "A18N"
+      ],
+      "S": [
+        "A18S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A17",
+    "name": "Cathedral Pkwy (110 St)",
+    "stops": {
+      "N": [
+        "A17N"
+      ],
+      "S": [
+        "A17S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A16",
+    "name": "116 St",
+    "stops": {
+      "N": [
+        "A16N"
+      ],
+      "S": [
+        "A16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A15",
+    "name": "125 St",
+    "stops": {
+      "N": [
+        "A15N"
+      ],
+      "S": [
+        "A15S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A14",
+    "name": "135 St",
+    "stops": {
+      "N": [
+        "A14N"
+      ],
+      "S": [
+        "A14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A12",
+    "name": "145 St",
+    "stops": {
+      "N": [
+        "A12N"
+      ],
+      "S": [
+        "A12S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A11",
+    "name": "155 St",
+    "stops": {
+      "N": [
+        "A11N"
+      ],
+      "S": [
+        "A11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A10",
+    "name": "163 St-Amsterdam Av",
+    "stops": {
+      "N": [
+        "A10N"
+      ],
+      "S": [
+        "A10S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A09",
+    "name": "168 St",
+    "stops": {
+      "N": [
+        "A09N"
+      ],
+      "S": [
+        "A09S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A07",
+    "name": "175 St",
+    "stops": {
+      "N": [
+        "A07N"
+      ],
+      "S": [
+        "A07S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A06",
+    "name": "181 St",
+    "stops": {
+      "N": [
+        "A06N"
+      ],
+      "S": [
+        "A06S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A05",
+    "name": "190 St",
+    "stops": {
+      "N": [
+        "A05N"
+      ],
+      "S": [
+        "A05S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A03",
+    "name": "Dyckman St",
+    "stops": {
+      "N": [
+        "A03N"
+      ],
+      "S": [
+        "A03S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "A02",
+    "name": "Inwood-207 St",
+    "stops": {
+      "N": [
+        "A02N"
+      ],
+      "S": [
+        "A02S"
+      ]
+    },
+    "isExpress": true
+  }
+]

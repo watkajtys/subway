@@ -1,18 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
+import { provideZonelessChangeDetection } from '@angular/core';
 
-import { LineView } from './line-view';
+import { LineViewComponent } from './line-view';
 
-describe('LineView', () => {
-  let component: LineView;
-  let fixture: ComponentFixture<LineView>;
+describe('LineViewComponent', () => {
+  let component: LineViewComponent;
+  let fixture: ComponentFixture<LineViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LineView]
-    })
-    .compileComponents();
+      imports: [LineViewComponent, HttpClientTestingModule],
+      providers: [provideRouter([]), provideZonelessChangeDetection()],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(LineView);
+    fixture = TestBed.createComponent(LineViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -21,3 +24,4 @@ describe('LineView', () => {
     expect(component).toBeTruthy();
   });
 });
+

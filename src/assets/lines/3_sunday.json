@@ -1,0 +1,444 @@
+[
+  {
+    "stationId": "301",
+    "name": "Harlem-148 St",
+    "stops": {
+      "N": [
+        "301N"
+      ],
+      "S": [
+        "301S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "302",
+    "name": "145 St",
+    "stops": {
+      "N": [
+        "302N"
+      ],
+      "S": [
+        "302S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "224",
+    "name": "135 St",
+    "stops": {
+      "N": [
+        "224N"
+      ],
+      "S": [
+        "224S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "225",
+    "name": "125 St",
+    "stops": {
+      "N": [
+        "225N"
+      ],
+      "S": [
+        "225S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "226",
+    "name": "116 St",
+    "stops": {
+      "N": [
+        "226N"
+      ],
+      "S": [
+        "226S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "227",
+    "name": "110 St-Malcolm X Plaza",
+    "stops": {
+      "N": [
+        "227N"
+      ],
+      "S": [
+        "227S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "120",
+    "name": "96 St",
+    "stops": {
+      "N": [
+        "120N"
+      ],
+      "S": [
+        "120S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "123",
+    "name": "72 St",
+    "stops": {
+      "N": [
+        "123N"
+      ],
+      "S": [
+        "123S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "127",
+    "name": "Times Sq-42 St",
+    "stops": {
+      "N": [
+        "127N"
+      ],
+      "S": [
+        "127S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "128",
+    "name": "34 St-Penn Station",
+    "stops": {
+      "N": [
+        "128N"
+      ],
+      "S": [
+        "128S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "132",
+    "name": "14 St",
+    "stops": {
+      "N": [
+        "132N"
+      ],
+      "S": [
+        "132S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "137",
+    "name": "Chambers St",
+    "stops": {
+      "N": [
+        "137N"
+      ],
+      "S": [
+        "137S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "228",
+    "name": "Park Place",
+    "stops": {
+      "N": [
+        "228N"
+      ],
+      "S": [
+        "228S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "229",
+    "name": "Fulton St",
+    "stops": {
+      "N": [
+        "229N"
+      ],
+      "S": [
+        "229S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "230",
+    "name": "Wall St",
+    "stops": {
+      "N": [
+        "230N"
+      ],
+      "S": [
+        "230S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "231",
+    "name": "Clark St",
+    "stops": {
+      "N": [
+        "231N"
+      ],
+      "S": [
+        "231S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "232",
+    "name": "Borough Hall",
+    "stops": {
+      "N": [
+        "232N"
+      ],
+      "S": [
+        "232S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "233",
+    "name": "Hoyt St",
+    "stops": {
+      "N": [
+        "233N"
+      ],
+      "S": [
+        "233S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "234",
+    "name": "Nevins St",
+    "stops": {
+      "N": [
+        "234N"
+      ],
+      "S": [
+        "234S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "235",
+    "name": "Atlantic Av-Barclays Ctr",
+    "stops": {
+      "N": [
+        "235N"
+      ],
+      "S": [
+        "235S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "236",
+    "name": "Bergen St",
+    "stops": {
+      "N": [
+        "236N"
+      ],
+      "S": [
+        "236S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "237",
+    "name": "Grand Army Plaza",
+    "stops": {
+      "N": [
+        "237N"
+      ],
+      "S": [
+        "237S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "238",
+    "name": "Eastern Pkwy-Brooklyn Museum",
+    "stops": {
+      "N": [
+        "238N"
+      ],
+      "S": [
+        "238S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "239",
+    "name": "Franklin Av-Medgar Evers College",
+    "stops": {
+      "N": [
+        "239N"
+      ],
+      "S": [
+        "239S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "248",
+    "name": "Nostrand Av",
+    "stops": {
+      "N": [
+        "248N"
+      ],
+      "S": [
+        "248S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "249",
+    "name": "Kingston Av",
+    "stops": {
+      "N": [
+        "249N"
+      ],
+      "S": [
+        "249S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "250",
+    "name": "Crown Hts-Utica Av",
+    "stops": {
+      "N": [
+        "250N"
+      ],
+      "S": [
+        "250S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "251",
+    "name": "Sutter Av-Rutland Rd",
+    "stops": {
+      "N": [
+        "251N"
+      ],
+      "S": [
+        "251S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "252",
+    "name": "Saratoga Av",
+    "stops": {
+      "N": [
+        "252N"
+      ],
+      "S": [
+        "252S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "253",
+    "name": "Rockaway Av",
+    "stops": {
+      "N": [
+        "253N"
+      ],
+      "S": [
+        "253S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "254",
+    "name": "Junius St",
+    "stops": {
+      "N": [
+        "254N"
+      ],
+      "S": [
+        "254S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "255",
+    "name": "Pennsylvania Av",
+    "stops": {
+      "N": [
+        "255N"
+      ],
+      "S": [
+        "255S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "256",
+    "name": "Van Siclen Av",
+    "stops": {
+      "N": [
+        "256N"
+      ],
+      "S": [
+        "256S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "257",
+    "name": "New Lots Av",
+    "stops": {
+      "N": [
+        "257N"
+      ],
+      "S": [
+        "257S"
+      ]
+    },
+    "isExpress": false
+  }
+]

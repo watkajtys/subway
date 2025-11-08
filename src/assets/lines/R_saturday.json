@@ -1,0 +1,587 @@
+[
+  {
+    "stationId": "G08",
+    "name": "Forest Hills-71 Av",
+    "stops": {
+      "N": [
+        "G08N"
+      ],
+      "S": [
+        "G08S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G09",
+    "name": "67 Av",
+    "stops": {
+      "N": [
+        "G09N"
+      ],
+      "S": [
+        "G09S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G10",
+    "name": "63 Dr-Rego Park",
+    "stops": {
+      "N": [
+        "G10N"
+      ],
+      "S": [
+        "G10S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G11",
+    "name": "Woodhaven Blvd",
+    "stops": {
+      "N": [
+        "G11N"
+      ],
+      "S": [
+        "G11S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G12",
+    "name": "Grand Av-Newtown",
+    "stops": {
+      "N": [
+        "G12N"
+      ],
+      "S": [
+        "G12S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G13",
+    "name": "Elmhurst Av",
+    "stops": {
+      "N": [
+        "G13N"
+      ],
+      "S": [
+        "G13S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G14",
+    "name": "Jackson Hts-Roosevelt Av",
+    "stops": {
+      "N": [
+        "G14N"
+      ],
+      "S": [
+        "G14S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G15",
+    "name": "65 St",
+    "stops": {
+      "N": [
+        "G15N"
+      ],
+      "S": [
+        "G15S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G16",
+    "name": "Northern Blvd",
+    "stops": {
+      "N": [
+        "G16N"
+      ],
+      "S": [
+        "G16S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G18",
+    "name": "46 St",
+    "stops": {
+      "N": [
+        "G18N"
+      ],
+      "S": [
+        "G18S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G19",
+    "name": "Steinway St",
+    "stops": {
+      "N": [
+        "G19N"
+      ],
+      "S": [
+        "G19S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G20",
+    "name": "36 St",
+    "stops": {
+      "N": [
+        "G20N"
+      ],
+      "S": [
+        "G20S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "G21",
+    "name": "Queens Plaza",
+    "stops": {
+      "N": [
+        "G21N"
+      ],
+      "S": [
+        "G21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R11",
+    "name": "Lexington Av/59 St",
+    "stops": {
+      "N": [
+        "R11N"
+      ],
+      "S": [
+        "R11S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R13",
+    "name": "5 Av/59 St",
+    "stops": {
+      "N": [
+        "R13N"
+      ],
+      "S": [
+        "R13S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R14",
+    "name": "57 St-7 Av",
+    "stops": {
+      "N": [
+        "R14N"
+      ],
+      "S": [
+        "R14S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R15",
+    "name": "49 St",
+    "stops": {
+      "N": [
+        "R15N"
+      ],
+      "S": [
+        "R15S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R16",
+    "name": "Times Sq-42 St",
+    "stops": {
+      "N": [
+        "R16N"
+      ],
+      "S": [
+        "R16S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R17",
+    "name": "34 St-Herald Sq",
+    "stops": {
+      "N": [
+        "R17N"
+      ],
+      "S": [
+        "R17S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R18",
+    "name": "28 St",
+    "stops": {
+      "N": [
+        "R18N"
+      ],
+      "S": [
+        "R18S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R19",
+    "name": "23 St",
+    "stops": {
+      "N": [
+        "R19N"
+      ],
+      "S": [
+        "R19S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R20",
+    "name": "14 St-Union Sq",
+    "stops": {
+      "N": [
+        "R20N"
+      ],
+      "S": [
+        "R20S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R21",
+    "name": "8 St-NYU",
+    "stops": {
+      "N": [
+        "R21N"
+      ],
+      "S": [
+        "R21S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R22",
+    "name": "Prince St",
+    "stops": {
+      "N": [
+        "R22N"
+      ],
+      "S": [
+        "R22S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R23",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "R23N"
+      ],
+      "S": [
+        "R23S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R24",
+    "name": "City Hall",
+    "stops": {
+      "N": [
+        "R24N"
+      ],
+      "S": [
+        "R24S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R25",
+    "name": "Cortlandt St",
+    "stops": {
+      "N": [
+        "R25N"
+      ],
+      "S": [
+        "R25S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R26",
+    "name": "Rector St",
+    "stops": {
+      "N": [
+        "R26N"
+      ],
+      "S": [
+        "R26S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R27",
+    "name": "Whitehall St-South Ferry",
+    "stops": {
+      "N": [
+        "R27N"
+      ],
+      "S": [
+        "R27S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R28",
+    "name": "Court St",
+    "stops": {
+      "N": [
+        "R28N"
+      ],
+      "S": [
+        "R28S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R29",
+    "name": "Jay St-MetroTech",
+    "stops": {
+      "N": [
+        "R29N"
+      ],
+      "S": [
+        "R29S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R30",
+    "name": "DeKalb Av",
+    "stops": {
+      "N": [
+        "R30N"
+      ],
+      "S": [
+        "R30S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R31",
+    "name": "Atlantic Av-Barclays Ctr",
+    "stops": {
+      "N": [
+        "R31N"
+      ],
+      "S": [
+        "R31S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R32",
+    "name": "Union St",
+    "stops": {
+      "N": [
+        "R32N"
+      ],
+      "S": [
+        "R32S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R33",
+    "name": "4 Av-9 St",
+    "stops": {
+      "N": [
+        "R33N"
+      ],
+      "S": [
+        "R33S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R34",
+    "name": "Prospect Av",
+    "stops": {
+      "N": [
+        "R34N"
+      ],
+      "S": [
+        "R34S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R35",
+    "name": "25 St",
+    "stops": {
+      "N": [
+        "R35N"
+      ],
+      "S": [
+        "R35S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R36",
+    "name": "36 St",
+    "stops": {
+      "N": [
+        "R36N"
+      ],
+      "S": [
+        "R36S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R39",
+    "name": "45 St",
+    "stops": {
+      "N": [
+        "R39N"
+      ],
+      "S": [
+        "R39S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R40",
+    "name": "53 St",
+    "stops": {
+      "N": [
+        "R40N"
+      ],
+      "S": [
+        "R40S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R41",
+    "name": "59 St",
+    "stops": {
+      "N": [
+        "R41N"
+      ],
+      "S": [
+        "R41S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R42",
+    "name": "Bay Ridge Av",
+    "stops": {
+      "N": [
+        "R42N"
+      ],
+      "S": [
+        "R42S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R43",
+    "name": "77 St",
+    "stops": {
+      "N": [
+        "R43N"
+      ],
+      "S": [
+        "R43S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R44",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "R44N"
+      ],
+      "S": [
+        "R44S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "R45",
+    "name": "Bay Ridge-95 St",
+    "stops": {
+      "N": [
+        "R45N"
+      ],
+      "S": [
+        "R45S"
+      ]
+    },
+    "isExpress": true
+  }
+]

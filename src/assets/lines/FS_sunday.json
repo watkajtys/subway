@@ -1,0 +1,54 @@
+[
+  {
+    "stationId": "S01",
+    "name": "Franklin Av",
+    "stops": {
+      "N": [
+        "S01N"
+      ],
+      "S": [
+        "S01S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "S03",
+    "name": "Park Pl",
+    "stops": {
+      "N": [
+        "S03N"
+      ],
+      "S": [
+        "S03S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "S04",
+    "name": "Botanic Garden",
+    "stops": {
+      "N": [
+        "S04N"
+      ],
+      "S": [
+        "S04S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "D26",
+    "name": "Prospect Park",
+    "stops": {
+      "N": [
+        "D26N"
+      ],
+      "S": [
+        "D26S"
+      ]
+    },
+    "isExpress": false
+  }
+]

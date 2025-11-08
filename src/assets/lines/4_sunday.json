@@ -1,0 +1,704 @@
+[
+  {
+    "stationId": "401",
+    "name": "Woodlawn",
+    "stops": {
+      "N": [
+        "401N"
+      ],
+      "S": [
+        "401S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "402",
+    "name": "Mosholu Pkwy",
+    "stops": {
+      "N": [
+        "402N"
+      ],
+      "S": [
+        "402S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "405",
+    "name": "Bedford Park Blvd-Lehman College",
+    "stops": {
+      "N": [
+        "405N"
+      ],
+      "S": [
+        "405S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "406",
+    "name": "Kingsbridge Rd",
+    "stops": {
+      "N": [
+        "406N"
+      ],
+      "S": [
+        "406S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "407",
+    "name": "Fordham Rd",
+    "stops": {
+      "N": [
+        "407N"
+      ],
+      "S": [
+        "407S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "408",
+    "name": "183 St",
+    "stops": {
+      "N": [
+        "408N"
+      ],
+      "S": [
+        "408S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "409",
+    "name": "Burnside Av",
+    "stops": {
+      "N": [
+        "409N"
+      ],
+      "S": [
+        "409S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "410",
+    "name": "176 St",
+    "stops": {
+      "N": [
+        "410N"
+      ],
+      "S": [
+        "410S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "411",
+    "name": "Mt Eden Av",
+    "stops": {
+      "N": [
+        "411N"
+      ],
+      "S": [
+        "411S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "412",
+    "name": "170 St",
+    "stops": {
+      "N": [
+        "412N"
+      ],
+      "S": [
+        "412S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "413",
+    "name": "167 St",
+    "stops": {
+      "N": [
+        "413N"
+      ],
+      "S": [
+        "413S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "414",
+    "name": "161 St-Yankee Stadium",
+    "stops": {
+      "N": [
+        "414N"
+      ],
+      "S": [
+        "414S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "415",
+    "name": "149 St-Grand Concourse",
+    "stops": {
+      "N": [
+        "415N"
+      ],
+      "S": [
+        "415S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "416",
+    "name": "138 St-Grand Concourse",
+    "stops": {
+      "N": [
+        "416N"
+      ],
+      "S": [
+        "416S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "621",
+    "name": "125 St",
+    "stops": {
+      "N": [
+        "621N"
+      ],
+      "S": [
+        "621S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "622",
+    "name": "116 St",
+    "stops": {
+      "N": [
+        "622N"
+      ],
+      "S": [
+        "622S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "623",
+    "name": "110 St",
+    "stops": {
+      "N": [
+        "623N"
+      ],
+      "S": [
+        "623S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "624",
+    "name": "103 St",
+    "stops": {
+      "N": [
+        "624N"
+      ],
+      "S": [
+        "624S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "625",
+    "name": "96 St",
+    "stops": {
+      "N": [
+        "625N"
+      ],
+      "S": [
+        "625S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "626",
+    "name": "86 St",
+    "stops": {
+      "N": [
+        "626N"
+      ],
+      "S": [
+        "626S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "627",
+    "name": "77 St",
+    "stops": {
+      "N": [
+        "627N"
+      ],
+      "S": [
+        "627S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "628",
+    "name": "68 St-Hunter College",
+    "stops": {
+      "N": [
+        "628N"
+      ],
+      "S": [
+        "628S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "629",
+    "name": "59 St",
+    "stops": {
+      "N": [
+        "629N"
+      ],
+      "S": [
+        "629S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "630",
+    "name": "51 St",
+    "stops": {
+      "N": [
+        "630N"
+      ],
+      "S": [
+        "630S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "631",
+    "name": "Grand Central-42 St",
+    "stops": {
+      "N": [
+        "631N"
+      ],
+      "S": [
+        "631S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "632",
+    "name": "33 St",
+    "stops": {
+      "N": [
+        "632N"
+      ],
+      "S": [
+        "632S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "633",
+    "name": "28 St",
+    "stops": {
+      "N": [
+        "633N"
+      ],
+      "S": [
+        "633S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "634",
+    "name": "23 St-Baruch College",
+    "stops": {
+      "N": [
+        "634N"
+      ],
+      "S": [
+        "634S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "635",
+    "name": "14 St-Union Sq",
+    "stops": {
+      "N": [
+        "635N"
+      ],
+      "S": [
+        "635S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "636",
+    "name": "Astor Pl",
+    "stops": {
+      "N": [
+        "636N"
+      ],
+      "S": [
+        "636S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "637",
+    "name": "Bleecker St",
+    "stops": {
+      "N": [
+        "637N"
+      ],
+      "S": [
+        "637S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "638",
+    "name": "Spring St",
+    "stops": {
+      "N": [
+        "638N"
+      ],
+      "S": [
+        "638S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "639",
+    "name": "Canal St",
+    "stops": {
+      "N": [
+        "639N"
+      ],
+      "S": [
+        "639S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "640",
+    "name": "Brooklyn Bridge-City Hall",
+    "stops": {
+      "N": [
+        "640N"
+      ],
+      "S": [
+        "640S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "418",
+    "name": "Fulton St",
+    "stops": {
+      "N": [
+        "418N"
+      ],
+      "S": [
+        "418S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "419",
+    "name": "Wall St",
+    "stops": {
+      "N": [
+        "419N"
+      ],
+      "S": [
+        "419S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "420",
+    "name": "Bowling Green",
+    "stops": {
+      "N": [
+        "420N"
+      ],
+      "S": [
+        "420S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "423",
+    "name": "Borough Hall",
+    "stops": {
+      "N": [
+        "423N"
+      ],
+      "S": [
+        "423S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "234",
+    "name": "Nevins St",
+    "stops": {
+      "N": [
+        "234N"
+      ],
+      "S": [
+        "234S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "235",
+    "name": "Atlantic Av-Barclays Ctr",
+    "stops": {
+      "N": [
+        "235N"
+      ],
+      "S": [
+        "235S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "236",
+    "name": "Bergen St",
+    "stops": {
+      "N": [
+        "236N"
+      ],
+      "S": [
+        "236S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "237",
+    "name": "Grand Army Plaza",
+    "stops": {
+      "N": [
+        "237N"
+      ],
+      "S": [
+        "237S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "238",
+    "name": "Eastern Pkwy-Brooklyn Museum",
+    "stops": {
+      "N": [
+        "238N"
+      ],
+      "S": [
+        "238S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "239",
+    "name": "Franklin Av-Medgar Evers College",
+    "stops": {
+      "N": [
+        "239N"
+      ],
+      "S": [
+        "239S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "248",
+    "name": "Nostrand Av",
+    "stops": {
+      "N": [
+        "248N"
+      ],
+      "S": [
+        "248S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "249",
+    "name": "Kingston Av",
+    "stops": {
+      "N": [
+        "249N"
+      ],
+      "S": [
+        "249S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "250",
+    "name": "Crown Hts-Utica Av",
+    "stops": {
+      "N": [
+        "250N"
+      ],
+      "S": [
+        "250S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "251",
+    "name": "Sutter Av-Rutland Rd",
+    "stops": {
+      "N": [
+        "251N"
+      ],
+      "S": [
+        "251S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "252",
+    "name": "Saratoga Av",
+    "stops": {
+      "N": [
+        "252N"
+      ],
+      "S": [
+        "252S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "253",
+    "name": "Rockaway Av",
+    "stops": {
+      "N": [
+        "253N"
+      ],
+      "S": [
+        "253S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "254",
+    "name": "Junius St",
+    "stops": {
+      "N": [
+        "254N"
+      ],
+      "S": [
+        "254S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "255",
+    "name": "Pennsylvania Av",
+    "stops": {
+      "N": [
+        "255N"
+      ],
+      "S": [
+        "255S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "256",
+    "name": "Van Siclen Av",
+    "stops": {
+      "N": [
+        "256N"
+      ],
+      "S": [
+        "256S"
+      ]
+    },
+    "isExpress": true
+  },
+  {
+    "stationId": "257",
+    "name": "New Lots Av",
+    "stops": {
+      "N": [
+        "257N"
+      ],
+      "S": [
+        "257S"
+      ]
+    },
+    "isExpress": true
+  }
+]

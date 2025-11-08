@@ -1,0 +1,28 @@
+[
+  {
+    "stationId": "901",
+    "name": "Grand Central-42 St",
+    "stops": {
+      "N": [
+        "901N"
+      ],
+      "S": [
+        "901S"
+      ]
+    },
+    "isExpress": false
+  },
+  {
+    "stationId": "902",
+    "name": "Times Sq-42 St",
+    "stops": {
+      "N": [
+        "902N"
+      ],
+      "S": [
+        "902S"
+      ]
+    },
+    "isExpress": false
+  }
+]
