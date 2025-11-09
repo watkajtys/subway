@@ -167,7 +167,7 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
       direction: direction === 'northbound' ? 'Uptown' : 'Downtown',
     };
 
-    this.isFavorite.set(!this.isFavorite());
+    this.isFavorite.update((v) => !v);
     this.favoritesService.toggleFavorite(favorite);
   }
 

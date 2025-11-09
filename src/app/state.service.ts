@@ -46,6 +46,14 @@ export class StateService {
       this.stopNameService.getStopIdsForStation(name) || []
     );
     return new Set(stopIds);
+  }, {
+    equal: (a, b) => {
+      if (a.size !== b.size) return false;
+      for (const item of a) {
+        if (!b.has(item)) return false;
+      }
+      return true;
+    }
   });
 
   public arrivalTimes = computed<ArrivalTime[]>(() => {
@@ -94,9 +102,10 @@ export class StateService {
     return newArrivalTimes as ArrivalTime[];
   });
 
+  private timeUpdateInterval: any = null;
+  private blinkerInterval: any = null;
+
   constructor() {
-    setInterval(() => this.time.set(new Date()), 1000);
-    setInterval(() => this.blinker.update((v) => !v), 500);
     this.manageFetching();
   }
 
@@ -142,8 +151,10 @@ export class StateService {
       this.fetchRequiredData(); // Fetch immediately
       this.dataFetchInterval = setInterval(
         () => this.fetchRequiredData(),
-        15000,
+        15000
       );
+      this.timeUpdateInterval = setInterval(() => this.time.set(new Date()), 1000);
+      this.blinkerInterval = setInterval(() => this.blinker.update((v) => !v), 500);
     } else if (
       !hasActiveSubscriptions &&
       !hasFavorites &&
@@ -151,6 +162,10 @@ export class StateService {
     ) {
       clearInterval(this.dataFetchInterval);
       this.dataFetchInterval = null;
+      clearInterval(this.timeUpdateInterval);
+      this.timeUpdateInterval = null;
+      clearInterval(this.blinkerInterval);
+      this.blinkerInterval = null;
     }
   }
 
