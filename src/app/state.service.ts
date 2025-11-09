@@ -1,5 +1,5 @@
 import { Injectable, signal, inject, computed, effect } from '@angular/core';
-import { TripUpdate } from './generated/gtfs-realtime';
+import { Alert, TripUpdate } from './generated/gtfs-realtime';
 export { TripUpdate } from './generated/gtfs-realtime';
 import { MtaDataService } from './mta-data.service';
 import { StopNameService } from './stop-name.service';
@@ -28,6 +28,7 @@ export class StateService {
 
   // Signals for application state
   public tripUpdatesMap = signal<Map<string, TripUpdate>>(new Map());
+  public alerts = signal<Alert[]>([]);
   public stopToRoutesMap = signal<Map<string, Set<string>>>(new Map());
   public time = signal(new Date());
   public blinker = signal(false);
@@ -177,6 +178,10 @@ export class StateService {
         }
       });
       this.tripUpdatesMap.set(newTripUpdatesMap);
+    });
+
+    this.mtaDataService.fetchAlerts().subscribe((alerts) => {
+      this.alerts.set(alerts);
     });
   }
 

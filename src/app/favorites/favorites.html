@@ -1,5 +1,4 @@
 <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
-  <app-header title="Favorites"></app-header>
   <div class="p-4">
     <div *ngIf="favoritesService.favorites().length > 0; else noFavorites">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

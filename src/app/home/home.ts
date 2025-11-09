@@ -4,9 +4,9 @@ import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { RouterModule } from '@angular/router';
 import { StationSearch } from '../station-search/station-search';
-import { HeaderComponent } from '../header/header';
 import { FavoritesService } from '../favorites.service';
 import { FavoriteCardComponent } from '../favorite-card/favorite-card';
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,6 @@ import { FavoriteCardComponent } from '../favorite-card/favorite-card';
     RouteBadgeComponent,
     RouterModule,
     StationSearch,
-    HeaderComponent,
     FavoriteCardComponent,
   ],
   templateUrl: './home.html',
@@ -26,4 +25,8 @@ export class HomeComponent {
   protected mtaColorsService = inject(MtaColorsService);
   protected favoritesService = inject(FavoritesService);
   protected groupedLines = this.mtaColorsService.getGroupedLines();
+
+  constructor() {
+    inject(TitleService).title.set('Did I Miss My Train');
+  }
 }

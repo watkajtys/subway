@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { FeedMessage, TripUpdate } from './generated/gtfs-realtime';
+import { Alert, FeedMessage, TripUpdate } from './generated/gtfs-realtime';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,8 @@ export class MtaDataService {
     L: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-l',
     W: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-w',
     SI: 'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-si',
+    'alerts':
+      'https://mta-proxy-worker.matty-f7e.workers.dev?url=https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-alerts',
   };
 
   private readonly routeToFeedMap: { [key: string]: string } = {
@@ -99,6 +101,29 @@ export class MtaDataService {
           }
         });
         return [allUpdates, stopToRoutesMap];
+      })
+    );
+  }
+
+  public fetchAlerts(): Observable<Alert[]> {
+    const url = this.feedMap['alerts'];
+    return this.http.get(url, { responseType: 'arraybuffer' }).pipe(
+      map((buffer) => {
+        if (buffer.byteLength === 0) return [];
+
+        try {
+          const feed = FeedMessage.decode(new Uint8Array(buffer));
+          return feed.entity
+            .map((entity) => entity.alert)
+            .filter((alert): alert is Alert => !!alert);
+        } catch (error) {
+          console.error(`Error processing alerts feed from ${url}:`, error);
+          return [];
+        }
+      }),
+      catchError((error) => {
+        console.error(`Error fetching alerts feed from ${url}:`, error);
+        return of([]);
       })
     );
   }
