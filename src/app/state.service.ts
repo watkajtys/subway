@@ -1,4 +1,4 @@
-import { Injectable, signal, inject, computed } from '@angular/core';
+import { Injectable, signal, inject, computed, effect } from '@angular/core';
 import { TripUpdate } from './generated/gtfs-realtime';
 export { TripUpdate } from './generated/gtfs-realtime';
 import { MtaDataService } from './mta-data.service';
@@ -106,7 +106,9 @@ export class StateService {
   private blinkerInterval: any = null;
 
   constructor() {
-    this.manageFetching();
+    effect(() => {
+      this.manageFetching();
+    });
   }
 
   public registerStation(stationName: string) {
@@ -114,7 +116,6 @@ export class StateService {
       subs.add(stationName);
       return new Set(subs);
     });
-    this.manageFetching();
   }
 
   public unregisterStation(stationName: string) {
@@ -122,7 +123,6 @@ export class StateService {
       subs.delete(stationName);
       return new Set(subs);
     });
-    this.manageFetching();
   }
 
   public registerLine(lineId: string) {
@@ -130,7 +130,6 @@ export class StateService {
       subs.add(lineId);
       return new Set(subs);
     });
-    this.manageFetching();
   }
 
   public unregisterLine(lineId: string) {
@@ -138,7 +137,6 @@ export class StateService {
       subs.delete(lineId);
       return new Set(subs);
     });
-    this.manageFetching();
   }
 
   private manageFetching() {
