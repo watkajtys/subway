@@ -5,7 +5,6 @@ import {
   computed,
   signal,
   OnDestroy,
-  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -17,6 +16,7 @@ import { DestinationPipe } from '../destination.pipe';
 import { HeaderComponent } from '../header/header';
 import { StopNameService } from '../stop-name.service';
 import { Favorite, FavoritesService } from '../favorites.service';
+import { RealtimeService } from '../realtime.service';
 
 @Component({
   selector: 'app-departure-board',
@@ -36,15 +36,33 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   private route: ActivatedRoute = inject(ActivatedRoute);
   protected stopNameService: StopNameService = inject(StopNameService);
   protected favoritesService: FavoritesService = inject(FavoritesService);
+  private realtimeService: RealtimeService = inject(RealtimeService);
 
   protected activeFilter = signal<'all' | 'northbound' | 'southbound'>('all');
   protected activeLineFilter = signal<string>('all');
   private stationName: string | null = null;
 
   protected availableLines = computed(() => {
-    const arrivals = this.state.arrivalTimes();
-    const lines = new Set(arrivals.map((a) => a.routeId));
-    return Array.from(lines).sort();
+    const stationName = this.state.selectedStation();
+    if (!stationName) {
+      return [];
+    }
+
+    const stopIds = this.stopNameService.getStopIdsForStation(stationName);
+    if (!stopIds) {
+      return [];
+    }
+
+    const routes = new Set<string>();
+    const stopToRoutesMap = this.state.stopToRoutesMap();
+
+    for (const id of stopIds) {
+      const northId = `${id}N`;
+      const southId = `${id}S`;
+      stopToRoutesMap.get(northId)?.forEach((r) => routes.add(r));
+      stopToRoutesMap.get(southId)?.forEach((r) => routes.add(r));
+    }
+    return Array.from(routes).sort();
   });
 
   protected filteredArrivals = computed(() => {
@@ -100,35 +118,29 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     return lineFilter !== 'all' || singleLineAvailable;
   });
 
-  protected isFavorite = signal(false);
+  protected isFavorite = computed(() => {
+    const lineFilter = this.activeLineFilter();
+    const direction = this.activeFilter();
+    const stationId = this.state.selectedStation();
+    const availableLines = this.availableLines();
+    this.favoritesService.favorites(); // Ensure this signal is tracked
 
-  constructor() {
-    effect(() => {
-      const lineFilter = this.activeLineFilter();
-      const direction = this.activeFilter();
-      const stationId = this.state.selectedStation();
-      const availableLines = this.availableLines();
-      // Also watch this.favoritesService.favorites()
-      this.favoritesService.favorites();
+    let lineId = lineFilter;
+    if (lineFilter === 'all' && availableLines.length === 1) {
+      lineId = availableLines[0];
+    }
 
-      let lineId = lineFilter;
-      if (lineFilter === 'all' && availableLines.length === 1) {
-        lineId = availableLines[0];
-      }
+    if (lineId === 'all' || direction === 'all' || !stationId) {
+      return false;
+    }
 
-      if (lineId === 'all' || direction === 'all' || !stationId) {
-        this.isFavorite.set(false);
-        return;
-      }
-
-      const favorite: Favorite = {
-        stationId: stationId,
-        lineId: lineId,
-        direction: direction === 'northbound' ? 'Uptown' : 'Downtown',
-      };
-      this.isFavorite.set(this.favoritesService.isFavorite(favorite));
-    });
-  }
+    const favorite: Favorite = {
+      stationId: stationId,
+      lineId: lineId,
+      direction: direction === 'northbound' ? 'Uptown' : 'Downtown',
+    };
+    return this.favoritesService.isFavorite(favorite);
+  });
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -167,7 +179,6 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
       direction: direction === 'northbound' ? 'Uptown' : 'Downtown',
     };
 
-    this.isFavorite.update((v) => !v);
     this.favoritesService.toggleFavorite(favorite);
   }
 
@@ -213,7 +224,7 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   }
 
   private convertToNumber(
-    value: number | Long | null | undefined
+    value: number | Long | null | undefined,
   ): number | undefined {
     if (value === null || value === undefined) {
       return undefined;
