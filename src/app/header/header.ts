@@ -1,22 +1,26 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
+import { Menu } from '../menu/menu.component';
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.html',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, Menu],
 })
 export class HeaderComponent {
-  @Input() title: string = '';
   @Input() isFavorite: boolean = false;
   @Input() isFavoriteEnabled: boolean = false;
   @Input() showFavoriteStar: boolean = false;
   @Output() toggleFavorite = new EventEmitter<void>();
 
+  protected titleService = inject(TitleService);
+
   isHomePage: boolean = false;
+  isMenuVisible: boolean = false;
 
   constructor(private location: Location, private router: Router) {
     this.router.events
@@ -30,6 +34,14 @@ export class HeaderComponent {
     if (this.isFavoriteEnabled) {
       this.toggleFavorite.emit();
     }
+  }
+
+  toggleMenu(): void {
+    this.isMenuVisible = !this.isMenuVisible;
+  }
+
+  closeMenu(): void {
+    this.isMenuVisible = false;
   }
 
   goBack(): void {

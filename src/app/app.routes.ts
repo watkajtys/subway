@@ -7,6 +7,7 @@ import { inject } from '@angular/core';
 import { TransfersService } from './transfers.service';
 import { HomeComponent } from './home/home';
 import { FavoritesComponent } from './favorites/favorites';
+import { ServiceAlerts } from './service-alerts/service-alerts.component';
 
 const stopNameResolver = () => {
   return inject(StopNameService).loadStopNames();
@@ -37,5 +38,9 @@ export const routes: Routes = [
     path: 'favorites',
     component: FavoritesComponent,
     resolve: { stopNames: stopNameResolver },
+  },
+  {
+    path: 'service-alerts',
+    component: ServiceAlerts,
   },
 ];
