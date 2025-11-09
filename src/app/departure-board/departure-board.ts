@@ -36,7 +36,14 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   protected stopNameService: StopNameService = inject(StopNameService);
 
   protected activeFilter = signal<'all' | 'northbound' | 'southbound'>('all');
+  protected activeLineFilter = signal<string>('all');
   private stationName: string | null = null;
+
+  protected availableLines = computed(() => {
+    const arrivals = this.state.arrivalTimes();
+    const lines = new Set(arrivals.map((a) => a.routeId));
+    return Array.from(lines).sort();
+  });
 
   protected filteredArrivals = computed(() => {
     const nowInSeconds = this.state.time().getTime() / 1000;
@@ -47,10 +54,10 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
       .filter((a) => {
         const tripUpdate = tripUpdatesMap.get(a.tripId);
         const stopTimeUpdate = tripUpdate?.stopTimeUpdate?.find(
-          (stu) => stu.stopId === a.stopId
+          (stu) => stu.stopId === a.stopId,
         );
         const departureTime = this.convertToNumber(
-          stopTimeUpdate?.departure?.time
+          stopTimeUpdate?.departure?.time,
         );
 
         // Use departure time if available, otherwise fall back to arrival time.
@@ -59,14 +66,24 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
       })
       .sort((a, b) => a.arrivalTime! - b.arrivalTime!);
 
-    const filter = this.activeFilter();
+    const directionFilter = this.activeFilter();
+    const lineFilter = this.activeLineFilter();
 
-    if (filter === 'all') {
-      return upcoming;
+    let filtered = upcoming;
+
+    if (directionFilter !== 'all') {
+      filtered = filtered.filter((a) =>
+        directionFilter === 'northbound'
+          ? a.direction === 'N'
+          : a.direction === 'S',
+      );
     }
-    return upcoming.filter((a) =>
-      filter === 'northbound' ? a.direction === 'N' : a.direction === 'S'
-    );
+
+    if (lineFilter !== 'all') {
+      filtered = filtered.filter((a) => a.routeId === lineFilter);
+    }
+
+    return filtered;
   });
 
   ngOnInit() {
@@ -87,6 +104,10 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
 
   protected setFilter(filter: 'all' | 'northbound' | 'southbound') {
     this.activeFilter.set(filter);
+  }
+
+  protected setLineFilter(line: string) {
+    this.activeLineFilter.set(line);
   }
 
   protected getTimeStyles(arrival: number | undefined): {
