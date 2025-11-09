@@ -2,7 +2,7 @@ import { Component, inject, computed, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StateService } from '../state.service';
-import { TransfersService } from '../transfers.service';
+import { RealtimeService } from '../realtime.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { StopNamePipe } from '../stop-name.pipe';
@@ -42,7 +42,7 @@ export class TrainDetailComponent {
   private router: Router = inject(Router);
   private stopNamePipe: StopNamePipe = inject(StopNamePipe);
   protected state: StateService = inject(StateService);
-  private transfersService: TransfersService = inject(TransfersService);
+  private realtimeService: RealtimeService = inject(RealtimeService);
   private tripId = this.route.snapshot.paramMap.get('id');
   private accessibilityService = inject(AccessibilityService);
   private mtaColorsService = inject(MtaColorsService);
@@ -62,13 +62,7 @@ export class TrainDetailComponent {
   }
 
   protected getTransfersForStop(stopId: string): string[] {
-    const parentStopId = stopId.slice(0, -1);
-    const allTransfers = this.transfersService.getTransfers(parentStopId) ?? [];
-    const currentRouteId = this.trip()?.trip?.routeId;
-    if (currentRouteId) {
-      return allTransfers.filter((routeId) => routeId !== currentRouteId);
-    }
-    return allTransfers;
+    return this.realtimeService.getActiveTransfers(stopId);
   }
 
   isAccessible(stopId: string): boolean {
