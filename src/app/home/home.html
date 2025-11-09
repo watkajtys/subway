@@ -4,12 +4,12 @@
     <div class="flex flex-col gap-4">
       <div *ngIf="favoritesService.favorites().length > 0" class="flex flex-col gap-2">
         <div class="flex justify-between items-center">
-          <h2 class="text-xl font-bold dark:text-white">Favorites</h2>
-          <a routerLink="/favorites" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
+          <h2 class="text-xl font-bold text-white">Favorites</h2>
+          <a routerLink="/favorites" class="text-sm font-medium text-blue-400 hover:underline">
             View All
           </a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex flex-col gap-2">
           <app-favorite-card
             *ngFor="let favorite of favoritesService.favorites()"
             [favorite]="favorite"
