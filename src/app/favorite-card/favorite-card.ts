@@ -47,4 +47,33 @@ export class FavoriteCardComponent {
       .sort((a, b) => a.arrivalTime - b.arrivalTime)
       .slice(0, 2);
   });
+
+  protected getTimeStyles(arrival: number | undefined): {
+    [key: string]: string;
+  } {
+    if (arrival === undefined) {
+      return {};
+    }
+
+    const nowInSeconds = this.state.time().getTime() / 1000;
+    const diffInSeconds = arrival - nowInSeconds;
+
+    if (diffInSeconds < 30) {
+      return {
+        color: '#00ff00', // Bright Green
+        opacity: this.state.blinker() ? '1' : '0.2',
+        transition: 'opacity 0.2s ease-in-out',
+      };
+    }
+
+    if (diffInSeconds < 60) {
+      return { color: '#fb923c' }; // Bright Orange
+    }
+
+    if (diffInSeconds < 120) {
+      return { color: '#fdd835' }; // Bright Yellow
+    }
+
+    return {};
+  }
 }

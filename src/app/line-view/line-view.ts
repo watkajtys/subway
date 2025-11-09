@@ -82,50 +82,48 @@ export class LineViewComponent {
     }, { allowSignalWrites: true });
   }
 
-  arrivalTimes = computed(() => {
-    const stations = this.stations();
+  private readonly upcomingArrivals = computed(() => {
     const tripUpdatesMap = this.stateSvc.tripUpdatesMap();
     const now = this.stateSvc.time();
     const lineId = this.lineId();
-    if (!stations || !tripUpdatesMap || !lineId) return null;
+    if (!tripUpdatesMap || !lineId) return new Map<string, number>();
 
+    const upcoming = new Map<string, number>();
+
+    for (const update of tripUpdatesMap.values()) {
+      if (update.trip?.routeId !== lineId) {
+        continue;
+      }
+      for (const stu of update.stopTimeUpdate ?? []) {
+        const arrivalTime = stu.arrival?.time;
+        if (arrivalTime && arrivalTime > now.getTime() / 1000) {
+          if (!upcoming.has(stu.stopId!) || arrivalTime < upcoming.get(stu.stopId!)!) {
+            upcoming.set(stu.stopId!, arrivalTime);
+          }
+        }
+      }
+    }
+    return upcoming;
+  });
+
+  arrivalTimes = computed(() => {
+    const stations = this.stations();
+    if (!stations) return null;
+
+    const upcoming = this.upcomingArrivals();
     const arrivalTimeMap = new Map<string, { N?: number; S?: number }>();
-    const tripUpdates = Array.from(tripUpdatesMap.values());
 
     for (const station of stations) {
       const stationArrivals: { N?: number; S?: number } = {};
       const northStopId = station.stationId;
       const southStopId = station.stationId.slice(0, -1) + 'S';
 
-      const findNextArrival = (stopId: string) => {
-        let nextArrival: number | undefined;
-        for (const update of tripUpdates) {
-          if (update.trip?.routeId !== lineId) {
-            continue;
-          }
-          const stopTimeUpdate = update.stopTimeUpdate?.find(
-            (stu: TripUpdate_StopTimeUpdate) =>
-              stu.stopId === stopId &&
-              (stu.arrival?.time ?? 0) > now.getTime() / 1000
-          );
-          const arrivalTime = stopTimeUpdate?.arrival?.time;
-          if (
-            arrivalTime &&
-            (nextArrival === undefined || arrivalTime < nextArrival)
-          ) {
-            nextArrival = arrivalTime;
-          }
-        }
-        return nextArrival;
-      };
-
-      const nextNorth = findNextArrival(northStopId);
-      const nextSouth = findNextArrival(southStopId);
+      const nextNorth = upcoming.get(northStopId);
+      const nextSouth = upcoming.get(southStopId);
 
       if (nextNorth) stationArrivals['N'] = nextNorth;
       if (nextSouth) stationArrivals['S'] = nextSouth;
 
-      // Use the parent stopId for the map key
       arrivalTimeMap.set(station.stationId, stationArrivals);
     }
 

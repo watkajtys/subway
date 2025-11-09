@@ -6,7 +6,6 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.html',
-  styleUrl: './header.css',
   standalone: true,
   imports: [RouterModule, CommonModule],
 })

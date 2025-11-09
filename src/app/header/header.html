@@ -14,10 +14,10 @@
       [ngClass]="{
         'text-zinc-400 dark:text-zinc-600': !isFavoriteEnabled,
         'dark:text-white': isFavoriteEnabled,
-        'font-fill-1': isFavorite && isFavoriteEnabled
+        'text-yellow-400': isFavorite
       }"
     >
-      star
+      {{ isFavorite ? 'star' : 'star_outline' }}
     </button>
     <span class="material-symbols-outlined text-2xl dark:text-white">more_vert</span>
   </div>

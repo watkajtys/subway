@@ -33,11 +33,18 @@ export class RealtimeService {
     for (const tripUpdate of tripUpdates.values()) {
       const routeId = tripUpdate.trip?.routeId;
       const tripId = tripUpdate.trip?.tripId;
-      if (!routeId || !tripId || !tripUpdate.stopTimeUpdate) {
+      if (
+        !routeId ||
+        !tripId ||
+        !tripUpdate.stopTimeUpdate ||
+        tripUpdate.stopTimeUpdate.length === 0
+      ) {
         continue;
       }
-      // Determine direction from tripId (e.g., 'A20220610WKD_000800_A..S')
-      const direction = tripId.includes('..S') ? 'S' : 'N';
+      // Determine direction from the first stopId
+      const direction = tripUpdate.stopTimeUpdate[0]!.stopId!.slice(-1) as
+        | 'N'
+        | 'S';
       const key = `${routeId}-${direction}`;
       if (!tripsByRouteDirection.has(key)) {
         tripsByRouteDirection.set(key, []);
@@ -56,16 +63,17 @@ export class RealtimeService {
         stopSequences.set(sequence, (stopSequences.get(sequence) ?? 0) + 1);
       }
 
-      let mostCommonSequence: string[] = [];
+      let longestSequence: string[] = [];
       if (stopSequences.size > 0) {
-        const sortedSequences = [...stopSequences.entries()].sort(
-          (a, b) => b[1] - a[1]
+        // Find the sequence with the most stops.
+        const sortedSequences = [...stopSequences.keys()].sort(
+          (a, b) => b.split(',').length - a.split(',').length
         );
-        mostCommonSequence = sortedSequences[0][0].split(',');
+        longestSequence = sortedSequences[0].split(',');
       }
 
       // Step 3: Build the RealtimeStop objects for this sequence
-      const stops: RealtimeStop[] = mostCommonSequence.map((stopId) => {
+      const stops: RealtimeStop[] = longestSequence.map((stopId) => {
         const routes = this.getActiveTransfers(stopId);
         return {
           stationId: stopId,
