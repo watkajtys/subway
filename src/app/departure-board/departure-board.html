@@ -1,5 +1,14 @@
 <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
   <div class="relative w-full bg-background-light dark:bg-background-dark text-zinc-900 dark:text-white group/design-root overflow-x-hidden min-h-screen">
+    <!-- Top App Bar -->
+    <app-header
+      [title]="state.selectedStation() || 'Station'"
+      [isFavorite]="isFavorite()"
+      [isFavoriteEnabled]="isFavoriteEnabled()"
+      (toggleFavorite)="toggleFavorite()"
+      [showFavoriteStar]="true"
+    ></app-header>
+
     <!-- Filters -->
     <div class="flex flex-col gap-2 p-4 pt-2">
       <div class="flex space-x-2">

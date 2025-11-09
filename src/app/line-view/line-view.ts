@@ -8,6 +8,7 @@ import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { StateService } from '../state.service';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
+import { HeaderComponent } from '../header/header';
 import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
 import { RealtimeService, RealtimeStop } from '../realtime.service';
 
@@ -21,6 +22,7 @@ type Direction = 'N' | 'S';
     RouterModule,
     RouteBadgeComponent,
     ArrivalTimePipe,
+    HeaderComponent,
   ],
   templateUrl: './line-view.html',
   styleUrl: './line-view.css',
