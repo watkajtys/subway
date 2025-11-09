@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
@@ -12,6 +12,11 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent {
   @Input() title: string = '';
+  @Input() isFavorite: boolean = false;
+  @Input() isFavoriteEnabled: boolean = false;
+  @Input() showFavoriteStar: boolean = false;
+  @Output() toggleFavorite = new EventEmitter<void>();
+
   isHomePage: boolean = false;
 
   constructor(private location: Location, private router: Router) {
@@ -20,6 +25,12 @@ export class HeaderComponent {
       .subscribe((event) => {
         this.isHomePage = (event as NavigationEnd).urlAfterRedirects === '/';
       });
+  }
+
+  onToggleFavorite(): void {
+    if (this.isFavoriteEnabled) {
+      this.toggleFavorite.emit();
+    }
   }
 
   goBack(): void {

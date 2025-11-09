@@ -3,9 +3,9 @@ import {
   OnInit,
   inject,
   computed,
-  effect,
   signal,
   OnDestroy,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -16,6 +16,7 @@ import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { DestinationPipe } from '../destination.pipe';
 import { HeaderComponent } from '../header/header';
 import { StopNameService } from '../stop-name.service';
+import { Favorite, FavoritesService } from '../favorites.service';
 
 @Component({
   selector: 'app-departure-board',
@@ -34,6 +35,7 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   public state: StateService = inject(StateService);
   private route: ActivatedRoute = inject(ActivatedRoute);
   protected stopNameService: StopNameService = inject(StopNameService);
+  protected favoritesService: FavoritesService = inject(FavoritesService);
 
   protected activeFilter = signal<'all' | 'northbound' | 'southbound'>('all');
   protected activeLineFilter = signal<string>('all');
@@ -44,6 +46,14 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     const lines = new Set(arrivals.map((a) => a.routeId));
     return Array.from(lines).sort();
   });
+
+  constructor() {
+    effect(() => {
+      if (this.availableLines().length === 1) {
+        this.activeLineFilter.set(this.availableLines()[0]);
+      }
+    });
+  }
 
   protected filteredArrivals = computed(() => {
     const nowInSeconds = this.state.time().getTime() / 1000;
@@ -86,6 +96,27 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     return filtered;
   });
 
+  protected isFavoriteEnabled = computed(() => {
+    return this.activeLineFilter() !== 'all' && this.activeFilter() !== 'all';
+  });
+
+  protected isFavorite = computed(() => {
+    const lineId = this.activeLineFilter();
+    const direction = this.activeFilter();
+    const stationId = this.state.selectedStation();
+
+    if (lineId === 'all' || direction === 'all' || !stationId) {
+      return false;
+    }
+
+    const favorite: Favorite = {
+      stationId: stationId,
+      lineId: lineId,
+      direction: direction === 'northbound' ? 'Uptown' : 'Downtown',
+    };
+    return this.favoritesService.isFavorite(favorite);
+  });
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.stationName = decodeURIComponent(params['id']);
@@ -100,6 +131,24 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     if (this.stationName) {
       this.state.unregisterStation(this.stationName);
     }
+  }
+
+  toggleFavorite() {
+    const lineId = this.activeLineFilter();
+    const direction = this.activeFilter();
+    const stationId = this.state.selectedStation();
+
+    if (lineId === 'all' || direction === 'all' || !stationId) {
+      return;
+    }
+
+    const favorite: Favorite = {
+      stationId: stationId,
+      lineId: lineId,
+      direction: direction === 'northbound' ? 'Uptown' : 'Downtown',
+    };
+
+    this.favoritesService.toggleFavorite(favorite);
   }
 
   protected setFilter(filter: 'all' | 'northbound' | 'southbound') {
