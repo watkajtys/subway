@@ -86,7 +86,8 @@ export class LineViewComponent {
     const stations = this.stations();
     const tripUpdatesMap = this.stateSvc.tripUpdatesMap();
     const now = this.stateSvc.time();
-    if (!stations || !tripUpdatesMap) return null;
+    const lineId = this.lineId();
+    if (!stations || !tripUpdatesMap || !lineId) return null;
 
     const arrivalTimeMap = new Map<string, { N?: number; S?: number }>();
     const tripUpdates = Array.from(tripUpdatesMap.values());
@@ -99,6 +100,9 @@ export class LineViewComponent {
       const findNextArrival = (stopId: string) => {
         let nextArrival: number | undefined;
         for (const update of tripUpdates) {
+          if (update.trip?.routeId !== lineId) {
+            continue;
+          }
           const stopTimeUpdate = update.stopTimeUpdate?.find(
             (stu: TripUpdate_StopTimeUpdate) =>
               stu.stopId === stopId &&
