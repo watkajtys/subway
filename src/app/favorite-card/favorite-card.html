@@ -1,4 +1,6 @@
-<a [routerLink]="['/station', stationName()]"
+<a
+  [routerLink]="['/station', stationName()]"
+  [queryParams]="{ line: favorite.lineId, direction: favorite.direction }"
   class="bg-zinc-800 rounded-lg p-4 flex flex-col gap-2 cursor-pointer hover:bg-zinc-700 transition-colors w-full"
 >
   <h3 class="font-bold text-lg text-white w-full">{{ stationName() }}</h3>

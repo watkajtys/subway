@@ -7,7 +7,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { StateService, ArrivalTime } from '../state.service';
 import Long from 'long';
@@ -34,6 +34,7 @@ import { RealtimeService } from '../realtime.service';
 export class DepartureBoardComponent implements OnInit, OnDestroy {
   public state: StateService = inject(StateService);
   private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
   protected stopNameService: StopNameService = inject(StopNameService);
   protected favoritesService: FavoritesService = inject(FavoritesService);
   private realtimeService: RealtimeService = inject(RealtimeService);
@@ -150,6 +151,21 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
         this.state.registerStation(this.stationName);
       }
     });
+
+    this.route.queryParams.subscribe((queryParams) => {
+      const line = queryParams['line'];
+      const direction = queryParams['direction'];
+
+      this.activeLineFilter.set(line ?? 'all');
+
+      if (direction === 'Uptown') {
+        this.activeFilter.set('northbound');
+      } else if (direction === 'Downtown') {
+        this.activeFilter.set('southbound');
+      } else {
+        this.activeFilter.set('all');
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -184,10 +200,33 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
 
   protected setFilter(filter: 'all' | 'northbound' | 'southbound') {
     this.activeFilter.set(filter);
+    this.updateUrlQueryParams();
   }
 
   protected setLineFilter(line: string) {
     this.activeLineFilter.set(line);
+    this.updateUrlQueryParams();
+  }
+
+  private updateUrlQueryParams() {
+    const queryParams: { [key: string]: string } = {};
+
+    const line = this.activeLineFilter();
+    if (line !== 'all') {
+      queryParams['line'] = line;
+    }
+
+    const direction = this.activeFilter();
+    if (direction === 'northbound') {
+      queryParams['direction'] = 'Uptown';
+    } else if (direction === 'southbound') {
+      queryParams['direction'] = 'Downtown';
+    }
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+    });
   }
 
   protected getTimeStyles(arrival: number | undefined): {
