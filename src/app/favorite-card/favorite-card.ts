@@ -18,7 +18,6 @@ import { DestinationPipe } from '../destination.pipe';
     DestinationPipe,
   ],
   templateUrl: './favorite-card.html',
-  styleUrls: ['./favorite-card.css'],
 })
 export class FavoriteCardComponent {
   @Input({ required: true }) favorite!: Favorite;
