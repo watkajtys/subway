@@ -39,7 +39,7 @@
             'opacity-100': activeLineFilter() === line,
             'opacity-50': activeLineFilter() !== 'all' && activeLineFilter() !== line,
           }">
-            <app-route-badge [routeId]="line"></app-route-badge>
+            <app-route-badge [routeId]="line" [isButton]="true"></app-route-badge>
           </button>
         </div>
       </div>

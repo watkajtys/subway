@@ -1,4 +1,5 @@
 <a
+  *ngIf="!isButton"
   [routerLink]="['/line', routeId]"
   [style.cursor]="'pointer'"
   class="block"
@@ -17,3 +18,18 @@
     <span>{{ routeId }}</span>
   </div>
 </a>
+
+<div
+  *ngIf="isButton"
+    class="flex items-center justify-center font-bold rounded-full"
+    [style.backgroundColor]="backgroundColor()"
+  [style.color]="textColor()"
+  [ngClass]="{
+    'size-8': size === 'small',
+    'text-sm': size === 'small',
+    'size-12': size === 'large',
+    'text-xl': size === 'large'
+  }"
+>
+    <span>{{ routeId }}</span>
+  </div>
