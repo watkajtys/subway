@@ -6,6 +6,7 @@ import { StopNameService } from './stop-name.service';
 import { inject } from '@angular/core';
 import { TransfersService } from './transfers.service';
 import { HomeComponent } from './home/home';
+import { FavoritesComponent } from './favorites/favorites';
 
 const stopNameResolver = () => {
   return inject(StopNameService).loadStopNames();
@@ -30,6 +31,11 @@ export const routes: Routes = [
   {
     path: 'line/:id',
     component: LineViewComponent,
+    resolve: { stopNames: stopNameResolver },
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
     resolve: { stopNames: stopNameResolver },
   },
 ];

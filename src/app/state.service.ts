@@ -6,6 +6,7 @@ import { StopNameService } from './stop-name.service';
 import { Observable } from 'rxjs';
 import Long from 'long';
 import { NyctStopTimeUpdate } from './generated/nyct-subway';
+import { FavoritesService } from './favorites.service';
 
 export interface ArrivalTime {
   routeId: string;
@@ -21,7 +22,8 @@ export interface ArrivalTime {
 })
 export class StateService {
   private mtaDataService: MtaDataService = inject(MtaDataService);
-  private stopNameService: StopNameService = inject(StopNameService);
+  public stopNameService: StopNameService = inject(StopNameService);
+  private favoritesService: FavoritesService = inject(FavoritesService);
   private dataFetchInterval: any = null;
 
   // Signals for application state
@@ -35,47 +37,57 @@ export class StateService {
   private activeStationSubscriptions = signal<Set<string>>(new Set());
   private activeLineSubscriptions = signal<Set<string>>(new Set());
 
+  private allRelevantStopIds = computed(() => {
+    const stationName = this.selectedStation();
+    const favoriteStations = this.favoritesService.favorites().map(f => f.stationId);
+    const allStationNames = new Set([stationName, ...favoriteStations]);
+
+    const stopIds = Array.from(allStationNames).flatMap(name =>
+      this.stopNameService.getStopIdsForStation(name) || []
+    );
+    return new Set(stopIds);
+  });
+
   public arrivalTimes = computed<ArrivalTime[]>(() => {
     const tripUpdates = this.tripUpdatesMap();
-    const stationName = this.selectedStation();
-    const stopIds = this.stopNameService.getStopIdsForStation(stationName);
+    const stopIds = this.allRelevantStopIds();
 
-    if (!stopIds || tripUpdates.size === 0) {
+    if (stopIds.size === 0 || tripUpdates.size === 0) {
       return [];
     }
 
     const newArrivalTimes = Array.from(tripUpdates.values())
-      .map((tripUpdate) => {
+      .flatMap((tripUpdate) => {
         const { trip } = tripUpdate;
         const routeId = trip?.routeId;
 
-        const stop = tripUpdate.stopTimeUpdate?.find(
-          (update) =>
-            update.stopId &&
-            stopIds.some((stop) => update.stopId?.startsWith(stop))
-        );
-
-        if (!stop || !trip?.tripId || !routeId) {
-          return null;
+        if (!trip?.tripId || !routeId) {
+          return [];
         }
 
-        const arrivalTime = this.convertToNumber(stop.arrival?.time);
-        const nyctStopTimeUpdate = (stop as any)?.[
-          '[transit_realtime.nyctStopTimeUpdate]'
-        ] as NyctStopTimeUpdate | undefined;
-        const direction = stop.stopId!.slice(-1) as 'N' | 'S';
+        return (tripUpdate.stopTimeUpdate ?? []).map(stop => {
+          if (!stop.stopId || !stopIds.has(stop.stopId.slice(0, -1))) {
+            return null;
+          }
 
-        return {
-          tripId: trip.tripId!,
-          stopId: stop.stopId!,
-          arrivalTime: arrivalTime!,
-          routeId: routeId!,
-          direction: direction,
-          track:
-            nyctStopTimeUpdate?.actualTrack ??
-            nyctStopTimeUpdate?.scheduledTrack ??
-            undefined,
-        };
+          const arrivalTime = this.convertToNumber(stop.arrival?.time);
+          const nyctStopTimeUpdate = (stop as any)?.[
+            '[transit_realtime.nyctStopTimeUpdate]'
+          ] as NyctStopTimeUpdate | undefined;
+          const direction = stop.stopId!.slice(-1) as 'N' | 'S';
+
+          return {
+            tripId: trip.tripId!,
+            stopId: stop.stopId!,
+            arrivalTime: arrivalTime!,
+            routeId: routeId!,
+            direction: direction,
+            track:
+              nyctStopTimeUpdate?.actualTrack ??
+              nyctStopTimeUpdate?.scheduledTrack ??
+              undefined,
+          };
+        })
       })
       .filter((a) => a !== null && a.arrivalTime !== undefined);
 

@@ -1,0 +1,23 @@
+<div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
+  <app-header title="Favorites"></app-header>
+  <div class="p-4">
+    <div *ngIf="favoritesService.favorites().length > 0; else noFavorites">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <app-favorite-card
+          *ngFor="let favorite of favoritesService.favorites()"
+          [favorite]="favorite"
+        ></app-favorite-card>
+      </div>
+    </div>
+    <ng-template #noFavorites>
+      <div class="text-center py-8">
+        <p class="text-lg text-zinc-500 dark:text-zinc-400">
+          You don't have any favorites yet.
+        </p>
+        <a routerLink="/" class="text-blue-600 dark:text-blue-400 hover:underline mt-2 inline-block">
+          Go to Homepage
+        </a>
+      </div>
+    </ng-template>
+  </div>
+</div>

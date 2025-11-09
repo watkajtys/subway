@@ -5,7 +5,20 @@
   <h1 class="flex-1 text-lg text-center font-bold dark:text-white">
     {{ title }}
   </h1>
-  <div class="flex size-12 shrink-0 items-center justify-end">
+  <div class="flex size-12 shrink-0 items-center justify-end gap-2">
+    <button
+      *ngIf="showFavoriteStar"
+      (click)="onToggleFavorite()"
+      [disabled]="!isFavoriteEnabled"
+      class="material-symbols-outlined text-2xl"
+      [ngClass]="{
+        'text-zinc-400 dark:text-zinc-600': !isFavoriteEnabled,
+        'dark:text-white': isFavoriteEnabled,
+        'font-fill-1': isFavorite && isFavoriteEnabled
+      }"
+    >
+      star
+    </button>
     <span class="material-symbols-outlined text-2xl dark:text-white">more_vert</span>
   </div>
 </header>
