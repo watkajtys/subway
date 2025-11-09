@@ -4,6 +4,7 @@ import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
 import { RouterModule } from '@angular/router';
 import { StationSearch } from '../station-search/station-search';
+import { HeaderComponent } from '../header/header';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { StationSearch } from '../station-search/station-search';
     RouteBadgeComponent,
     RouterModule,
     StationSearch,
+    HeaderComponent,
   ],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
