@@ -97,6 +97,7 @@ export class StateService {
   constructor() {
     setInterval(() => this.time.set(new Date()), 1000);
     setInterval(() => this.blinker.update((v) => !v), 500);
+    this.manageFetching();
   }
 
   public registerStation(stationName: string) {
@@ -132,14 +133,22 @@ export class StateService {
   }
 
   private manageFetching() {
-    const hasSubscriptions =
+    const hasActiveSubscriptions =
       this.activeStationSubscriptions().size > 0 ||
       this.activeLineSubscriptions().size > 0;
+    const hasFavorites = this.favoritesService.favorites().length > 0;
 
-    if (hasSubscriptions && !this.dataFetchInterval) {
+    if ((hasActiveSubscriptions || hasFavorites) && !this.dataFetchInterval) {
       this.fetchRequiredData(); // Fetch immediately
-      this.dataFetchInterval = setInterval(() => this.fetchRequiredData(), 15000);
-    } else if (!hasSubscriptions && this.dataFetchInterval) {
+      this.dataFetchInterval = setInterval(
+        () => this.fetchRequiredData(),
+        15000,
+      );
+    } else if (
+      !hasActiveSubscriptions &&
+      !hasFavorites &&
+      this.dataFetchInterval
+    ) {
       clearInterval(this.dataFetchInterval);
       this.dataFetchInterval = null;
     }
