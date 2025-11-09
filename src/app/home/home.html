@@ -1,8 +1,6 @@
-<div class="flex items-center justify-center min-h-screen">
-  <div class="p-4 md:max-w-2xl lg:max-w-4xl mx-auto w-full">
-    <h1 class="text-2xl font-bold text-zinc-900 dark:text-white mb-4">
-      Did I Miss My Train
-    </h1>
+<div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
+  <app-header title="Did I Miss My Train"></app-header>
+  <div class="p-4">
     <div class="flex flex-col gap-4">
       <div
         *ngFor="let group of groupedLines"
