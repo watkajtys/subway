@@ -13,6 +13,7 @@ import { StateService, ArrivalTime } from '../state.service';
 import Long from 'long';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { DestinationPipe } from '../destination.pipe';
+import { HeaderComponent } from '../header/header';
 import { StopNameService } from '../stop-name.service';
 import { Favorite, FavoritesService } from '../favorites.service';
 import { RealtimeService } from '../realtime.service';
@@ -25,6 +26,7 @@ import { RealtimeService } from '../realtime.service';
     ArrivalTimePipe,
     DestinationPipe,
     RouterModule,
+    HeaderComponent,
   ],
   templateUrl: './departure-board.html',
   standalone: true,
