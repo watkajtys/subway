@@ -19,3 +19,20 @@
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
 }
+
+@media (min-width: 768px) {
+  .menu-panel {
+    animation: scaleIn 0.2s ease-in-out forwards;
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
