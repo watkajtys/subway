@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { MetaService } from '../meta.service';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
@@ -30,9 +30,10 @@ type Direction = 'N' | 'S';
 })
 export class LineViewComponent {
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly mtaColorsSvc = inject(MtaColorsService);
   protected readonly stateSvc = inject(StateService);
-  private readonly titleService = inject(Title);
+  private readonly metaService = inject(MetaService);
   private readonly realtimeSvc = inject(RealtimeService);
 
   // Direction can be 'N' (Northbound) or 'S' (Southbound)
@@ -58,7 +59,12 @@ export class LineViewComponent {
     effect(() => {
       const line = this.lineId();
       if (line) {
-        this.titleService.setTitle(`Line ${line} | Did I Miss My Train?`);
+        const title = `Line ${line} | Did I Miss My Train?`;
+        this.metaService.updateTags(
+          title,
+          "Live MTA subway departure times for New York City",
+          this.router.url
+        );
       }
     });
 

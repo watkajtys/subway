@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { MetaService } from '../meta.service';
 import { CommonModule } from '@angular/common';
 import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
@@ -29,8 +29,12 @@ export class HomeComponent {
   private router = inject(Router);
   protected groupedLines = this.mtaColorsService.getGroupedLines();
 
-  constructor(private titleService: Title) {
-    this.titleService.setTitle('Did I Miss My Train?');
+  constructor(private metaService: MetaService, private router: Router) {
+    this.metaService.updateTags(
+      'Did I Miss My Train?',
+      "Live MTA subway departure times for New York City",
+      this.router.url
+    );
   }
 
   onStationSelected(station: string): void {
