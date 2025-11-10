@@ -1,40 +1,26 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { ScheduleService } from './schedule.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
-import { StopNameService } from './stop-name.service';
-import { TransfersService } from './transfers.service';
-import { AccessibilityService } from './accessibility.service';
-import { MtaColorsService } from './mta-colors.service';
-import { DestinationPipe } from './destination.pipe';
-import { MtaDataService } from './mta-data.service';
-import { RealtimeService } from './realtime.service';
-import { StateService } from './state.service';
+import { ScheduleService } from './schedule.service';
 
 describe('ScheduleService', () => {
   let service: ScheduleService;
   let httpMock: HttpTestingController;
 
+  const mockSchedule = {
+    B: [{ days: [0, 6], message: 'No weekend service' }],
+    C: [{ hours: [0, 1, 2, 3, 4, 5], message: 'No late night service' }],
+    Z: [{ days: [0, 6], hours: [10, 11, 12], message: 'Special weekend midday outage' }],
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
-        ScheduleService,
-        provideRouter(routes),
+        provideRouter([]),
         provideZonelessChangeDetection(),
-        MtaDataService,
-        StateService,
-        StopNameService,
-        TransfersService,
-        RealtimeService,
-        AccessibilityService,
-        MtaColorsService,
-        DestinationPipe,
+        ScheduleService,
       ],
     });
     service = TestBed.inject(ScheduleService);
@@ -45,59 +31,96 @@ describe('ScheduleService', () => {
     httpMock.verify();
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  it('should return the correct message for a weekend-only outage', (done) => {
+    //
+    const mockDate = new Date('2024-03-10T12:00:00');
+    class FakeDate {
+      constructor() {
+        return mockDate;
+      }
+    }
+    spyOn(window, 'Date').and.callFake(FakeDate as any);
 
-  it('should return "weekday" for a regular weekday', (done) => {
-    const testDate = new Date('2025-11-05T12:00:00Z'); // A Wednesday
-    service.getServiceDay(testDate).subscribe((serviceDay) => {
-      expect(serviceDay).toBe('weekday');
+
+    service.getServiceMessage('B').subscribe((message) => {
+      expect(message).toBe('No weekend service');
       done();
     });
 
-    const req = httpMock.expectOne('/assets/schedule.json');
+    const req = httpMock.expectOne('/assets/service-schedule.json');
     expect(req.request.method).toBe('GET');
-    req.flush({});
+    req.flush(mockSchedule);
   });
 
-  it('should return "saturday" for a Saturday', (done) => {
-    const testDate = new Date('2025-11-08T12:00:00Z'); // A Saturday
-    service.getServiceDay(testDate).subscribe((serviceDay) => {
-      expect(serviceDay).toBe('saturday');
+  it('should return null for a line that is in service', (done) => {
+    const mockDate = new Date('2024-03-11T12:00:00');
+    class FakeDate {
+      constructor() {
+        return mockDate;
+      }
+    }
+    spyOn(window, 'Date').and.callFake(FakeDate as any);
+
+    service.getServiceMessage('B').subscribe((message) => {
+      expect(message).toBeNull();
       done();
     });
 
-    const req = httpMock.expectOne('/assets/schedule.json');
-    expect(req.request.method).toBe('GET');
-    req.flush({});
+    const req = httpMock.expectOne('/assets/service-schedule.json');
+    req.flush(mockSchedule);
   });
 
-  it('should return "sunday" for a Sunday', (done) => {
-    const testDate = new Date('2025-11-09T12:00:00Z'); // A Sunday
-    service.getServiceDay(testDate).subscribe((serviceDay) => {
-      expect(serviceDay).toBe('sunday');
+  it('should return the correct message for a late-night outage', (done) => {
+    const mockDate = new Date('2024-03-11T02:00:00');
+    class FakeDate {
+      constructor() {
+        return mockDate;
+      }
+    }
+    spyOn(window, 'Date').and.callFake(FakeDate as any);
+
+    service.getServiceMessage('C').subscribe((message) => {
+      expect(message).toBe('No late night service');
       done();
     });
 
-    const req = httpMock.expectOne('/assets/schedule.json');
-    expect(req.request.method).toBe('GET');
-    req.flush({});
+    const req = httpMock.expectOne('/assets/service-schedule.json');
+    req.flush(mockSchedule);
   });
 
-  it('should return "sunday" for Thanksgiving holiday', (done) => {
-    const testDate = new Date('2025-11-27T12:00:00Z'); // Thanksgiving
-    const mockSchedule = {
-      '20251127': 'sunday',
-    };
+  it('should return the correct message for a combined day and hour outage', (done) => {
+    const mockDate = new Date('2024-03-10T11:00:00');
+    class FakeDate {
+      constructor() {
+        return mockDate;
+      }
+    }
+    spyOn(window, 'Date').and.callFake(FakeDate as any);
 
-    service.getServiceDay(testDate).subscribe((serviceDay) => {
-      expect(serviceDay).toBe('sunday');
+    service.getServiceMessage('Z').subscribe((message) => {
+      expect(message).toBe('Special weekend midday outage');
       done();
     });
 
-    const req = httpMock.expectOne('/assets/schedule.json');
-    expect(req.request.method).toBe('GET');
+    const req = httpMock.expectOne('/assets/service-schedule.json');
+    req.flush(mockSchedule);
+  });
+
+  it('should return null if only the day matches but not the hour', (done) => {
+    const mockDate = new Date('2024-03-10T14:00:00');
+    class FakeDate {
+      constructor() {
+        return mockDate;
+      }
+    }
+    spyOn(window, 'Date').and.callFake(FakeDate as any);
+
+    service.getServiceMessage('Z').subscribe((message) => {
+      expect(message).toBeNull();
+      done();
+    });
+
+    const req = httpMock.expectOne('/assets/service-schedule.json');
     req.flush(mockSchedule);
   });
 });

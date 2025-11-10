@@ -16,7 +16,11 @@
       </div>
     }
 
-    @if(stations(); as stations) {
+    @if(serviceMessage(); as message) {
+      <div class="px-4 py-8 text-center">
+        <p class="text-lg font-semibold">{{ message }}</p>
+      </div>
+    } @else if(stations(); as stations) {
     <main class="px-4">
       <ul class="flex flex-col">
       @for(station of stations; track station.stationId; let i = $index; let last = $last) {

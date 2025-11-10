@@ -2,10 +2,12 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
+import { ScheduleService } from '../schedule.service';
 import { StateService } from '../state.service';
 import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { HeaderComponent } from '../header/header';
@@ -32,12 +34,23 @@ export class LineViewComponent {
   private readonly mtaColorsSvc = inject(MtaColorsService);
   protected readonly stateSvc = inject(StateService);
   private readonly realtimeSvc = inject(RealtimeService);
+  private readonly scheduleSvc = inject(ScheduleService);
 
   // Direction can be 'N' (Northbound) or 'S' (Southbound)
   protected direction = signal<Direction>('N');
 
   lineId = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('id')))
+  );
+
+  serviceMessage = toSignal(
+    this.route.paramMap.pipe(
+      map((params) => params.get('id')),
+      switchMap((id) => {
+        if (!id) return of(null);
+        return this.scheduleSvc.getServiceMessage(id);
+      })
+    )
   );
 
   lineData = computed(() => {

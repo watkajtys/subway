@@ -1,46 +1,56 @@
-import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, shareReplay } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 
-interface Schedule {
-  [date: string]: 'weekday' | 'saturday' | 'sunday';
+interface ScheduleRule {
+  days?: number[];
+  hours?: number[];
+  message: string;
+}
+
+interface ServiceSchedule {
+  [line: string]: ScheduleRule[];
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScheduleService {
-  private readonly http = inject(HttpClient);
+  private http = inject(HttpClient);
+  private scheduleData$: Observable<ServiceSchedule | null> = this.http
+    .get<ServiceSchedule>('/assets/service-schedule.json')
+    .pipe(
+      catchError((error) => {
+        console.error('Error loading service schedule:', error);
+        return of(null);
+      }),
+      shareReplay(1)
+    );
 
-  private schedule$: Observable<Schedule> = this.http
-    .get<Schedule>('/assets/schedule.json')
-    .pipe(shareReplay(1));
-
-  getServiceDay(date: Date): Observable<'weekday' | 'saturday' | 'sunday'> {
-    const dateString = this.formatDate(date);
-    return this.schedule$.pipe(
+  getServiceMessage(lineId: string): Observable<string | null> {
+    return this.scheduleData$.pipe(
       map((schedule) => {
-        if (schedule[dateString]) {
-          return schedule[dateString];
+        if (!schedule || !schedule[lineId]) {
+          return null;
         }
 
-        const day = date.getDay();
-        if (day >= 1 && day <= 5) {
-          return 'weekday';
-        } else if (day === 6) {
-          return 'saturday';
-        } else {
-          return 'sunday';
+        const rules = schedule[lineId];
+        const now = new Date();
+        const currentDay = now.getDay();
+        const currentHour = now.getHours();
+
+        for (const rule of rules) {
+          const dayMatch = !rule.days || rule.days.includes(currentDay);
+          const hourMatch = !rule.hours || rule.hours.includes(currentHour);
+
+          if (dayMatch && hourMatch) {
+            return rule.message;
+          }
         }
+
+        return null;
       })
     );
-  }
-
-  private formatDate(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}${month}${day}`;
   }
 }
