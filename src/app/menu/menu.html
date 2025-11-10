@@ -1,7 +1,7 @@
 <div (click)="closeMenu()" class="fixed inset-0 bg-zinc-800/70 backdrop-blur-sm z-50 backdrop">
   <div (click)="$event.stopPropagation()" class="absolute inset-0 md:inset-auto md:w-[420px] bg-zinc-900/90 text-white p-4 flex flex-col gap-4 overflow-y-auto menu-panel">
     <div class="flex items-center justify-between">
-      <h2 class="text-xl font-bold">Menu</h2>
+      <a routerLink="/" (click)="closeMenu()" class="text-xl font-bold">did i miss my train</a>
       <button (click)="closeMenu()" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center">
         <span class="material-symbols-outlined">
           close
