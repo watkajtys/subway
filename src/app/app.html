@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<main class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
+  <router-outlet></router-outlet>
+</main>
+<app-menu *ngIf="uiService.menuOpen()"></app-menu>

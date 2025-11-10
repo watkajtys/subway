@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -16,6 +16,8 @@ export interface Station {
   styleUrls: ['./station-search.css'],
 })
 export class StationSearch {
+  @Output() stationSelected = new EventEmitter<string>();
+
   private http = inject(HttpClient);
   private router = inject(Router);
 
@@ -49,6 +51,6 @@ export class StationSearch {
   selectStation(station: Station) {
     this.searchTerm = station.name;
     this.filteredStations = [];
-    this.router.navigate(['/station', station.name]);
+    this.stationSelected.emit(station.name);
   }
 }
