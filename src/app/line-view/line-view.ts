@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal, Input } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -28,7 +28,6 @@ type Direction = 'N' | 'S';
   styleUrl: './line-view.css',
 })
 export class LineViewComponent {
-  private readonly route = inject(ActivatedRoute);
   private readonly mtaColorsSvc = inject(MtaColorsService);
   protected readonly stateSvc = inject(StateService);
   private readonly realtimeSvc = inject(RealtimeService);
@@ -36,9 +35,10 @@ export class LineViewComponent {
   // Direction can be 'N' (Northbound) or 'S' (Southbound)
   protected direction = signal<Direction>('N');
 
-  lineId = toSignal(
-    this.route.paramMap.pipe(map((params) => params.get('id')))
-  );
+  @Input() set id(id: string) {
+    this.lineId.set(id);
+  }
+  lineId = signal('');
 
   lineData = computed(() => {
     const lineId = this.lineId();
@@ -111,23 +111,55 @@ export class LineViewComponent {
     if (!stations) return null;
 
     const upcoming = this.upcomingArrivals();
-    const arrivalTimeMap = new Map<string, { N?: number; S?: number }>();
+    const arrivalTimeMap = new Map<string, number>();
 
     for (const station of stations) {
-      const stationArrivals: { N?: number; S?: number } = {};
-      const northStopId = station.stationId;
-      const southStopId = station.stationId.slice(0, -1) + 'S';
-
-      const nextNorth = upcoming.get(northStopId);
-      const nextSouth = upcoming.get(southStopId);
-
-      if (nextNorth) stationArrivals['N'] = nextNorth;
-      if (nextSouth) stationArrivals['S'] = nextSouth;
-
-      arrivalTimeMap.set(station.stationId, stationArrivals);
+      const nextArrival = upcoming.get(station.stationId);
+      if (nextArrival) {
+        arrivalTimeMap.set(station.stationId, nextArrival);
+      }
     }
 
     return arrivalTimeMap;
+  });
+
+  trainsBetweenStations = computed(() => {
+    const tripUpdatesMap = this.stateSvc.tripUpdatesMap();
+    const now = this.stateSvc.time();
+    const lineId = this.lineId();
+    const direction = this.direction();
+
+    if (!tripUpdatesMap || !lineId) {
+      return new Map<string, 'soon' | 'between'>();
+    }
+
+    const trains = new Map<string, 'soon' | 'between'>();
+
+    for (const update of tripUpdatesMap.values()) {
+      if (update.trip?.routeId !== lineId) {
+        continue;
+      }
+
+      const futureStops = (update.stopTimeUpdate ?? []).filter(
+        (stu) => (stu.arrival?.time ?? 0) > now.getTime() / 1000
+      );
+
+      if (futureStops.length > 0 && futureStops[0].stopId?.slice(-1) === direction) {
+        const nextStop = futureStops[0];
+        const arrivalTime = nextStop.arrival?.time;
+
+        if (arrivalTime) {
+          const diffInSeconds = arrivalTime - now.getTime() / 1000;
+          if (diffInSeconds < 60) {
+            trains.set(nextStop.stopId!, 'soon');
+          } else {
+            trains.set(nextStop.stopId!, 'between');
+          }
+        }
+      }
+    }
+
+    return trains;
   });
 
   lineColor = computed(() => {

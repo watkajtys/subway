@@ -2,6 +2,29 @@
   <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
     <app-header [title]="(lineId() ?? '') + ' Line'"></app-header>
 
+    <div class="flex space-x-2 p-4">
+      <button
+        (click)="direction.set('N')"
+        class="flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors"
+        [ngClass]="{
+          'bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white': direction() === 'N',
+          'bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800': direction() !== 'N'
+        }"
+      >
+        Uptown
+      </button>
+      <button
+        (click)="direction.set('S')"
+        class="flex-1 py-2 px-4 rounded-full text-sm font-medium transition-colors"
+        [ngClass]="{
+          'bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white': direction() === 'S',
+          'bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800': direction() !== 'S'
+        }"
+      >
+        Downtown
+      </button>
+    </div>
+
     @if (lineId(); as lineId) {
       <div class="flex items-center gap-4 px-4 py-4">
         <app-route-badge [routeId]="lineId" size="large"></app-route-badge>
@@ -16,17 +39,28 @@
       </div>
     }
 
-    @if(stations(); as stations) {
+    @if(stations().length > 0) {
     <main class="px-4">
       <ul class="flex flex-col">
-      @for(station of stations; track station.stationId; let i = $index; let last = $last) {
+      @for(station of stations(); track station.stationId; let i = $index; let last = $last) {
         <li class="flex">
           <!-- Timeline -->
           <div class="flex flex-col items-center w-12 mr-4">
             <div
-              class="flex-1 w-0.5"
+              class="relative flex-1 w-0.5"
               [style.background-color]="lineColor()"
-            ></div>
+            >
+              @if (i > 0 && trainsBetweenStations().has(station.stationId)) {
+                <div class="relative h-full">
+                  <span
+                    class="material-symbols-outlined text-2xl z-20 absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    [style.color]="lineColor()"
+                    [style.top]="trainsBetweenStations().get(station.stationId) === 'between' ? '40%' : '80%'"
+                    >train</span
+                  >
+                </div>
+              }
+            </div>
             <div
               class="flex items-center justify-center size-5 rounded-full border-2 -my-px z-10 bg-background-light dark:bg-background-dark"
               [style.border-color]="lineColor()"
@@ -56,31 +90,18 @@
                 </div>
               }
             </div>
-            @if(arrivalTimes()?.get(station.stationId); as arrivals) {
-              <div class="flex-shrink-0 tabular-nums text-right grid grid-cols-2 gap-x-2">
-                @if(arrivals.N) {
-                  <span class="text-zinc-500 dark:text-zinc-400 text-sm text-right">Uptown</span>
-                  <span class="font-bold text-lg text-right"
-                    [ngClass]="{
-                      'text-green-400 transition-opacity': (arrivals.N | arrivalTime) === 'NOW',
-                      'opacity-50': (arrivals.N | arrivalTime) === 'NOW' && !stateSvc.blinker(),
-                      'text-yellow-400': (arrivals.N | arrivalTime) === 'soon'
-                    }"
-                    >{{ (arrivals.N | arrivalTime) }}</span
-                  >
-                }
-                @if(arrivals.S) {
-                  <span class="text-zinc-500 dark:text-zinc-400 text-sm text-right">Downtown</span>
-                  <span class="font-bold text-lg text-right"
-                    [ngClass]="{
-                      'text-green-400 transition-opacity': (arrivals.S | arrivalTime) === 'NOW',
-                      'opacity-50': (arrivals.S | arrivalTime) === 'NOW' && !stateSvc.blinker(),
-                      'text-yellow-400': (arrivals.S | arrivalTime) === 'soon'
-                    }"
-                    >{{ (arrivals.S | arrivalTime) }}</span
-                  >
-                }
-              </div>
+            @if(arrivalTimes()?.get(station.stationId); as arrival) {
+            <div class="flex-shrink-0 tabular-nums text-right">
+              <span
+                class="font-bold text-lg text-right"
+                [ngClass]="{
+                  'text-green-400 transition-opacity': (arrival | arrivalTime) === 'NOW',
+                  'opacity-50': (arrival | arrivalTime) === 'NOW' && !stateSvc.blinker(),
+                  'text-yellow-400': (arrival | arrivalTime) === 'soon'
+                }"
+                >{{ (arrival | arrivalTime) }}</span
+              >
+            </div>
             }
           </div>
         </li>
@@ -88,7 +109,9 @@
       </ul>
     </main>
     } @else {
-    <p>Loading...</p>
+    <p class="px-4 py-8 text-center text-zinc-500 dark:text-zinc-400">
+      No trains scheduled for this direction.
+    </p>
     }
   </div>
 </div>
