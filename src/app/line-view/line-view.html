@@ -2,12 +2,12 @@
   <div class="md:max-w-2xl lg:max-w-4xl mx-auto w-full">
     <app-header [title]="(lineId() ?? '') + ' Line'"></app-header>
 
-    @if (lineId(); as lineId) {
+    @if (lineId(); as id) {
       <div class="flex items-center gap-4 px-4 py-4">
-        <app-route-badge [routeId]="lineId" size="large"></app-route-badge>
+        <app-route-badge [routeId]="id" size="large"></app-route-badge>
         <div class="flex flex-col justify-center">
           <p class="text-base font-medium">
-            {{ lineId }} Line
+            {{ id }} Line
           </p>
           <p class="text-sm text-zinc-500 dark:text-zinc-400">
             All Stops
