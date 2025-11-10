@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
+import { UiService } from '../ui.service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,8 @@ export class HeaderComponent {
 
   isHomePage: boolean = false;
 
+  private uiService = inject(UiService);
+
   constructor(private location: Location, private router: Router) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -30,6 +33,10 @@ export class HeaderComponent {
     if (this.isFavoriteEnabled) {
       this.toggleFavorite.emit();
     }
+  }
+
+  openMenu(): void {
+    this.uiService.openMenu();
   }
 
   goBack(): void {
