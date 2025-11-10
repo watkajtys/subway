@@ -26,7 +26,7 @@
       <h3 class="text-lg font-semibold mb-2">Lines</h3>
       <div class="flex flex-wrap gap-2">
         <ng-container *ngFor="let group of groupedLines">
-          <a *ngFor="let line of group.lines" [routerLink]="['/line', line]">
+          <a *ngFor="let line of group.lines" [routerLink]="['/line', line]" (click)="closeMenu()">
             <app-route-badge [routeId]="line" size="large"></app-route-badge>
           </a>
         </ng-container>

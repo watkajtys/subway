@@ -8,9 +8,11 @@ export class UiService {
 
   public openMenu(): void {
     this.menuOpen.set(true);
+    document.body.classList.add('overflow-hidden');
   }
 
   public closeMenu(): void {
     this.menuOpen.set(false);
+    document.body.classList.remove('overflow-hidden');
   }
 }
