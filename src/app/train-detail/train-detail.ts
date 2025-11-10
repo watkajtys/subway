@@ -1,4 +1,5 @@
 import { Component, inject, computed, signal, effect } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StateService } from '../state.service';
@@ -36,6 +37,16 @@ export class TrainDetailComponent {
   private tripId = this.route.snapshot.paramMap.get('id');
   private accessibilityService = inject(AccessibilityService);
   private mtaColorsService = inject(MtaColorsService);
+  private titleService = inject(Title);
+
+  constructor() {
+    effect(() => {
+      const trainId = this.trainId();
+      if (trainId) {
+        this.titleService.setTitle(`Train ${trainId} | Did I Miss My Train?`);
+      }
+    });
+  }
 
   protected navigateToStation(stopId: string) {
     const stopName = this.stopNamePipe.transform(stopId);
