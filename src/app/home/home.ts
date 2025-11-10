@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { MtaColorsService } from '../mta-colors.service';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
@@ -27,6 +28,10 @@ export class HomeComponent {
   protected favoritesService = inject(FavoritesService);
   private router = inject(Router);
   protected groupedLines = this.mtaColorsService.getGroupedLines();
+
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('Did I Miss My Train?');
+  }
 
   onStationSelected(station: string): void {
     const encodedStation = encodeURIComponent(station);

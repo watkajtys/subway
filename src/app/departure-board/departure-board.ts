@@ -6,6 +6,7 @@ import {
   signal,
   OnDestroy,
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { RouteBadgeComponent } from '../route-badge/route-badge';
@@ -35,6 +36,7 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   public state: StateService = inject(StateService);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private router: Router = inject(Router);
+  private titleService: Title = inject(Title);
   protected stopNameService: StopNameService = inject(StopNameService);
   protected favoritesService: FavoritesService = inject(FavoritesService);
   private realtimeService: RealtimeService = inject(RealtimeService);
@@ -147,6 +149,9 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.stationName = decodeURIComponent(params['id']);
       if (this.stationName) {
+        this.titleService.setTitle(
+          `${this.stationName} | Did I Miss My Train?`,
+        );
         this.state.selectedStation.set(this.stationName);
         this.state.registerStation(this.stationName);
       }

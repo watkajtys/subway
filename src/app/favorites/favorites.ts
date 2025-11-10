@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FavoritesService } from '../favorites.service';
 import { FavoriteCardComponent } from '../favorite-card/favorite-card';
@@ -14,4 +15,8 @@ import { RouterModule } from '@angular/router';
 })
 export class FavoritesComponent {
   protected favoritesService = inject(FavoritesService);
+
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('Favorites | Did I Miss My Train?');
+  }
 }
