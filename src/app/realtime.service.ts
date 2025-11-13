@@ -113,6 +113,7 @@ export class RealtimeService {
       this.state.stopToRoutesMap().get(northId)?.forEach(r => routes.add(r));
       this.state.stopToRoutesMap().get(southId)?.forEach(r => routes.add(r));
     }
+    console.log(`[realtime.service] transfers for ${stopId}`, routes);
     return Array.from(routes);
   }
 }
