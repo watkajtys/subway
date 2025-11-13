@@ -21,106 +21,104 @@
     <!-- Stop List -->
     <main class="px-4">
       <ul class="flex flex-col">
-        <!-- Past Stops -->
-        <li *ngFor="let stop of pastStops(); let last = last" class="flex">
-          <!-- Timeline -->
-          <div class="flex flex-col items-center w-12 mr-4 text-zinc-700">
-            <div class="flex-1 w-0.5 bg-current"></div>
-            <span class="material-symbols-outlined text-2xl -my-1 z-10">check_circle</span>
-            <div
-              class="relative flex-1 w-0.5"
-              [class.bg-current]="
-                !last || (last && getTrainPosition() === 'at-station')
-              "
-              [style.background-color]="
-                last && getTrainPosition() !== 'at-station' ? routeColor() : ''
-              "
-            >
-              <div class="relative h-full" *ngIf="last && futureStops().length > 0 && getTrainPosition() !== 'at-station'">
-                <span
-                  class="material-symbols-outlined text-2xl z-20 absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  [style.color]="routeColor()"
-                  [style.top]="getTrainPosition() === 'between' ? '20%' : '80%'"
-                  >train</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- Stop Details -->
-          <div class="flex-1 py-3 border-b border-zinc-200 dark:border-zinc-800">
-            <p
-              class="font-medium text-base"
-              [class.text-zinc-500]="pastStops().includes(stop)"
-              [class.dark:text-zinc-400]="pastStops().includes(stop)"
-            >
-              {{ stop.stopId | stopName }}
-            </p>
-            <div
-              class="flex items-center gap-2 mt-1"
-              *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)"
-            >
-              <span class="material-symbols-outlined text-lg" title="Accessibility" *ngIf="isAccessible(stop.stopId!)">accessible</span>
+        <li *ngFor="let stop of allStops(); let i = index; let last = last" class="flex">
+          <!-- PAST STOP TEMPLATE -->
+          <ng-container *ngIf="isPastStop(stop)">
+            <!-- Timeline -->
+            <div class="flex flex-col items-center w-12 mr-4 text-zinc-700">
+              <div class="flex-1 w-0.5 bg-current"></div>
+              <span class="material-symbols-outlined text-2xl -my-1 z-10">check_circle</span>
               <div
-                class="flex items-center gap-1.5 flex-wrap"
-                [class.dimmed-badges]="pastStops().includes(stop)"
-              >
-                <app-route-badge
-                  *ngFor="let route of getTransfersForStop(stop.stopId!)"
-                  [routeId]="route"
-                ></app-route-badge>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <!-- Upcoming Stops -->
-        <li *ngFor="let stop of futureStops(); let i = index; let last = last" class="flex">
-          <!-- Timeline -->
-          <div class="flex flex-col items-center w-12 mr-4">
-            <div
-              class="flex-1 w-0.5"
-              [style.background-color]="getLineColor(stop, i)"
-            ></div>
-            <div
-              class="flex items-center justify-center size-5 rounded-full border-2 -my-px z-10 bg-background-light dark:bg-background-dark"
-              [style.border-color]="routeColor()"
-            >
-              <span
-                class="material-symbols-outlined text-sm z-20"
-                [style.color]="routeColor()"
-                *ngIf="i === 0 && getTrainPosition() === 'at-station'"
-                >train</span
-              >
-              <div
-                class="size-2 rounded-full m-0.5"
-                [style.background-color]="
-                  i === 0 ? routeColor() : 'transparent'
+                class="relative flex-1 w-0.5"
+                [class.bg-current]="
+                  i !== pastStops().length - 1 || (i === pastStops().length - 1 && getTrainPosition() === 'at-station')
                 "
-                *ngIf="!(i === 0 && getTrainPosition() === 'at-station')"
-              ></div>
-            </div>
-            <div
-              class="flex-1 w-0.5"
-              [style.background-color]="!last ? routeColor() : 'transparent'"
-            ></div>
-          </div>
-
-          <!-- Stop Details -->
-          <div (click)="navigateToStation(stop.stopId!)" class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900">
-            <div>
-              <p class="font-medium text-base">{{ stop.stopId | stopName }}</p>
-              <div class="flex items-center gap-2 mt-1" *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)">
-                <span class="material-symbols-outlined text-lg" title="Accessibility" *ngIf="isAccessible(stop.stopId!)">accessible</span>
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <app-route-badge *ngFor="let route of getTransfersForStop(stop.stopId!)" [routeId]="route"></app-route-badge>
+                [style.background-color]="
+                  i === pastStops().length - 1 && getTrainPosition() !== 'at-station' ? routeColor() : ''
+                "
+              >
+                <div class="relative h-full" *ngIf="i === pastStops().length - 1 && futureStops().length > 0 && getTrainPosition() !== 'at-station'">
+                  <span
+                    class="material-symbols-outlined text-2xl z-20 absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    [style.color]="routeColor()"
+                    [style.top]="getTrainPosition() === 'between' ? '20%' : '80%'"
+                    >train</span
+                  >
                 </div>
               </div>
             </div>
-            <p class="font-bold text-lg" [ngStyle]="getTimeStyles(stop.arrival?.time)">
-              {{ stop.arrival?.time | arrivalTime }}
-            </p>
-          </div>
+
+            <!-- Stop Details -->
+            <div class="flex-1 py-3 border-b border-zinc-200 dark:border-zinc-800">
+              <p class="font-medium text-base text-zinc-500 dark:text-zinc-400">
+                {{ stop.stopId | stopName }}
+              </p>
+              <div
+                class="flex items-center gap-2 mt-1"
+                *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)"
+              >
+                <span class="material-symbols-outlined text-lg" title="Accessibility" *ngIf="isAccessible(stop.stopId!)">accessible</span>
+                <div class="flex items-center gap-1.5 flex-wrap dimmed-badges">
+                  <app-route-badge
+                    *ngFor="let route of getTransfersForStop(stop.stopId!)"
+                    [routeId]="route"
+                  ></app-route-badge>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- FUTURE STOP TEMPLATE -->
+          <ng-container *ngIf="!isPastStop(stop)">
+            <!-- Timeline -->
+            <div class="flex flex-col items-center w-12 mr-4">
+              <div class="flex-1 w-0.5" [style.background-color]="getLineColor(stop, i - pastStops().length)"></div>
+              <div
+                class="flex items-center justify-center size-5 rounded-full border-2 -my-px z-10 bg-background-light dark:bg-background-dark"
+                [style.border-color]="routeColor()"
+              >
+                <span
+                  class="material-symbols-outlined text-sm z-20"
+                  [style.color]="routeColor()"
+                  *ngIf="i === pastStops().length && getTrainPosition() === 'at-station'"
+                  >train</span
+                >
+                <div
+                  class="size-2 rounded-full m-0.5"
+                  [style.background-color]="i === pastStops().length ? routeColor() : 'transparent'"
+                  *ngIf="!(i === pastStops().length && getTrainPosition() === 'at-station')"
+                ></div>
+              </div>
+              <div class="flex-1 w-0.5" [style.background-color]="!last ? routeColor() : 'transparent'"></div>
+            </div>
+
+            <!-- Stop Details -->
+            <div
+              (click)="navigateToStation(stop.stopId!)"
+              class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-900"
+            >
+              <div>
+                <p class="font-medium text-base">{{ stop.stopId | stopName }}</p>
+                <div
+                  class="flex items-center gap-2 mt-1"
+                  *ngIf="getTransfersForStop(stop.stopId!).length > 0 || isAccessible(stop.stopId!)"
+                >
+                  <span class="material-symbols-outlined text-lg" title="Accessibility" *ngIf="isAccessible(stop.stopId!)"
+                    >accessible</span
+                  >
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <app-route-badge
+                      *ngFor="let route of getTransfersForStop(stop.stopId!)"
+                      [routeId]="route"
+                    ></app-route-badge>
+                  </div>
+                </div>
+              </div>
+              <p class="font-bold text-lg" [ngStyle]="getTimeStyles(stop.arrival?.time)">
+                {{ stop.arrival?.time | arrivalTime }}
+              </p>
+            </div>
+          </ng-container>
         </li>
       </ul>
     </main>

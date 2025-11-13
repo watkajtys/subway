@@ -67,6 +67,11 @@ export class TrainDetailComponent {
     return this.accessibilityService.isAccessible(parentStopId);
   }
 
+  protected isPastStop(stop: TripUpdate_StopTimeUpdate): boolean {
+    const nowInSeconds = this.state.time().getTime() / 1000;
+    return (stop.departure?.time ?? stop.arrival?.time ?? 0) <= nowInSeconds;
+  }
+
   protected trip = computed(() => {
     if (!this.tripId) {
       return undefined;
@@ -94,7 +99,7 @@ export class TrainDetailComponent {
     return this.mtaColorsService.getColor(this.routeId());
   });
 
-  private allStops = computed(() => {
+  protected allStops = computed(() => {
     const trip = this.trip();
     if (!trip || !trip.stopTimeUpdate) {
       return [];
