@@ -29,7 +29,7 @@ export class HomeComponent {
   private router = inject(Router);
   protected groupedLines = this.mtaColorsService.getGroupedLines();
 
-  constructor(private metaService: MetaService, private router: Router) {
+  constructor(private metaService: MetaService) {
     this.metaService.updateTags(
       'Did I Miss My Train?',
       "Live MTA subway departure times for New York City",
