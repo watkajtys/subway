@@ -170,13 +170,23 @@ export class StateService {
   private fetchRequiredData() {
     this.mtaDataService.fetchAllFeeds().subscribe(([allUpdates, newStopToRoutesMap]) => {
       this.stopToRoutesMap.set(newStopToRoutesMap);
-      const newTripUpdatesMap = new Map<string, TripUpdate>();
-      allUpdates.forEach((tripUpdate) => {
-        if (tripUpdate.trip?.tripId) {
-          newTripUpdatesMap.set(tripUpdate.trip.tripId, tripUpdate);
-        }
+      this.tripUpdatesMap.update(currentMap => {
+        allUpdates.forEach((newTripUpdate) => {
+          const tripId = newTripUpdate.trip?.tripId;
+          if (tripId) {
+            const existingTrip = currentMap.get(tripId);
+            if (existingTrip?.stopTimeUpdate && newTripUpdate.stopTimeUpdate) {
+              const existingStops = new Map(existingTrip.stopTimeUpdate.map(stu => [stu.stopId, stu]));
+              newTripUpdate.stopTimeUpdate.forEach(newStu => {
+                existingStops.set(newStu.stopId, newStu);
+              });
+              newTripUpdate.stopTimeUpdate = Array.from(existingStops.values());
+            }
+            currentMap.set(tripId, newTripUpdate);
+          }
+        });
+        return new Map(currentMap);
       });
-      this.tripUpdatesMap.set(newTripUpdatesMap);
     });
   }
 
