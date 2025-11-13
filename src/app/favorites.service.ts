@@ -21,6 +21,7 @@ export class FavoritesService {
 
   addFavorite(favorite: Favorite): void {
     if (!this.isFavorite(favorite)) {
+      console.log('[favorites.service] creating new favorite', favorite);
       this.favorites.update(favorites => [...favorites, favorite]);
     }
   }
