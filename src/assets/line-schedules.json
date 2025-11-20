@@ -1,0 +1,20 @@
+{
+  "B": {
+    "weekday": [{ "start": "06:00", "end": "23:00" }],
+    "saturday": [],
+    "sunday": []
+  },
+  "W": {
+    "weekday": [{ "start": "06:00", "end": "23:00" }],
+    "saturday": [],
+    "sunday": []
+  },
+  "Z": {
+    "weekday": [
+      { "start": "07:00", "end": "09:30" },
+      { "start": "15:30", "end": "20:00" }
+    ],
+    "saturday": [],
+    "sunday": []
+  }
+}
