@@ -38,7 +38,9 @@ export class HomeComponent {
   }
 
   onStationSelected(station: string): void {
-    const encodedStation = encodeURIComponent(station);
-    this.router.navigate(['/station', encodedStation]);
+    const encodedStation = encodeURIComponent(station)
+      .replace(/\(/g, '%28')
+      .replace(/\)/g, '%29');
+    this.router.navigateByUrl(`/station/${encodedStation}`);
   }
 }

@@ -45,7 +45,7 @@
           <!-- Stop Details -->
           <div class="flex flex-1 items-center justify-between py-3 border-b border-zinc-200 dark:border-zinc-800">
             <div>
-              <a [routerLink]="['/station', station.name]" class="cursor-pointer">
+              <a [routerLink]="getEncodedStationUrl(station.name)" class="cursor-pointer">
                 <p class="font-semibold text-base">{{ station.name }}</p>
               </a>
               @if(station.transfers.length > 0) {
