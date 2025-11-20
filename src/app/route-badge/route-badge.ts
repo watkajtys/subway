@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MtaColorsService } from '../mta-colors.service';
 
+export type BadgeStatus = 'active' | 'scheduled_inactive';
+
 @Component({
   selector: 'app-route-badge',
   standalone: true,
@@ -14,6 +16,7 @@ export class RouteBadgeComponent {
   routeId = input.required<string>();
   size = input<'small' | 'large'>('small');
   isButton = input<boolean>(false);
+  status = input<BadgeStatus>('active');
 
   private readonly mtaColorsSvc = inject(MtaColorsService);
 

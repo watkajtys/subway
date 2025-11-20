@@ -2,10 +2,11 @@
   *ngIf="!isButton()"
   [routerLink]="['/line', routeId()]"
   [style.cursor]="'pointer'"
-  class="block"
+  class="block relative group"
 >
   <div
-    class="flex items-center justify-center font-bold rounded-full"
+    class="flex items-center justify-center font-bold rounded-full transition-opacity duration-300"
+    [class.opacity-40]="status() === 'scheduled_inactive'"
     [style.backgroundColor]="backgroundColor()"
     [style.color]="textColor()"
     [ngClass]="{
@@ -17,19 +18,36 @@
   >
     <span>{{ routeId() }}</span>
   </div>
+
+  <span *ngIf="status() === 'scheduled_inactive'"
+      class="material-symbols-outlined absolute -top-1.5 -right-1.5 bg-zinc-800 text-white rounded-full shadow-sm border border-zinc-600 flex items-center justify-center z-10"
+      style="width: 16px; height: 16px; font-size: 10px;">
+    bedtime
+  </span>
 </a>
 
 <div
   *ngIf="isButton()"
-  class="flex items-center justify-center font-bold rounded-full"
-  [style.backgroundColor]="backgroundColor()"
-  [style.color]="textColor()"
-  [ngClass]="{
-    'size-8': size() === 'small',
-    'text-sm': size() === 'small',
-    'size-12': size() === 'large',
-    'text-xl': size() === 'large'
-  }"
+  class="relative"
 >
-  <span>{{ routeId() }}</span>
+  <div
+    class="flex items-center justify-center font-bold rounded-full transition-opacity duration-300"
+    [class.opacity-40]="status() === 'scheduled_inactive'"
+    [style.backgroundColor]="backgroundColor()"
+    [style.color]="textColor()"
+    [ngClass]="{
+      'size-8': size() === 'small',
+      'text-sm': size() === 'small',
+      'size-12': size() === 'large',
+      'text-xl': size() === 'large'
+    }"
+  >
+    <span>{{ routeId() }}</span>
+  </div>
+
+  <span *ngIf="status() === 'scheduled_inactive'"
+      class="material-symbols-outlined absolute -top-1.5 -right-1.5 bg-zinc-800 text-white rounded-full shadow-sm border border-zinc-600 flex items-center justify-center z-10"
+      style="width: 16px; height: 16px; font-size: 10px;">
+    bedtime
+  </span>
 </div>

@@ -45,8 +45,17 @@ describe('ScheduleService', () => {
     httpMock.verify();
   });
 
+  const flushRequests = (scheduleData = {}, lineScheduleData = {}) => {
+    const req1 = httpMock.expectOne('/assets/schedule.json');
+    req1.flush(scheduleData);
+
+    const req2 = httpMock.expectOne('/assets/line-schedules.json');
+    req2.flush(lineScheduleData);
+  };
+
   it('should be created', () => {
     expect(service).toBeTruthy();
+    flushRequests();
   });
 
   it('should return "weekday" for a regular weekday', (done) => {
@@ -55,10 +64,7 @@ describe('ScheduleService', () => {
       expect(serviceDay).toBe('weekday');
       done();
     });
-
-    const req = httpMock.expectOne('/assets/schedule.json');
-    expect(req.request.method).toBe('GET');
-    req.flush({});
+    flushRequests();
   });
 
   it('should return "saturday" for a Saturday', (done) => {
@@ -67,10 +73,7 @@ describe('ScheduleService', () => {
       expect(serviceDay).toBe('saturday');
       done();
     });
-
-    const req = httpMock.expectOne('/assets/schedule.json');
-    expect(req.request.method).toBe('GET');
-    req.flush({});
+    flushRequests();
   });
 
   it('should return "sunday" for a Sunday', (done) => {
@@ -79,10 +82,7 @@ describe('ScheduleService', () => {
       expect(serviceDay).toBe('sunday');
       done();
     });
-
-    const req = httpMock.expectOne('/assets/schedule.json');
-    expect(req.request.method).toBe('GET');
-    req.flush({});
+    flushRequests();
   });
 
   it('should return "sunday" for Thanksgiving holiday', (done) => {
@@ -95,9 +95,6 @@ describe('ScheduleService', () => {
       expect(serviceDay).toBe('sunday');
       done();
     });
-
-    const req = httpMock.expectOne('/assets/schedule.json');
-    expect(req.request.method).toBe('GET');
-    req.flush(mockSchedule);
+    flushRequests(mockSchedule);
   });
 });

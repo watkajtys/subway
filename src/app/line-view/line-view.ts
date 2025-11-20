@@ -12,6 +12,7 @@ import { ArrivalTimePipe } from '../arrival-time.pipe';
 import { HeaderComponent } from '../header/header';
 import { TripUpdate_StopTimeUpdate } from '../generated/gtfs-realtime';
 import { RealtimeService, RealtimeStop } from '../realtime.service';
+import { ScheduleService } from '../schedule.service';
 
 type Direction = 'N' | 'S';
 
@@ -35,6 +36,7 @@ export class LineViewComponent {
   protected readonly stateSvc = inject(StateService);
   private readonly metaService = inject(MetaService);
   private readonly realtimeSvc = inject(RealtimeService);
+  private readonly scheduleSvc = inject(ScheduleService);
 
   // Direction can be 'N' (Northbound) or 'S' (Southbound)
   protected direction = signal<Direction>('N');
@@ -47,6 +49,19 @@ export class LineViewComponent {
     const lineId = this.lineId();
     if (!lineId) return null;
     return this.realtimeSvc.getLineData(lineId);
+  });
+
+  lineStatus = computed(() => {
+    const lineId = this.lineId();
+    const time = this.stateSvc.time();
+    if (!lineId) return 'active';
+    return this.scheduleSvc.getLineStatus(lineId, time);
+  });
+
+  scheduleDescription = computed(() => {
+    const lineId = this.lineId();
+    if (!lineId) return '';
+    return this.scheduleSvc.getScheduleDescription(lineId);
   });
 
   stations = computed<RealtimeStop[]>(() => {
