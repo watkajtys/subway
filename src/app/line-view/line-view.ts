@@ -150,4 +150,13 @@ export class LineViewComponent {
     if (!lineId) return 'inherit';
     return this.mtaColorsSvc.getColor(lineId);
   });
+
+  protected getEncodedStationUrl(stationName: string): string {
+    return (
+      '/station/' +
+      encodeURIComponent(stationName)
+        .replace(/\(/g, '%28')
+        .replace(/\)/g, '%29')
+    );
+  }
 }

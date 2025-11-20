@@ -71,10 +71,19 @@ export class DepartureBoardComponent implements OnInit, OnDestroy {
   protected filteredArrivals = computed(() => {
     const nowInSeconds = this.state.time().getTime() / 1000;
     const tripUpdatesMap = this.state.tripUpdatesMap();
+    const stationName = this.state.selectedStation();
+    const stopIds = stationName
+      ? this.stopNameService.getStopIdsForStation(stationName)
+      : [];
 
     const upcoming = this.state
       .arrivalTimes()
       .filter((a) => {
+        // Ensure the arrival belongs to the current station
+        if (!stopIds?.includes(a.stopId)) {
+          return false;
+        }
+
         const tripUpdate = tripUpdatesMap.get(a.tripId);
         const stopTimeUpdate = tripUpdate?.stopTimeUpdate?.find(
           (stu) => stu.stopId === a.stopId,
